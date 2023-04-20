@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>CSS笔记6 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="css笔记6定位1.为什么需要定位定位可以让盒子自由的在某个盒子内移动位置或者固定屏幕中的某个位置，并且可以压住某个盒子。 2.定位组成定位&#x3D;定位模式+边偏移 定位模式用于指定一个元素在文档中的定位模式。边偏移则决定了该元素的最终位置。    值 语义    static 静态定位   relative 相对定位   absolute 绝对定位   fixed 固定定位   3.静态定位">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS笔记6">
+<meta property="og:url" content="http://example.com/2023/04/20/css%E7%AC%94%E8%AE%B06/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="css笔记6定位1.为什么需要定位定位可以让盒子自由的在某个盒子内移动位置或者固定屏幕中的某个位置，并且可以压住某个盒子。 2.定位组成定位&#x3D;定位模式+边偏移 定位模式用于指定一个元素在文档中的定位模式。边偏移则决定了该元素的最终位置。    值 语义    static 静态定位   relative 相对定位   absolute 绝对定位   fixed 固定定位   3.静态定位">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-04-20T14:06:15.615Z">
+<meta property="article:modified_time" content="2023-04-20T14:18:43.495Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-css笔记6" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/20/css%E7%AC%94%E8%AE%B06/" class="article-date">
+  <time class="dt-published" datetime="2023-04-20T14:06:15.615Z" itemprop="datePublished">2023-04-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      CSS笔记6
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="css笔记6"><a href="#css笔记6" class="headerlink" title="css笔记6"></a>css笔记6</h1><h2 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h2><h3 id="1-为什么需要定位"><a href="#1-为什么需要定位" class="headerlink" title="1.为什么需要定位"></a>1.为什么需要定位</h3><p>定位可以让盒子自由的在某个盒子内移动位置或者固定屏幕中的某个位置，并且可以压住某个盒子。</p>
+<h3 id="2-定位组成"><a href="#2-定位组成" class="headerlink" title="2.定位组成"></a>2.定位组成</h3><p>定位&#x3D;定位模式+边偏移</p>
+<p>定位模式用于指定一个元素在文档中的定位模式。边偏移则决定了该元素的最终位置。</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>语义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>static</td>
+<td>静态定位</td>
+</tr>
+<tr>
+<td>relative</td>
+<td>相对定位</td>
+</tr>
+<tr>
+<td>absolute</td>
+<td>绝对定位</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>固定定位</td>
+</tr>
+</tbody></table>
+<h3 id="3-静态定位"><a href="#3-静态定位" class="headerlink" title="3.静态定位"></a>3.静态定位</h3><p>元素的默认定位方式，无定位的意思</p>
+<p>按照标准流的方式摆放位置</p>
+<h3 id="4-相对定位"><a href="#4-相对定位" class="headerlink" title="4.相对定位"></a>4.相对定位</h3><ol>
+<li><p>元素移动时是相对元素原来的位置来说的</p>
+</li>
+<li><p>元素在标准流的位置中依然占用，后面的盒子仍以原来的方式对待它，不脱标</p>
+<p>position: relative;</p>
+<p>（会显示在浮动和标准流上面）</p>
+</li>
+</ol>
+<h3 id="5-绝对定位"><a href="#5-绝对定位" class="headerlink" title="5.绝对定位"></a>5.绝对定位</h3><p>​     position: absolute;</p>
+<ol>
+<li>绝对定位是元素在移动位置的时候，是相对于它祖先元素来说的</li>
+<li>如果没有父元素或者父元素没有定位，以浏览器为准进行对齐</li>
+<li>如果父元素有定位，以最近一级有定位的父元素为基准</li>
+<li>绝对定位不占有原先位置，脱标</li>
+</ol>
+<h3 id="6-子绝父相"><a href="#6-子绝父相" class="headerlink" title="6.子绝父相"></a>6.子绝父相</h3><p>①子级绝对定位，不会占有位置，可以放到父盒子里面的任何一个地方，不会影响其他的兄弟盒子。</p>
+<p>②父盒子需要加定位限制子盒子在父盒子内显示。</p>
+<p>③父盒子布局时，需要占有位置，因此父亲只能是相对定位。</p>
+<h3 id="7-固定定位"><a href="#7-固定定位" class="headerlink" title="7.固定定位"></a>7.固定定位</h3><p> 元素固定于浏览器可视区的位置。</p>
+<p> position: fixed;</p>
+<ol>
+<li><p>以浏览器的可视窗口为参照点移动元素</p>
+<p>与父元素无关</p>
+<p>不随着滚动条滚动而滚动</p>
+</li>
+<li><p>固定定位不占用原来的位置</p>
+</li>
+</ol>
+<p>小技巧：固定在版心右侧位置</p>
+<p>算法：</p>
+<p>   1.left 50%</p>
+<pre><code>          2.  margin-left:版心宽度的一半
+</code></pre>
+<h3 id="8-粘性定位"><a href="#8-粘性定位" class="headerlink" title="8.粘性定位"></a>8.粘性定位</h3><p> 可以被认为是相对定位和固定定位的混合</p>
+<p> position:sticky; top:10px;</p>
+<p>特点：</p>
+<p>1.以浏览器的可视窗口为参照点移动元素（固定定位特点）</p>
+<p>2.粘性定位占有原先的位置（相对定位特点）</p>
+<p>3.必须添加 top 、left、right、bottom <strong>其中一个</strong>才有效</p>
+<p>跟页面滚动搭配使用。 兼容性较差，IE 不支持。</p>
+<h3 id="9-定位叠放次序"><a href="#9-定位叠放次序" class="headerlink" title="9.定位叠放次序"></a>9.定位叠放次序</h3><p>使用定位布局时，可能会出现盒子重叠的情况。此时，可以使用z-index来控制盒子的前后次序</p>
+<p>z-index:1;</p>
+<p>数值越大，盒子越靠上</p>
+<p>如果属性值相同，按照书写顺序，后来居上</p>
+<p>&#x3D;&#x3D;z-index只能用于相对定位，绝对定位和固定定位的元素&#x3D;&#x3D;</p>
+<h3 id="10-定位的拓展"><a href="#10-定位的拓展" class="headerlink" title="10.定位的拓展"></a>10.定位的拓展</h3><p>1.&#x3D;&#x3D;加了绝对定位或固定定位的盒子不能通过margin:auto水平居中&#x3D;&#x3D;</p>
+<p>2.绝对定位和固定定位也与浮动类似。</p>
+<ol>
+<li>行内元素添加绝对定位和固定定位，可以直接添加高度和宽度</li>
+<li>块级元素添加绝对或者固定定位，如果不给宽高，默认为内容的大小</li>
+<li>脱标的盒子不会有外边距合并</li>
+</ol>
+<p>3.绝对定位和固定定位会完全压住下面的盒子</p>
+<p> （浮动的元素不会压住下面标准流的文字，因为浮动最初的目的是产生文字环绕）</p>
+<p>如果一个盒子既有left 和right ,默认执行left;既有top bottom,默认执行top</p>
+<h2 id="元素的显示与隐藏"><a href="#元素的显示与隐藏" class="headerlink" title="元素的显示与隐藏"></a>元素的显示与隐藏</h2><h3 id="display属性"><a href="#display属性" class="headerlink" title="display属性"></a>display属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">display</span>: none 隐藏对象</span><br><span class="line"></span><br><span class="line">display：block 除了转换为块级元素之外，同时还有显示元素的意思。</span><br></pre></td></tr></table></figure>
+
+<p>特点： display 隐藏元素后，<strong>不再占</strong>有原来的位置。</p>
+<h3 id="visibility-可见性"><a href="#visibility-可见性" class="headerlink" title="visibility 可见性"></a>visibility 可见性</h3><p>visibility 隐藏元素后，继续占用原来的位置</p>
+<p>visibility：visible ; 　元素可视</p>
+<p>visibility：hidden; 　  元素隐藏</p>
+<h3 id="overflow"><a href="#overflow" class="headerlink" title="overflow"></a>overflow</h3><p>overflow 属性指定了如果内容溢出一个元素的框（超过其指定高度及宽度） 时，会发生什么</p>
+<table>
+<thead>
+<tr>
+<th>属性值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>visible</td>
+<td>默认，不剪切内容也不添加滚动条</td>
+</tr>
+<tr>
+<td>hidden</td>
+<td>不显示超过对象尺寸的内容，超出的部分隐藏掉</td>
+</tr>
+<tr>
+<td>scroll</td>
+<td>溢出部分显示滚动条，无论需不需要都添加</td>
+</tr>
+<tr>
+<td>auto</td>
+<td>溢出部分显示滚动条，在需要的时候添加</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/20/css%E7%AC%94%E8%AE%B06/" data-id="clgp7o30g0006isup5k2o13dz" data-title="CSS笔记6" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/04/20/css%E7%AC%94%E8%AE%B07/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CSS笔记7
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/04/20/CSS%E7%AC%94%E8%AE%B05/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CSS笔记5</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/04/20/css%E7%AC%94%E8%AE%B02/">CSS笔记2</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/20/CSS1/">CSS笔记1</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/20/css%E7%AC%94%E8%AE%B07/">CSS笔记7</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/20/css%E7%AC%94%E8%AE%B06/">CSS笔记6</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/20/CSS%E7%AC%94%E8%AE%B05/">CSS笔记5</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

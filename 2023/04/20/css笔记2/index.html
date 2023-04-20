@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>CSS笔记2 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="css笔记21.Emmet语法提高Html&#x2F;css编写速度 快速生成html语法 标签名+Tab直接生成标签  生成多个相同标签  标签名*n  div*3      父子级别关系的标签，用&gt; , ul&gt;li  兄弟级别的标签，用+， div+p  点+类名，生成带类名的标签；#+id名，生成带id名的标签  .demo$*5,生成五个按序排列的div 12345678910">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS笔记2">
+<meta property="og:url" content="http://example.com/2023/04/20/css%E7%AC%94%E8%AE%B02/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="css笔记21.Emmet语法提高Html&#x2F;css编写速度 快速生成html语法 标签名+Tab直接生成标签  生成多个相同标签  标签名*n  div*3      父子级别关系的标签，用&gt; , ul&gt;li  兄弟级别的标签，用+， div+p  点+类名，生成带类名的标签；#+id名，生成带id名的标签  .demo$*5,生成五个按序排列的div 12345678910">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-04-20T14:06:15.626Z">
+<meta property="article:modified_time" content="2023-04-20T14:07:31.213Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-css笔记2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/20/css%E7%AC%94%E8%AE%B02/" class="article-date">
+  <time class="dt-published" datetime="2023-04-20T14:06:15.626Z" itemprop="datePublished">2023-04-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      CSS笔记2
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="css笔记2"><a href="#css笔记2" class="headerlink" title="css笔记2"></a>css笔记2</h1><h2 id="1-Emmet语法"><a href="#1-Emmet语法" class="headerlink" title="1.Emmet语法"></a>1.Emmet语法</h2><p>提高Html&#x2F;css编写速度</p>
+<h3 id="快速生成html语法"><a href="#快速生成html语法" class="headerlink" title="快速生成html语法"></a>快速生成html语法</h3><ol>
+<li><p>标签名+Tab直接生成标签</p>
+</li>
+<li><p>生成多个相同标签  标签名<code>*</code>n  div*3    </p>
+</li>
+<li><p>父子级别关系的标签，用&gt; , ul&gt;li</p>
+</li>
+<li><p>兄弟级别的标签，用+， div+p</p>
+</li>
+<li><p>点+类名，生成带类名的标签；#+id名，生成带id名的标签</p>
+</li>
+<li><pre><code>.demo$*5,生成五个按序排列的div
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">7. div&#123;内容&#125; ，生成的标签里面显示内容</span><br><span class="line"></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">### 快速生成css语法</span><br><span class="line"></span><br><span class="line">1. 用属性的缩写可以直接生成属性</span><br><span class="line"></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 2.快速格式化代码</span><br><span class="line"></span><br><span class="line">vs里面通过右键找到即可</span><br><span class="line"></span><br><span class="line">也可以修改vs的设置，再保存时自动格式化代码</span><br><span class="line"></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 3.复合选择器（接上一个笔记）</span><br><span class="line"></span><br><span class="line">由两个或多个基本选择器组合形成的</span><br><span class="line"></span><br><span class="line">### ==后代选择器==</span><br><span class="line"></span><br><span class="line">​	后代选择器又称为包含选择器，可以选择父元素里面子元素。其写法就是把外层标签写在前面，内层标签写在后面，中间用空格分隔。当标签发生嵌套时，内层标签就成为外层标签的后代。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+元素1 元素2 &#123;
+  内容
+&#125;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 元素1 和 元素2 中间用空格隔开</span><br><span class="line">- 元素1 是父级，元素2 是子级，最终选择的是元素2（==元素1和元素2不能是同级的，元素1和元素2不能选择同一个标签==）</span><br><span class="line">- 元素2 可以是儿子，也可以是孙子等，只要是元素1 的后代即可</span><br><span class="line">- 元素1 和 元素2 可以是任意基础选择器</span><br><span class="line"></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 子选择器</span><br><span class="line"></span><br><span class="line">子选择器只能选择作为某元素的==最近==一级子元素</span><br><span class="line"></span><br><span class="line">````</span><br><span class="line">.nav&gt;p &#123;</span><br><span class="line">  color: red;</span><br><span class="line">&#125;</span><br><span class="line">````</span><br><span class="line"></span><br><span class="line">- 元素1 和 元素2 中间用 大于号 隔开</span><br><span class="line">- 元素1 是父级，元素2 是子级，最终选择的是元素2</span><br><span class="line">- 元素2 必须是亲儿子，其孙子、重孙之类都不归他管. 你也可以叫他 亲儿子选择器</span><br><span class="line"></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 并集选择器</span><br><span class="line"></span><br><span class="line">并集选择器可以选择多组标签，同时为他们定义相同的样式</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+div,p &#123;
+  样式声明
+&#125;
+div和p都改了同一个样式
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">任何形式的选择器都可以作为并集选择器的一部分</span><br><span class="line"></span><br><span class="line">并集选择器喜欢竖着写，最后一个选择器不需要加“,”</span><br><span class="line"></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 伪类选择器</span><br><span class="line"></span><br><span class="line"> 伪类选择器用于向某些选择器添加特殊的效果，比如给链接添加特殊效果，或选择第1个，第n个元素</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+用冒号表示   :link
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 链接伪类选择器</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+     a:link	没有点击过的(访问过的)链接
+
+     a:visited	点击过的(访问过的)链接
+
+     a:hover	鼠标经过的那个链接
+
+     a:active	鼠标正在按下还没有弹起鼠标的那个链接
+</code></pre>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">为了确保生效，请按照 LVHA 的循顺序声明 :link－:visited－:hover－:active</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### focus伪类选择器</span><br><span class="line"></span><br><span class="line">用于选取获得焦点的表单元素</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>一般<input>才能获取焦点(光标)<br>input:focus {<br>  background-color: red;<br>}</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 4.==css元素显示模式==</span><br><span class="line"></span><br><span class="line">元素显示模式就是元素（标签）以什么方式显示。</span><br><span class="line"></span><br><span class="line">html元素一般分为块元素和行内元素两种类型。</span><br><span class="line"></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">### 块元素</span><br><span class="line"></span><br><span class="line">常见的块元素</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1>~<h6>、<p>、<div>、<ul>、<ol>、<li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">==特点==</span><br><span class="line"></span><br><span class="line">* 比较霸道，自己独占一行。</span><br><span class="line"></span><br><span class="line">- 高度，宽度、外边距以及内边距都可以控制。</span><br><span class="line">- 宽度默认是容器（父级宽度）的100%。如div没有指定，宽度与上级body一样</span><br><span class="line">- 是一个容器及盒子，里面可以放行内或者块级元素。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">==文字类的元素内不能使用块级元素==</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+p,h等标签内不能放块元素
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">----</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 行内元素</span><br><span class="line"></span><br><span class="line">常见行内元素</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<a>、<strong>、<b>、<em>、<i>、<del>、<s>、<ins>、<u>、<span>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;span&gt; 最常见</span><br><span class="line"></span><br><span class="line">特点:</span><br><span class="line"></span><br><span class="line">1. 相邻行内元素在一行上，一行可以显示多个。</span><br><span class="line">2. 高、宽直接设置是无效的。(&lt;img&gt;同时具有行内元素，行内块和块级元素的特性，是一种特殊的可替换元素，可以设置，此外还包括表单元素)</span><br><span class="line">3. 默认宽度就是它本身内容的宽度。</span><br><span class="line">4. 行内元素只能容纳文本或其他行内元素。</span><br><span class="line"></span><br><span class="line">链接里面不能再放链接</span><br><span class="line"></span><br><span class="line">	特殊情况链接 &lt;a&gt; 里面可以放块级元素，但是给 &lt;a&gt; 转换一下块级模式最安全</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 行内块元素</span><br><span class="line"></span><br><span class="line">`&lt;img /&gt;、&lt;input /&gt;、&lt;td&gt;`</span><br><span class="line"></span><br><span class="line">- 和相邻行内元素（行内块）在一行上，但是他们之间会有空白缝隙。</span><br><span class="line">- 一行可以显示多个（行内元素特点）。</span><br><span class="line">- 默认宽度就是它本身内容的宽度（行内元素特点）。</span><br><span class="line">- 高度，行高、外边距以及内边距都可以控制（块级元素特点）。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 显示模式的转换</span><br><span class="line"></span><br><span class="line">一个模式的元素需要另一种模式的特性</span><br><span class="line"></span><br><span class="line">比如增加链接&lt;a&gt;的触发范围</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+display:block      行内元素转换成块级元素
+a {
+  width: 100px;
+  height: 120px;
+  display: block;
+}
+
+<p>display: inline  块级元素转换成行内元素<br>display: inline-block  转换成行内块元素</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 5.snipaste</span><br><span class="line"></span><br><span class="line">1. F1可以截图，并对图片操作</span><br><span class="line">2. F3再桌面置顶显示</span><br><span class="line">3. 点击图片，ALT可以取色</span><br><span class="line">4. 按下ESC取消图片显示</span><br><span class="line"></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 6.单行文字垂直居中</span><br><span class="line"></span><br><span class="line">让文字的行高等于盒子的高度  就可以让文字在当前盒子内垂直居中</span><br><span class="line"></span><br><span class="line">![1](image/1.PNG)</span><br><span class="line"></span><br><span class="line">![2](image/2.PNG)</span><br><span class="line"></span><br><span class="line">​      		行高的上空隙和下空隙把文字挤到中间了，</span><br><span class="line"></span><br><span class="line">​		如果行高小于盒子高度,文字会偏上，</span><br><span class="line"></span><br><span class="line">​		如果行高大于盒子高度,则文字偏下。</span><br><span class="line"></span><br><span class="line">​		(文字这个整体靠近盒子左上角)</span><br><span class="line"></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 7.CSS的背景</span><br><span class="line"></span><br><span class="line">### 1.背景颜色</span><br><span class="line"></span><br><span class="line">```css</span><br><span class="line">background-color: transparent(默认)|color;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-背景图片"><a href="#2-背景图片" class="headerlink" title="2.背景图片"></a>2.背景图片</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">常见于logo或者装饰性小图片和超大背景图，便于控制位置</span><br><span class="line"><span class="attribute">background-image</span>: <span class="built_in">none</span>(默认)|url;</span><br><span class="line">例： <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">images/glory.jpg</span>)</span><br></pre></td></tr></table></figure>
+
+<p>背景图片在背景颜色上面</p>
+<p>背景图片后面的地址，千万不要忘记加 URL， 同时里面的路径<strong>不要加引号</strong>。</p>
+<h3 id="3-背景平铺"><a href="#3-背景平铺" class="headerlink" title="3.背景平铺"></a>3.背景平铺</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background-repeat</span>:<span class="built_in">repeat</span>(默认) |no-repeat|repeat-x|repect-y</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数值</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>repeat</td>
+<td>默认，横向纵向平铺</td>
+</tr>
+<tr>
+<td>no-repeat</td>
+<td>无平铺</td>
+</tr>
+<tr>
+<td>repeat-x</td>
+<td>横向平铺</td>
+</tr>
+<tr>
+<td>repeat-y</td>
+<td>纵向平铺</td>
+</tr>
+</tbody></table>
+<h3 id="4-背景图片位置"><a href="#4-背景图片位置" class="headerlink" title="4.背景图片位置"></a>4.背景图片位置</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background-position</span>:x y;</span><br><span class="line"><span class="number">1</span>.参数是方位名词 center <span class="attribute">top</span></span><br><span class="line">  两个值都是方位名词，互换顺序没有影响</span><br><span class="line">  如果只写了一个参数，如<span class="attribute">right</span>,另一个默认是居中</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>.参数是精确单位 <span class="number">50px</span> <span class="number">100px</span>; x轴一定在前面，互换顺序有影响</span><br><span class="line">  只有一个参数，那个参数为x轴的数据，另一个默认居中</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.参数是混合单位 center <span class="number">20px</span>,参数有顺序</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-背景图像固定（背景附着）"><a href="#5-背景图像固定（背景附着）" class="headerlink" title="5.背景图像固定（背景附着）"></a>5.背景图像固定（背景附着）</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background-attachment</span> 属性设置背景图像是否固定或者随着页面的其余部分滚动(拉动页面图片也会动)。</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>scroll</td>
+<td>背景图像随页面滚动（默认）</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>背景图像固定</td>
+</tr>
+</tbody></table>
+<h3 id="6-x3D-x3D-背景复合写法-x3D-x3D"><a href="#6-x3D-x3D-背景复合写法-x3D-x3D" class="headerlink" title="6.&#x3D;&#x3D;背景复合写法&#x3D;&#x3D;"></a>6.&#x3D;&#x3D;背景复合写法&#x3D;&#x3D;</h3><p>background: 背景颜色 背景图片地址 背景平铺 背景图像滚动 背景图片位置;</p>
+<p>约定的顺序</p>
+<h3 id="7-背景颜色半透明"><a href="#7-背景颜色半透明" class="headerlink" title="7.背景颜色半透明"></a>7.背景颜色半透明</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.3</span>);</span><br><span class="line">最后一个参数是alpha透明度，<span class="number">0</span>-<span class="number">1</span>之间</span><br></pre></td></tr></table></figure>
+
+<p>背景色半透明，盒子内容不受任何影响</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/20/css%E7%AC%94%E8%AE%B02/" data-id="clgp7o3090003isup3s7y8x0a" data-title="CSS笔记2" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/04/20/CSS1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CSS笔记1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/04/20/css%E7%AC%94%E8%AE%B02/">CSS笔记2</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/20/CSS1/">CSS笔记1</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/20/css%E7%AC%94%E8%AE%B07/">CSS笔记7</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/20/css%E7%AC%94%E8%AE%B06/">CSS笔记6</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/20/CSS%E7%AC%94%E8%AE%B05/">CSS笔记5</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

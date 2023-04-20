@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>CSS笔记4 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="css笔记41.圆角边框在 CSS3 中，新增了圆角边框样式，这样我们的盒子就可以变圆角了。 12border-radius: 10px;border-radius: length; px或者百分比 50%  边框相邻两条边的内切圆的半径   如果是正方形，想要设置为一个圆，把数值修改为高度或者宽度的一半即可，或者直接写为 50% 该属性是一个简写属性，可以跟四个值，分别代表左上角、右上角、右下角">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS笔记4">
+<meta property="og:url" content="http://example.com/2023/04/20/css%E7%AC%94%E8%AE%B04/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="css笔记41.圆角边框在 CSS3 中，新增了圆角边框样式，这样我们的盒子就可以变圆角了。 12border-radius: 10px;border-radius: length; px或者百分比 50%  边框相邻两条边的内切圆的半径   如果是正方形，想要设置为一个圆，把数值修改为高度或者宽度的一半即可，或者直接写为 50% 该属性是一个简写属性，可以跟四个值，分别代表左上角、右上角、右下角">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/image/4.1.png">
+<meta property="og:image" content="http://example.com/image/4.2.png">
+<meta property="og:image" content="http://example.com/image/4.3.png">
+<meta property="article:published_time" content="2023-04-20T14:06:15.611Z">
+<meta property="article:modified_time" content="2023-04-20T14:17:34.113Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/4.1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-css笔记4" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/20/css%E7%AC%94%E8%AE%B04/" class="article-date">
+  <time class="dt-published" datetime="2023-04-20T14:06:15.611Z" itemprop="datePublished">2023-04-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      CSS笔记4
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="css笔记4"><a href="#css笔记4" class="headerlink" title="css笔记4"></a>css笔记4</h1><h2 id="1-圆角边框"><a href="#1-圆角边框" class="headerlink" title="1.圆角边框"></a>1.圆角边框</h2><p>在 CSS3 中，新增了圆角边框样式，这样我们的盒子就可以变圆角了。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line"><span class="attribute">border-radius</span>: length; px或者百分比 <span class="number">50%</span></span><br></pre></td></tr></table></figure>
+
+<p>边框相邻两条边的内切圆的半径</p>
+<p><img src="/image/4.1.png"></p>
+<ul>
+<li>如果是正方形，想要设置为一个圆，把数值修改为高度或者宽度的一半即可，或者直接写为 50%</li>
+<li>该属性是一个简写属性，可以跟四个值，分别代表左上角、右上角、右下角、左下角</li>
+<li>分开写：border-top-left-radius、border-top-right-radius、border-bottom-right-radius 和border-bottom-left-radius。</li>
+</ul>
+<hr>
+<h2 id="2-盒子阴影"><a href="#2-盒子阴影" class="headerlink" title="2.盒子阴影"></a>2.盒子阴影</h2><p>css3中增加了盒子阴影，可以使用box-shadow属性为盒子添加阴影</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box-shadow:      ;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>h-shadow</td>
+<td>必需，水平阴影的位置，可负，px</td>
+</tr>
+<tr>
+<td>v-shadow</td>
+<td>必需，垂直阴影的位置，可负,px</td>
+</tr>
+<tr>
+<td>blur</td>
+<td>可选，模糊距离（阴影的虚实）,px</td>
+</tr>
+<tr>
+<td>spread</td>
+<td>可选，阴影的尺寸,px</td>
+</tr>
+<tr>
+<td>color</td>
+<td>可选，阴影的颜色</td>
+</tr>
+<tr>
+<td>inset</td>
+<td>可选，将外部阴影改为内部阴影</td>
+</tr>
+</tbody></table>
+<p>原先盒子没有影子，当我们鼠标经过盒子时就添加阴影效果。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>:cover :&#123;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">10px</span> <span class="number">10px</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-文字阴影"><a href="#3-文字阴影" class="headerlink" title="3.文字阴影"></a>3.文字阴影</h2><p>用text-shadow属性将阴影应用于文本。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">text-shadow</span>: h-shadow v-shadow blur color;</span><br><span class="line">属性值的含义与盒子阴影相同</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-x3D-x3D-css浮动-x3D-x3D"><a href="#4-x3D-x3D-css浮动-x3D-x3D" class="headerlink" title="4.&#x3D;&#x3D;css浮动&#x3D;&#x3D;"></a>4.&#x3D;&#x3D;css浮动&#x3D;&#x3D;</h2><h3 id="传统网页布局的三种方式"><a href="#传统网页布局的三种方式" class="headerlink" title="传统网页布局的三种方式"></a>传统网页布局的三种方式</h3><p>&#x3D;&#x3D;普通流（标准流）&#x3D;&#x3D;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">标签按照规定好默认方式排列</span><br><span class="line">1.块元素独占一行，从上到下</span><br><span class="line">2.行元素按顺序从左到右，碰到边缘自动换行</span><br></pre></td></tr></table></figure>
+
+<p>&#x3D;&#x3D;浮动&#x3D;&#x3D;</p>
+<p>&#x3D;&#x3D;定位&#x3D;&#x3D;</p>
+<p>实际开发中，一个页面基本包含这三种布局方式</p>
+<hr>
+<h3 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h3><h4 id="为什么需要浮动"><a href="#为什么需要浮动" class="headerlink" title="为什么需要浮动"></a>为什么需要浮动</h4><ol>
+<li>如何让多个div放在一行？</li>
+<li>如何实现两个盒子左右对齐？</li>
+</ol>
+<p>浮动可以改变标签的默认排列方式。</p>
+<p>&#x3D;&#x3D;网页布局第一准则：&#x3D;&#x3D;</p>
+<p><strong>多个块级元素纵向排列找标准流，多个块级元素横向排列找浮动</strong></p>
+<hr>
+<h4 id="什么是浮动"><a href="#什么是浮动" class="headerlink" title="什么是浮动"></a>什么是浮动</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">选择器&#123;</span><br><span class="line">  <span class="attribute">float</span>:属性值;</span><br><span class="line">&#125;</span><br><span class="line"><span class="attribute">none</span> <span class="attribute">left</span> <span class="attribute">right</span></span><br></pre></td></tr></table></figure>
+
+<p>float 属性用于创建浮动框，将其移动到一边，直到左边缘或右边缘触及包含块或另一个浮动框的边缘。</p>
+<h4 id="x3D-x3D-浮动特性-x3D-x3D"><a href="#x3D-x3D-浮动特性-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;浮动特性&#x3D;&#x3D;"></a>&#x3D;&#x3D;浮动特性&#x3D;&#x3D;</h4><ol>
+<li><p>浮动的元素会脱离标准流</p>
+<ol>
+<li>脱离标准普通流的控制（浮）移动到指定位置（动），俗称&#x3D;&#x3D;脱标&#x3D;&#x3D;</li>
+</ol>
+<p>​    </p>
+<ol start="2">
+<li>浮动的盒子不再保留原先的位置</li>
+</ol>
+<p>​</p>
+<p>给盒子设置了浮动，这个盒子会浮起来，下面标准流的盒子会占用浮动盒子原本的位置</p>
+<p><img src="/image/4.2.png"></p>
+<p>​</p>
+<p>​</p>
+</li>
+<li><p>浮动的元素会一行内显示并且元素顶部对齐</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">浮动的元素是互相贴靠在一起的（不会有缝隙），如果父级宽度装不下这些浮动的盒子，多出的盒子会另起一行对齐。</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li><p>浮动的元素具有&#x3D;&#x3D;行内块元素&#x3D;&#x3D;的特性</p>
+<p>如果行内元素有了浮动，则不需要转换块级&#x2F;行内块元素就可以直接给高度和宽度</p>
+<p>浮动元素的大小根据内容来决定（如果没有设置宽度）</p>
+<p>浮动的盒子中间是没有缝隙的</p>
+</li>
+</ol>
+<h4 id="浮动元素经常和标准流父级搭配使用"><a href="#浮动元素经常和标准流父级搭配使用" class="headerlink" title="浮动元素经常和标准流父级搭配使用"></a>浮动元素经常和标准流父级搭配使用</h4><p>为了约束浮动元素位置, 我们网页布局一般采取的策略是:</p>
+<p>​	先用标准流父元素排列上下位置, 之后内部子元素采取浮动排列左右位置.  符合网页布局第一准侧。</p>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="浮动布局注意点"><a href="#浮动布局注意点" class="headerlink" title="浮动布局注意点"></a>浮动布局注意点</h4><p>1、<strong>浮动和标准流的父盒子搭配</strong>。</p>
+<p>&#x3D;&#x3D;先用标准流的父元素排列上下位置, 之后内部子元素采取浮动排列左右位置&#x3D;&#x3D;</p>
+<p>2、<strong>一个元素浮动了，理论上其余的兄弟元素也要浮动</strong>。</p>
+<p>一个盒子里面有多个子盒子，如果其中一个盒子浮动了，其他兄弟也应该浮动，以防止引起问题。</p>
+<p>&#x3D;&#x3D;浮动的盒子只会影响浮动盒子后面的标准流,不会影响前面的标准流.&#x3D;&#x3D;</p>
+<hr>
+<h2 id="5-清除浮动"><a href="#5-清除浮动" class="headerlink" title="5.清除浮动"></a>5.清除浮动</h2><p>在父盒子不方便给高度的情况下，如果子盒子都是浮动排列，由于子盒子不占有位置，所以父盒子的高度会变成0，就会影响下面的标准流盒子。</p>
+<p><img src="/image/4.3.png"></p>
+<h4 id="清除浮动的本质"><a href="#清除浮动的本质" class="headerlink" title="清除浮动的本质"></a>清除浮动的本质</h4><p>清除浮动的本质是清除浮动元素造成的影响：浮动的子标签无法撑开父盒子的高度</p>
+<p>注意：</p>
+<ul>
+<li>如果父盒子本身有高度，则不需要清除浮动</li>
+<li>清除浮动之后，父级就会根据浮动的子盒子自动检测高度。</li>
+<li>父级有了高度，就不会影响下面的标准流了</li>
+</ul>
+<h4 id="清除浮动方法"><a href="#清除浮动方法" class="headerlink" title="清除浮动方法"></a>清除浮动方法</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">选择器&#123;<span class="attribute">clear</span>:属性值;&#125; </span><br><span class="line"><span class="attribute">left</span> <span class="attribute">right</span> both</span><br><span class="line">实际 <span class="attribute">clear</span>:both</span><br></pre></td></tr></table></figure>
+
+<h5 id="额外标签法："><a href="#额外标签法：" class="headerlink" title="额外标签法："></a>额外标签法：</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">div</span> class=&quot;<span class="attribute">clear</span>&quot;&gt;&lt;/<span class="selector-tag">div</span>&gt;在最后一个浮动元素后加一个空的标签（必须是块级元素）</span><br><span class="line"><span class="selector-class">.clear</span> &#123;</span><br><span class="line">  <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>书写方便，但是结构化较差</p>
+<h5 id="父级添加overflow"><a href="#父级添加overflow" class="headerlink" title="父级添加overflow:"></a>父级添加overflow:</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">overflow</span>:hidden;</span><br></pre></td></tr></table></figure>
+
+<p>缺点：无法显出溢出的部分</p>
+<h5 id="after伪元素法："><a href="#after伪元素法：" class="headerlink" title="after伪元素法："></a>after伪元素法：</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">           <span class="attribute">content</span>: <span class="string">&quot;&quot;</span>;</span><br><span class="line">           <span class="attribute">display</span>: block;</span><br><span class="line">           <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">           <span class="attribute">clear</span>: both;</span><br><span class="line">           <span class="attribute">visibility</span>: hidden;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line"> <span class="selector-class">.clearfix</span> &#123;</span><br><span class="line">        <span class="comment">/* IE6、7 专有 */</span></span><br><span class="line">     *zoom: <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>为父元素添加一个新的类名clearfix,类名可以自定义但是父元素必须有这个样式，一般为clearfix</p>
+<h5 id="双伪元素法"><a href="#双伪元素法" class="headerlink" title="双伪元素法:"></a>双伪元素法:</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:before</span>,</span><br><span class="line">     <span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">         <span class="attribute">content</span>: <span class="string">&quot;&quot;</span>;</span><br><span class="line">         <span class="attribute">display</span>: table;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">         <span class="attribute">clear</span>: both;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="selector-class">.clearfix</span> &#123;</span><br><span class="line">         *zoom: <span class="number">1</span>;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>为父元素添加一个新的类名clearfix</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/20/css%E7%AC%94%E8%AE%B04/" data-id="clgp7o30a0004isupdm409xb7" data-title="CSS笔记4" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/04/20/CSS%E7%AC%94%E8%AE%B05/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CSS笔记5
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/04/20/css%E7%AC%94%E8%AE%B03/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CSS笔记3</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/04/20/css%E7%AC%94%E8%AE%B02/">CSS笔记2</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/20/CSS1/">CSS笔记1</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/20/css%E7%AC%94%E8%AE%B07/">CSS笔记7</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/20/css%E7%AC%94%E8%AE%B06/">CSS笔记6</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/20/CSS%E7%AC%94%E8%AE%B05/">CSS笔记5</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
