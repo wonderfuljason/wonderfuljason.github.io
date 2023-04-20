@@ -1,101 +1,283 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="JasonWang">
+  <meta name="keywords" content="">
   
-  <title>CSS笔记7 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="css笔记71.精灵图为什么使用精灵图（目的）：​	为了有效地减少服务器接收和发送请求的次数，提高页面的加载速度，出现了 CSS 精灵技术（也称 CSS Sprites、CSS 雪碧）。 核心原理：​	将网页中的一些小背景图像整合到一张大图中 ，这样服务器只需要一次请求就可以了。 精灵图的使用使用精灵图核心：  精灵技术主要针对于背景图片使用。就是把多个小背景图片整合到一张大图片中。 这个大图片也">
+    <meta name="description" content="css笔记71.精灵图为什么使用精灵图（目的）：​	为了有效地减少服务器接收和发送请求的次数，提高页面的加载速度，出现了 CSS 精灵技术（也称 CSS Sprites、CSS 雪碧）。 核心原理：​	将网页中的一些小背景图像整合到一张大图中 ，这样服务器只需要一次请求就可以了。 精灵图的使用使用精灵图核心：  精灵技术主要针对于背景图片使用。就是把多个小背景图片整合到一张大图片中。 这个大图片也">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS笔记7">
 <meta property="og:url" content="http://example.com/2023/04/20/css%E7%AC%94%E8%AE%B07/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="JasonW">
 <meta property="og:description" content="css笔记71.精灵图为什么使用精灵图（目的）：​	为了有效地减少服务器接收和发送请求的次数，提高页面的加载速度，出现了 CSS 精灵技术（也称 CSS Sprites、CSS 雪碧）。 核心原理：​	将网页中的一些小背景图像整合到一张大图中 ，这样服务器只需要一次请求就可以了。 精灵图的使用使用精灵图核心：  精灵技术主要针对于背景图片使用。就是把多个小背景图片整合到一张大图片中。 这个大图片也">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-04-20T14:06:15.617Z">
 <meta property="article:modified_time" content="2023-04-20T14:19:08.714Z">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+<meta property="article:author" content="JasonWang">
+<meta name="twitter:card" content="summary_large_image">
   
   
-    <link rel="shortcut icon" href="/favicon.png">
   
+  <title>CSS笔记7 - JasonW</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
   
-  
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/iconfont.css">
 
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
 
   
 <meta name="generator" content="Hexo 6.3.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jason</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CSS笔记7"></span>
+          
+        </div>
+
         
-          <a class="main-nav-link" href="/">Home</a>
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-20 22:06" pubdate>
+          2023年4月20日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          1.8k 字
         
-      </nav>
-      <nav id="sub-nav">
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
   </div>
-</header>
+</div>
 
-      <div class="outer">
-        <section id="main"><article id="post-css笔记7" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/04/20/css%E7%AC%94%E8%AE%B07/" class="article-date">
-  <time class="dt-published" datetime="2023-04-20T14:06:15.617Z" itemprop="datePublished">2023-04-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      CSS笔记7
-    </h1>
-  
+</div>
 
-      </header>
+  </header>
+
+  <main>
     
-    <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="css笔记7"><a href="#css笔记7" class="headerlink" title="css笔记7"></a>css笔记7</h1><h2 id="1-精灵图"><a href="#1-精灵图" class="headerlink" title="1.精灵图"></a>1.精灵图</h2><h3 id="为什么使用精灵图（目的）："><a href="#为什么使用精灵图（目的）：" class="headerlink" title="为什么使用精灵图（目的）："></a><strong>为什么使用精灵图（目的）：</strong></h3><p>​	<strong>为了有效地减少服务器接收和发送请求的次数</strong>，<strong>提高</strong>页面的<strong>加载速度</strong>，出现了 <strong>CSS 精灵技术</strong>（也称 CSS Sprites、CSS 雪碧）。</p>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">CSS笔记7</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="css笔记7"><a href="#css笔记7" class="headerlink" title="css笔记7"></a>css笔记7</h1><h2 id="1-精灵图"><a href="#1-精灵图" class="headerlink" title="1.精灵图"></a>1.精灵图</h2><h3 id="为什么使用精灵图（目的）："><a href="#为什么使用精灵图（目的）：" class="headerlink" title="为什么使用精灵图（目的）："></a><strong>为什么使用精灵图（目的）：</strong></h3><p>​	<strong>为了有效地减少服务器接收和发送请求的次数</strong>，<strong>提高</strong>页面的<strong>加载速度</strong>，出现了 <strong>CSS 精灵技术</strong>（也称 CSS Sprites、CSS 雪碧）。</p>
 <h3 id="核心原理："><a href="#核心原理：" class="headerlink" title="核心原理："></a><strong>核心原理</strong>：</h3><p>​	将网页中的一些小背景图像整合到一张大图中 ，这样服务器只需要一次请求就可以了。</p>
 <h3 id="精灵图的使用"><a href="#精灵图的使用" class="headerlink" title="精灵图的使用"></a>精灵图的使用</h3><p>使用精灵图核心：</p>
 <ol>
@@ -123,7 +305,7 @@
 <p>放到根目录中，在css中引入字体文件（字体声明）</p>
 <p>html标签内添加小图标</p>
 <p>给标签指定字体</p>
-<h2 id="3-css三角"><a href="#3-css三角" class="headerlink" title="3.css三角"></a>3.css三角</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">0</span>; </span><br><span class="line">   <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">   <span class="attribute">border</span>: <span class="number">50px</span> solid transparent;</span><br><span class="line"><span class="attribute">border-color</span>: red green blue black;</span><br><span class="line"><span class="attribute">line-height</span>:<span class="number">0</span>;</span><br><span class="line">   <span class="attribute">font-size</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-css三角"><a href="#3-css三角" class="headerlink" title="3.css三角"></a>3.css三角</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>	<span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>; <br>   <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>   <span class="hljs-attribute">border</span>: <span class="hljs-number">50px</span> solid transparent;<br><span class="hljs-attribute">border-color</span>: red green blue black;<br><span class="hljs-attribute">line-height</span>:<span class="hljs-number">0</span>;<br>   <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ol>
 <li>我们用css 边框可以模拟三角效果</li>
@@ -131,7 +313,7 @@
 <li>我们4个边框都要写， 只保留需要的边框颜色，其余的不能省略，都改为 transparent 透明就好了</li>
 <li>为了照顾兼容性 低版本的浏览器，加上 font-size: 0;  line-height: 0;</li>
 </ol>
-<h2 id="4-用户界面样式"><a href="#4-用户界面样式" class="headerlink" title="4.用户界面样式"></a>4.用户界面样式</h2><h3 id="鼠标样式"><a href="#鼠标样式" class="headerlink" title="鼠标样式"></a>鼠标样式</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">cursor</span>: pointer</span><br></pre></td></tr></table></figure>
+<h2 id="4-用户界面样式"><a href="#4-用户界面样式" class="headerlink" title="4.用户界面样式"></a>4.用户界面样式</h2><h3 id="鼠标样式"><a href="#鼠标样式" class="headerlink" title="鼠标样式"></a>鼠标样式</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">cursor</span>: pointer<br></code></pre></td></tr></table></figure>
 
 <table>
 <thead>
@@ -161,16 +343,16 @@
 <td>禁止</td>
 </tr>
 </tbody></table>
-<h3 id="轮廓线"><a href="#轮廓线" class="headerlink" title="轮廓线"></a>轮廓线</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">outline</span>:<span class="number">0</span> 去掉表单蓝色边框</span><br></pre></td></tr></table></figure>
+<h3 id="轮廓线"><a href="#轮廓线" class="headerlink" title="轮廓线"></a>轮廓线</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">outline</span>:<span class="hljs-number">0</span> 去掉表单蓝色边框<br></code></pre></td></tr></table></figure>
 
 
 
-<h3 id="防止拖拽文本域"><a href="#防止拖拽文本域" class="headerlink" title="防止拖拽文本域"></a>防止拖拽文本域</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">resize</span>: none;</span><br></pre></td></tr></table></figure>
+<h3 id="防止拖拽文本域"><a href="#防止拖拽文本域" class="headerlink" title="防止拖拽文本域"></a>防止拖拽文本域</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">resize</span>: none;<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="5-vertical-align属性"><a href="#5-vertical-align属性" class="headerlink" title="5.vertical-align属性"></a>5.vertical-align属性</h2><p>用于设置一个元素的垂直对齐方式，只能用于行内元素或行内块元素。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">vertical-align</span> : baseline | top | middle | bottom </span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">vertical-align</span> : baseline | top | middle | bottom <br></code></pre></td></tr></table></figure>
 
 
 
@@ -178,10 +360,10 @@
 <p>主要解决方法有两种：</p>
 <p>1.<strong>给图片</strong>添加 <strong>vertical-align:middle | top| bottom</strong> 等。 （提倡使用的）</p>
 <p>2.把图片转换为块级元素  <strong>display: block</strong>; </p>
-<h2 id="6-文字溢出省略号显示"><a href="#6-文字溢出省略号显示" class="headerlink" title="6.文字溢出省略号显示"></a>6.文字溢出省略号显示</h2><h3 id="单行文本"><a href="#单行文本" class="headerlink" title="单行文本"></a>单行文本</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*1. 先强制一行内显示文本*/</span></span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;  （ 默认 <span class="attribute">normal</span> 自动换行）</span><br><span class="line">  </span><br><span class="line"> <span class="comment">/*2. 超出的部分隐藏*/</span></span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  </span><br><span class="line"> <span class="comment">/*3. 文字用省略号替代超出的部分*/</span></span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br></pre></td></tr></table></figure>
+<h2 id="6-文字溢出省略号显示"><a href="#6-文字溢出省略号显示" class="headerlink" title="6.文字溢出省略号显示"></a>6.文字溢出省略号显示</h2><h3 id="单行文本"><a href="#单行文本" class="headerlink" title="单行文本"></a>单行文本</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/*1. 先强制一行内显示文本*/</span><br>  <span class="hljs-attribute">white-space</span>: nowrap;  （ 默认 <span class="hljs-attribute">normal</span> 自动换行）<br>  <br> <span class="hljs-comment">/*2. 超出的部分隐藏*/</span><br>  <span class="hljs-attribute">overflow</span>: hidden;<br>  <br> <span class="hljs-comment">/*3. 文字用省略号替代超出的部分*/</span><br>  <span class="hljs-attribute">text-overflow</span>: ellipsis;<br></code></pre></td></tr></table></figure>
 
 <h3 id="多行文本"><a href="#多行文本" class="headerlink" title="多行文本"></a>多行文本</h3><p>多行文本溢出显示省略号，<strong>有较大兼容性问题</strong>，适合于webKit浏览器或移动端</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*1. 超出的部分隐藏 */</span></span><br><span class="line"><span class="attribute">overflow</span>: hidden;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*2. 文字用省略号替代超出的部分 */</span></span><br><span class="line"><span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 3. 弹性伸缩盒子模型显示 */</span></span><br><span class="line"><span class="attribute">display</span>: -webkit-box;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 4. 限制在一个块元素显示的文本的行数 */</span></span><br><span class="line">-webkit-line-clamp: <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 5. 设置或检索伸缩盒对象的子元素的排列方式 */</span></span><br><span class="line">-webkit-box-orient: vertical;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/*1. 超出的部分隐藏 */</span><br><span class="hljs-attribute">overflow</span>: hidden;<br><br><span class="hljs-comment">/*2. 文字用省略号替代超出的部分 */</span><br><span class="hljs-attribute">text-overflow</span>: ellipsis;<br><br><span class="hljs-comment">/* 3. 弹性伸缩盒子模型显示 */</span><br><span class="hljs-attribute">display</span>: -webkit-box;<br><br><span class="hljs-comment">/* 4. 限制在一个块元素显示的文本的行数 */</span><br>-webkit-line-clamp: <span class="hljs-number">2</span>;<br><br><span class="hljs-comment">/* 5. 设置或检索伸缩盒对象的子元素的排列方式 */</span><br>-webkit-box-orient: vertical;<br><br></code></pre></td></tr></table></figure>
 
 
 
@@ -191,134 +373,344 @@
 <h3 id="文字围绕浮动元素"><a href="#文字围绕浮动元素" class="headerlink" title="文字围绕浮动元素"></a>文字围绕浮动元素</h3><p>巧妙运用浮动元素不会压住文字的特性</p>
 <h3 id="行内块巧妙运用"><a href="#行内块巧妙运用" class="headerlink" title="行内块巧妙运用"></a>行内块巧妙运用</h3><p>利用行内块元素中间有缝隙，并且给父级添加 text-align:center; 行内块元素会水平会居中</p>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CSS笔记7</div>
+      <div>http://example.com/2023/04/20/css笔记7/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>JasonWang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年4月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/20/css%E7%AC%94%E8%AE%B07/" data-id="clgp7o30h0007isup8u1dh7mo" data-title="CSS笔记7" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
+    <div class="license-icon iconfont"></div>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2023/04/20/CSS1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          CSS笔记1
-        
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/04/20/CSS1/" title="CSS笔记1">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CSS笔记1</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/04/20/css%E7%AC%94%E8%AE%B06/" title="CSS笔记6">
+                        <span class="hidden-mobile">CSS笔记6</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
       </div>
-    </a>
-  
-  
-    <a href="/2023/04/20/css%E7%AC%94%E8%AE%B06/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">CSS笔记6</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
     </div>
-  </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2023/04/20/css%E7%AC%94%E8%AE%B02/">CSS笔记2</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/20/CSS1/">CSS笔记1</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/20/css%E7%AC%94%E8%AE%B07/">CSS笔记7</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/20/css%E7%AC%94%E8%AE%B06/">CSS笔记6</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/20/CSS%E7%AC%94%E8%AE%B05/">CSS笔记5</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+    <div class="side-col d-none d-lg-block col-lg-2">
       
-      &copy; 2023 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
-    <nav id="mobile-nav">
+  </div>
+</div>
+
+
+
+
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
   
-</nav>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="/js/jquery-3.4.1.min.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
 
-<script src="/js/script.js"></script>
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-  </div>
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
