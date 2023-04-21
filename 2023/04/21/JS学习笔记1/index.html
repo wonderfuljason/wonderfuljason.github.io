@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/project/img/fluid.png">
+  <link rel="icon" href="/project/img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,17 +19,17 @@
     <meta name="description" content="JS学习笔记1（基础语法部分笔记简略）js输入输出语法输出语法 document.write() 页面中打印 参数解析： （1）.expN：可以是一个或者多个参数，如果是多个参数，那么按照顺序写入文档。(如果写入多个参数的话，这些参数会自动换行显示)   (2)这里的参数可以是变量，也可以是函数体、函数自执行体，数字等等，也可以进行一些简单的运算   (3)参数支持标签属性，写入的时候会按照htm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS基础语法1">
-<meta property="og:url" content="http://wjcbolg.cn/2023/04/21/JS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/index.html">
+<meta property="og:url" content="http://wjcbolg.cn/project/2023/04/21/JS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/index.html">
 <meta property="og:site_name" content="JasonW">
 <meta property="og:description" content="JS学习笔记1（基础语法部分笔记简略）js输入输出语法输出语法 document.write() 页面中打印 参数解析： （1）.expN：可以是一个或者多个参数，如果是多个参数，那么按照顺序写入文档。(如果写入多个参数的话，这些参数会自动换行显示)   (2)这里的参数可以是变量，也可以是函数体、函数自执行体，数字等等，也可以进行一些简单的运算   (3)参数支持标签属性，写入的时候会按照htm">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://wjcbolg.cn/image/js-1.png">
+<meta property="og:image" content="http://wjcbolg.cn/project/image/js-1.png">
 <meta property="article:published_time" content="2023-04-21T04:37:49.315Z">
 <meta property="article:modified_time" content="2023-04-21T04:40:59.082Z">
 <meta property="article:author" content="JasonWang">
 <meta property="article:tag" content="JS">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://wjcbolg.cn/image/js-1.png">
+<meta name="twitter:image" content="http://wjcbolg.cn/project/image/js-1.png">
   
   
   
@@ -57,33 +57,33 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/project/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/project/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/project/css/highlight-dark.css" />
   
 
 
 
   
-<link rel="stylesheet" href="/css/iconfont.css">
+<link rel="stylesheet" href="/project/css/iconfont.css">
 
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"wjcbolg.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"wjcbolg.cn","root":"/project/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/project/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/project/js/utils.js" ></script>
+  <script  src="/project/js/color-schema.js" ></script>
   
 
 
@@ -100,7 +100,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/project/">
       <strong>Jason</strong>
     </a>
 
@@ -119,7 +119,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/project/">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -131,7 +131,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/project/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -143,7 +143,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/project/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -155,7 +155,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/project/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -167,7 +167,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/project/about/">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -197,7 +197,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/project/img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -328,7 +328,7 @@
 </ul>
 <p>隐式转换</p>
 <p>某些运算符被执行时，系统内部自动将数据类型进行转换，这种转换称为隐式转换。</p>
-<p><img src="/image/js-1.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/project/image/js-1.png" srcset="/project/img/loading.gif" lazyload></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>JavaScript 基础 - 隐式转换<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"> </span><br><span class="language-javascript">    <span class="hljs-keyword">let</span> num = <span class="hljs-number">13</span> <span class="hljs-comment">// 数值</span></span><br><span class="language-javascript">    <span class="hljs-keyword">let</span> num2 = <span class="hljs-string">&#x27;2&#x27;</span> <span class="hljs-comment">// 字符串</span></span><br><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-comment">// 结果为 132</span></span><br><span class="language-javascript">    <span class="hljs-comment">// 原因是将数值 num 转换成了字符串，相当于 &#x27;13&#x27;</span></span><br><span class="language-javascript">    <span class="hljs-comment">// 然后 + 将两个字符串拼接到了一起</span></span><br><span class="language-javascript">    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(num + num2)</span><br><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-comment">// 结果为 11</span></span><br><span class="language-javascript">    <span class="hljs-comment">// 原因是将字符串 num2 转换成了数值，相当于 2</span></span><br><span class="language-javascript">    <span class="hljs-comment">// 然后数值 13 减去 数值 2</span></span><br><span class="language-javascript">    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(num - num2)</span><br><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-keyword">let</span> a = <span class="hljs-title function_">prompt</span>(<span class="hljs-string">&#x27;请输入一个数字&#x27;</span>)</span><br><span class="language-javascript">    <span class="hljs-keyword">let</span> b = <span class="hljs-title function_">prompt</span>(<span class="hljs-string">&#x27;请再输入一个数字&#x27;</span>)</span><br><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-title function_">alert</span>(a + b);</span><br><span class="language-javascript">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>显示转换</p>
@@ -354,12 +354,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/web/" class="category-chain-item">web</a>
+  <a href="/project/categories/web/" class="category-chain-item">web</a>
   
   
     <span>></span>
     
-  <a href="/categories/web/JS/" class="category-chain-item">JS</a>
+  <a href="/project/categories/web/JS/" class="category-chain-item">JS</a>
   
   
 
@@ -376,7 +376,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/JS/">#JS</a>
+        <a href="/project/tags/JS/">#JS</a>
       
     </div>
   
@@ -389,7 +389,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>JS基础语法1</div>
-      <div>http://wjcbolg.cn/2023/04/21/JS学习笔记1/</div>
+      <div>http://wjcbolg.cn/project/2023/04/21/JS学习笔记1/</div>
     </div>
     <div class="license-meta">
       
@@ -426,7 +426,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/21/JS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/" title="JS基础语法2">
+                      <a href="/project/2023/04/21/JS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/" title="JS基础语法2">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">JS基础语法2</span>
                         <span class="visible-mobile">上一篇</span>
@@ -436,7 +436,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/20/css%E7%AC%94%E8%AE%B02/" title="CSS笔记2">
+                      <a href="/project/2023/04/20/css%E7%AC%94%E8%AE%B02/" title="CSS笔记2">
                         <span class="hidden-mobile">CSS笔记2</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -569,8 +569,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/project/js/events.js" ></script>
+<script  src="/project/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -592,7 +592,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/project/js/img-lazyload.js" ></script>
   
 
 
@@ -691,7 +691,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/project/js/local-search.js" ></script>
 
 
 
@@ -699,7 +699,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/project/js/boot.js" ></script>
 
 
   

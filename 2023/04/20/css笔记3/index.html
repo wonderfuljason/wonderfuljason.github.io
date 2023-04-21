@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/project/img/fluid.png">
+  <link rel="icon" href="/project/img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,18 +19,18 @@
     <meta name="description" content="css笔记31.css三大特性层叠性相同选择器给设置相同的样式，此时一个样式就会&#x3D;&#x3D;覆盖&#x3D;&#x3D;另一个冲突的样式。 样式冲突遵循的原则是就近原则，哪个样式离结构近，就执行哪个样式  继承性子标签会继承父标签的某些样式，如文本颜色和字号。 &#x3D;&#x3D;text-，font-，line-&#x3D;&#x3D;这些元素开头的可以继承，以及color属性">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS笔记3">
-<meta property="og:url" content="http://wjcbolg.cn/2023/04/20/css%E7%AC%94%E8%AE%B03/index.html">
+<meta property="og:url" content="http://wjcbolg.cn/project/2023/04/20/css%E7%AC%94%E8%AE%B03/index.html">
 <meta property="og:site_name" content="JasonW">
 <meta property="og:description" content="css笔记31.css三大特性层叠性相同选择器给设置相同的样式，此时一个样式就会&#x3D;&#x3D;覆盖&#x3D;&#x3D;另一个冲突的样式。 样式冲突遵循的原则是就近原则，哪个样式离结构近，就执行哪个样式  继承性子标签会继承父标签的某些样式，如文本颜色和字号。 &#x3D;&#x3D;text-，font-，line-&#x3D;&#x3D;这些元素开头的可以继承，以及color属性">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://wjcbolg.cn/image/3.1.PNG">
-<meta property="og:image" content="http://wjcbolg.cn/image/3.2.PNG">
+<meta property="og:image" content="http://wjcbolg.cn/project/image/3.1.PNG">
+<meta property="og:image" content="http://wjcbolg.cn/project/image/3.2.PNG">
 <meta property="article:published_time" content="2023-04-20T14:06:15.609Z">
 <meta property="article:modified_time" content="2023-04-21T04:23:38.113Z">
 <meta property="article:author" content="JasonWang">
 <meta property="article:tag" content="CSS">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://wjcbolg.cn/image/3.1.PNG">
+<meta name="twitter:image" content="http://wjcbolg.cn/project/image/3.1.PNG">
   
   
   
@@ -58,33 +58,33 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/project/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/project/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/project/css/highlight-dark.css" />
   
 
 
 
   
-<link rel="stylesheet" href="/css/iconfont.css">
+<link rel="stylesheet" href="/project/css/iconfont.css">
 
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"wjcbolg.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"wjcbolg.cn","root":"/project/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/project/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/project/js/utils.js" ></script>
+  <script  src="/project/js/color-schema.js" ></script>
   
 
 
@@ -101,7 +101,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/project/">
       <strong>Jason</strong>
     </a>
 
@@ -120,7 +120,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/project/">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/project/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/project/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/project/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/project/about/">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -198,7 +198,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/project/img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -349,7 +349,7 @@
 </ol>
 <hr>
 <h3 id="盒子模型的组成"><a href="#盒子模型的组成" class="headerlink" title="盒子模型的组成"></a>盒子模型的组成</h3><p>把 HTML 页面中的布局元素看作是一个矩形的盒子，也就是一个盛装内容的容器。</p>
-<p><img src="/image/3.1.PNG" srcset="/img/loading.gif" lazyload alt="1"></p>
+<p><img src="/project/image/3.1.PNG" srcset="/project/img/loading.gif" lazyload alt="1"></p>
 <h4 id="border"><a href="#border" class="headerlink" title="border"></a>border</h4><p>border可以设置元素的边框。边框由三部分组成：宽度，样式，颜色</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">border-width</span>:    <br>border-style:<span class="hljs-built_in">solid</span>(实线)|<span class="hljs-built_in">dashed</span>(虚线)|<span class="hljs-built_in">dotted</span>(点线)<br>border-color:<br></code></pre></td></tr></table></figure>
 
@@ -391,7 +391,7 @@
 </tr>
 </tbody></table>
 <p>复合写法</p>
-<p><img src="/image/3.2.PNG" srcset="/img/loading.gif" lazyload alt="2"></p>
+<p><img src="/project/image/3.2.PNG" srcset="/project/img/loading.gif" lazyload alt="2"></p>
 <p>&#x3D;&#x3D;内边距会影响盒子的实际大小&#x3D;&#x3D;</p>
 <p>&#x3D;&#x3D;在标准的盒子模型中，width和height属性规定的是内容的大小，不包括padding,border，因此整个盒子的大小会受到padding和border的影响。&#x3D;&#x3D;</p>
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs maxima">通过<span class="hljs-built_in">box</span>-sizing这个样式我们可以改变这种宽度计算方式，它的属性值有两个：<span class="hljs-built_in">content</span>-<span class="hljs-built_in">box</span>和<span class="hljs-built_in">border</span>-<span class="hljs-built_in">box</span>。默认值为<span class="hljs-built_in">content</span>-<span class="hljs-built_in">box</span>，也就是标准的盒子模型，此时的计算公式为<br><br><span class="hljs-built_in">width</span> = 内容的宽度<br><span class="hljs-built_in">height</span> = 内容的高度<br></code></pre></td></tr></table></figure>
@@ -442,12 +442,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/web/" class="category-chain-item">web</a>
+  <a href="/project/categories/web/" class="category-chain-item">web</a>
   
   
     <span>></span>
     
-  <a href="/categories/web/CSS/" class="category-chain-item">CSS</a>
+  <a href="/project/categories/web/CSS/" class="category-chain-item">CSS</a>
   
   
 
@@ -464,7 +464,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/CSS/">#CSS</a>
+        <a href="/project/tags/CSS/">#CSS</a>
       
     </div>
   
@@ -477,7 +477,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>CSS笔记3</div>
-      <div>http://wjcbolg.cn/2023/04/20/css笔记3/</div>
+      <div>http://wjcbolg.cn/project/2023/04/20/css笔记3/</div>
     </div>
     <div class="license-meta">
       
@@ -514,7 +514,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/20/css%E7%AC%94%E8%AE%B04/" title="CSS笔记4">
+                      <a href="/project/2023/04/20/css%E7%AC%94%E8%AE%B04/" title="CSS笔记4">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">CSS笔记4</span>
                         <span class="visible-mobile">上一篇</span>
@@ -524,7 +524,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/20/Markdown%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" title="Markdown基本使用">
+                      <a href="/project/2023/04/20/Markdown%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" title="Markdown基本使用">
                         <span class="hidden-mobile">Markdown基本使用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -657,8 +657,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/project/js/events.js" ></script>
+<script  src="/project/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -680,7 +680,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/project/js/img-lazyload.js" ></script>
   
 
 
@@ -779,7 +779,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/project/js/local-search.js" ></script>
 
 
 
@@ -787,7 +787,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/project/js/boot.js" ></script>
 
 
   
