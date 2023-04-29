@@ -1,0 +1,769 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="JasonWang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="JS学习笔记14深入对象创建对象的方式 利用对象字面量创建 new Object()  1const obj&#x3D;new Object()  利用构造函数创建对象 是一种特殊的函数，主要用来初始化对象。（创建多个类似的对象） 命名以大写字母开头 只能由 new 操作符来执行  12345function Pig(uname,age)&amp;#123;  this.uname&#x3D;uname;  this.age">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS-进阶-构造函数">
+<meta property="og:url" content="https://wjcbolg.cn/2023/04/29/JS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B014/index.html">
+<meta property="og:site_name" content="JasonW">
+<meta property="og:description" content="JS学习笔记14深入对象创建对象的方式 利用对象字面量创建 new Object()  1const obj&#x3D;new Object()  利用构造函数创建对象 是一种特殊的函数，主要用来初始化对象。（创建多个类似的对象） 命名以大写字母开头 只能由 new 操作符来执行  12345function Pig(uname,age)&amp;#123;  this.uname&#x3D;uname;  this.age">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wjcbolg.cn/image/js-14-1.png">
+<meta property="article:published_time" content="2023-04-29T15:32:23.379Z">
+<meta property="article:modified_time" content="2023-04-29T15:54:16.524Z">
+<meta property="article:author" content="JasonWang">
+<meta property="article:tag" content="JS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wjcbolg.cn/image/js-14-1.png">
+  
+  
+  
+  <title>JS-进阶-构造函数 - JasonW</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wjcbolg.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jason</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="JS-进阶-构造函数"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-29 23:32" pubdate>
+          2023年4月29日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JS-进阶-构造函数</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="JS学习笔记14"><a href="#JS学习笔记14" class="headerlink" title="JS学习笔记14"></a>JS学习笔记14</h1><h2 id="深入对象"><a href="#深入对象" class="headerlink" title="深入对象"></a>深入对象</h2><h3 id="创建对象的方式"><a href="#创建对象的方式" class="headerlink" title="创建对象的方式"></a>创建对象的方式</h3><ol>
+<li>利用对象字面量创建</li>
+<li>new Object()</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs JS"><span class="hljs-keyword">const</span> obj=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>()<br></code></pre></td></tr></table></figure>
+
+<h4 id="利用构造函数创建对象"><a href="#利用构造函数创建对象" class="headerlink" title="利用构造函数创建对象"></a>利用构造函数创建对象</h4><ul>
+<li>是一种特殊的函数，主要用来初始化对象。（创建多个类似的对象）</li>
+<li>命名以大写字母开头</li>
+<li>只能由 new 操作符来执行</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Pig</span>(<span class="hljs-params">uname,age</span>)&#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">uname</span>=uname;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">age</span>=age;<br>&#125;<br><span class="hljs-keyword">new</span> <span class="hljs-title class_">Pig</span>(<span class="hljs-string">&#x27;佩奇&#x27;</span>,<span class="hljs-number">6</span>)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>new调用函数的行为被称为实例化</li>
+<li>构造函数内部无需写return</li>
+</ul>
+<h4 id="实例化执行过程"><a href="#实例化执行过程" class="headerlink" title="实例化执行过程"></a>实例化执行过程</h4><ol>
+<li>创建新对象</li>
+<li>构造函数执行this指向新对象</li>
+<li>执行构造函数代码，修改this，添加新的属性</li>
+<li>返回新对象</li>
+</ol>
+<h4 id="实例成员-amp-静态成员"><a href="#实例成员-amp-静态成员" class="headerlink" title="实例成员&amp;静态成员"></a>实例成员&amp;静态成员</h4><ul>
+<li><p>通过构造函数创建的对象称为实例对象，实例对象中的属性和方法属于实例成员</p>
+</li>
+<li><p>不同实例之间的实例成员互不影响</p>
+</li>
+<li><p>静态成员：构造函数的属性和方法</p>
+</li>
+<li><p>静态成员写在构造函数身上</p>
+</li>
+</ul>
+<h2 id="内置构造函数"><a href="#内置构造函数" class="headerlink" title="内置构造函数"></a>内置构造函数</h2><p>js底层完成，把简单数据类型包装成了引用数据类型的构造函数称为包装类型。</p>
+<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><h4 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h4><ol>
+<li>Object.keys静态方法获取对象中所有属性名</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">key</span>(o)) 输出一个属性名数组<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Object.value静态方法获取对象中所有属性值</li>
+</ol>
+<p>输出一个属性值数组</p>
+<ol start="3">
+<li>Object.assign对象的拷贝</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(a,b)<br>把b拷贝给a<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h4><p> 1.数组常见实例方法</p>
+<p>forEach() 遍历  不返回数组</p>
+<p>filter()   过滤    返回新数组（满足筛选条件的新数组）</p>
+<p>map() 迭代数组 返回新数组（返回处理完后的新数组）</p>
+<p>reduce(function(prev,current){},初始值)  返回一个值，初始值可选 </p>
+<p><img src="/image/js-14-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>2.其他方法</p>
+<p>find() 返回数组中满足提供的测试函数的第一个元素的值，否则返回UNDEFINED</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">&#x27;red&#x27;</span>, <span class="hljs-string">&#x27;blue&#x27;</span>, <span class="hljs-string">&#x27;green&#x27;</span>]<br>    <span class="hljs-keyword">const</span> re = arr.<span class="hljs-title function_">find</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">item</span>) &#123;<br>      <span class="hljs-keyword">return</span> item === <span class="hljs-string">&#x27;blue&#x27;</span><br>    &#125;)<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(re)<br></code></pre></td></tr></table></figure>
+
+<p>every() 返回布尔值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> arr1 = [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>]<br>    <span class="hljs-keyword">const</span> flag = arr1.<span class="hljs-title function_">every</span>(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item &gt;= <span class="hljs-number">20</span>)<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(flag)<br><span class="hljs-comment">// every 每一个是否都符合条件，如果都符合返回 true ，否则返回false</span><br></code></pre></td></tr></table></figure>
+
+<p>some()返回布尔值，只要有一个符合就是true</p>
+<p>Arrat.from(伪数组) 把伪数组转化为真数组</p>
+<h4 id="string"><a href="#string" class="headerlink" title="string"></a>string</h4><p>常见实例方法</p>
+<p>   1.split()  把字符串转化为数组</p>
+<p>   2.字符串的截取   substring(开始的索引号[， 结束的索引号]) 中括号表示可选参数</p>
+<ul>
+<li>如果省略结束的索引号，默认取到最后</li>
+<li>结束的索引号不包含想要截取的部分</li>
+</ul>
+<ol start="3">
+<li>startsWith() 判断是不是以某个字符开头</li>
+<li>includes() 判断某个字符是不是包含在一个字符串里面</li>
+</ol>
+<h4 id="toFixed"><a href="#toFixed" class="headerlink" title="toFixed"></a>toFixed</h4><p>让数字保留指定的小数位数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// toFixed 方法可以让数字指定保留的小数位数</span><br>    <span class="hljs-keyword">const</span> num = <span class="hljs-number">10.923</span><br>    <span class="hljs-comment">// console.log(num.toFixed())</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(num.<span class="hljs-title function_">toFixed</span>(<span class="hljs-number">1</span>))<br>    <span class="hljs-keyword">const</span> num1 = <span class="hljs-number">10</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(num1.<span class="hljs-title function_">toFixed</span>(<span class="hljs-number">2</span>))<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/web/" class="category-chain-item">web</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/web/JS/" class="category-chain-item">JS</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JS/">#JS</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JS-进阶-构造函数</div>
+      <div>https://wjcbolg.cn/2023/04/29/JS学习笔记14/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>JasonWang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年4月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-JW
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/04/29/JS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015/" title="JS-进阶-原型">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JS-进阶-原型</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/04/29/JS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B013/" title="JS-进阶-函数">
+                        <span class="hidden-mobile">JS-进阶-函数</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script>
+      function setClipboardText(event){
+          // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+          let clipboardData = event.clipboardData || window.clipboardData;
+          // 如果未复制或者未剪切，则return出去
+          if (!clipboardData) { return; }
+          event.preventDefault();
+          // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+          //     声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+          let text = window.getSelection().toString();
+
+          if (text) {
+            // 如果文本存在则先取消文本默认事件
+            event.preventDefault();
+            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+            // data: 一个 DOMString表示要添加到 drag object的数据。
+            var copyright = '\n\n'
+                            + '\n著作权归作者所有。'
+                            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+                            + '\n作者: JasonWang'
+                            + '\n邮箱: 1536794549@qq.com'
+                            + '\n原文地址: https://wjcbolg.cn/2023/04/29/JS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B014/'
+
+            clipboardData.setData('text/plain', text + copyright);
+
+          }
+      };
+      var contents = document.getElementsByClassName("markdown-body");
+      // 监听文章内容的copy事件
+      contents[0].addEventListener('copy',function(e){
+          setClipboardText(e);
+      });
+  </script>
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
