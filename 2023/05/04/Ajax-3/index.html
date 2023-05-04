@@ -1,0 +1,825 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="JasonWang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Ajax-3xhr基本使用XMLHttpRequest（简称xhr）是浏览器提供的Javascript对象，通过它，可以请求服务器上的数据资源。之前所学的 jQuery中的Ajax函数，就是基于xhr对象封装出来的。 使用xhr发起GET请求①创建 xhr 对象 ②调用 xhr.open() 函数 ③调用 xhr.send() 函数 ④监听 xhr.onreadystatechange事件 123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ajax-3-xhr">
+<meta property="og:url" content="https://wjcbolg.cn/2023/05/04/Ajax-3/index.html">
+<meta property="og:site_name" content="JasonW">
+<meta property="og:description" content="Ajax-3xhr基本使用XMLHttpRequest（简称xhr）是浏览器提供的Javascript对象，通过它，可以请求服务器上的数据资源。之前所学的 jQuery中的Ajax函数，就是基于xhr对象封装出来的。 使用xhr发起GET请求①创建 xhr 对象 ②调用 xhr.open() 函数 ③调用 xhr.send() 函数 ④监听 xhr.onreadystatechange事件 123">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wjcbolg.cn/image/ajax-5.PNG">
+<meta property="article:published_time" content="2023-05-04T15:38:42.727Z">
+<meta property="article:modified_time" content="2023-05-04T15:45:27.814Z">
+<meta property="article:author" content="JasonWang">
+<meta property="article:tag" content="Ajax">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wjcbolg.cn/image/ajax-5.PNG">
+  
+  
+  
+  <title>Ajax-3-xhr - JasonW</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wjcbolg.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jason</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Ajax-3-xhr"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-04 23:38" pubdate>
+          2023年5月4日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          77 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Ajax-3-xhr</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Ajax-3"><a href="#Ajax-3" class="headerlink" title="Ajax-3"></a>Ajax-3</h1><h2 id="xhr基本使用"><a href="#xhr基本使用" class="headerlink" title="xhr基本使用"></a>xhr基本使用</h2><p>XMLHttpRequest（简称xhr）是浏览器提供的Javascript对象，通过它，可以请求服务器上的数据资源。之前所学的 jQuery中的Ajax函数，就是基于xhr对象封装出来的。</p>
+<h3 id="使用xhr发起GET请求"><a href="#使用xhr发起GET请求" class="headerlink" title="使用xhr发起GET请求"></a>使用xhr发起GET请求</h3><p>①创建 xhr 对象</p>
+<p>②调用 xhr.open() 函数</p>
+<p>③调用 xhr.send() 函数</p>
+<p>④监听 xhr.onreadystatechange事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;body&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-comment">// 1. 创建 XHR 对象</span></span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>()</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-comment">// 2. 调用 open 函数</span></span></span><br><span class="language-javascript"><span class="language-xml">    xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">&#x27;GET&#x27;</span>, <span class="hljs-string">&#x27;http://www.liulongbin.top:3006/api/getbooks&#x27;</span>)</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-comment">// 3. 调用 send 函数</span></span></span><br><span class="language-javascript"><span class="language-xml">    xhr.<span class="hljs-title function_">send</span>()</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-comment">// 4. 监听 onreadystatechange 事件</span></span></span><br><span class="language-javascript"><span class="language-xml">    xhr.<span class="hljs-property">onreadystatechange</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-keyword">if</span> (xhr.<span class="hljs-property">readyState</span> === <span class="hljs-number">4</span> &amp;&amp; xhr.<span class="hljs-property">status</span> === <span class="hljs-number">200</span>) &#123;<span class="hljs-comment">//xhr.status不是返回数据中的status</span></span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-comment">// 获取服务器响应的数据</span></span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(xhr.<span class="hljs-property">responseText</span>)</span></span><br><span class="language-javascript"><span class="language-xml">      &#125;</span></span><br><span class="language-javascript"><span class="language-xml">    &#125;</span></span><br><span class="language-javascript"><span class="language-xml">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br>&lt;/body&gt;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/image/ajax-5.PNG" srcset="/img/loading.gif" lazyload></p>
+<h4 id="带参数GET请求"><a href="#带参数GET请求" class="headerlink" title="带参数GET请求"></a>带参数GET请求</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">&#x27;GET&#x27;</span>, <span class="hljs-string">&#x27;http://www.liulongbin.top:3006/api/getbooks&#x27;</span>)<br><span class="hljs-variable constant_">URL</span>地址末尾放上参数<br>?键=值&amp;键=值<br></code></pre></td></tr></table></figure>
+
+<h4 id="查询字符串"><a href="#查询字符串" class="headerlink" title="查询字符串"></a>查询字符串</h4><p>查询字符串（URL参数）是指在URL的末尾加上用于向服务器发送信息的字符串（变量）。</p>
+<p>（get携带参数的本质：无论使用<code>$.ajax()</code>，还是使用$.get()，又或者直接使用xhr对象发起GET请求，当需要携带参数的时候，本质上，都是直接将参数以查询字符串的形式，追加到URL地址的后面，发送到服务器的。）</p>
+<h3 id="URL编码"><a href="#URL编码" class="headerlink" title="URL编码"></a>URL编码</h3><p>使用英文字符去表示非英文字符</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus">浏览器提供了 URL 编码与解码的 API，分别是：<br><span class="hljs-function"><span class="hljs-title">encodeURI</span><span class="hljs-params">()</span></span>  编码的函数<br><span class="hljs-function"><span class="hljs-title">decodeURI</span><span class="hljs-params">()</span></span>  解码的函数<br><span class="hljs-function"><span class="hljs-title">encodeURI</span><span class="hljs-params">(<span class="hljs-string">&#x27;&#x27;</span>)</span></span><span class="hljs-comment">//传字符串参数</span><br><span class="hljs-function"><span class="hljs-title">decodeURI</span><span class="hljs-params">(<span class="hljs-string">&#x27;&#x27;</span>)</span></span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="使用xhr发起POST请求"><a href="#使用xhr发起POST请求" class="headerlink" title="使用xhr发起POST请求"></a>使用xhr发起POST请求</h3><p>①创建 xhr 对象</p>
+<p>②调用 xhr.open() 函数</p>
+<p>③设置 Content-Type 属性（固定写法）</p>
+<p>④调用 xhr.send() 函数，同时指定要发送的数据</p>
+<p>⑤监听 xhr.onreadystatechange 事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;body&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-comment">// 1. 创建 xhr 对象</span></span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>()</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-comment">// 2. 调用 open 函数</span></span></span><br><span class="language-javascript"><span class="language-xml">    xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">&#x27;POST&#x27;</span>, <span class="hljs-string">&#x27;http://www.liulongbin.top:3006/api/addbook&#x27;</span>)</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-comment">// 3. 设置 Content-Type 属性</span></span></span><br><span class="language-javascript"><span class="language-xml">    xhr.<span class="hljs-title function_">setRequestHeader</span>(<span class="hljs-string">&#x27;Content-Type&#x27;</span>, <span class="hljs-string">&#x27;application/x-www-form-urlencoded&#x27;</span>)</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-comment">// 4. 调用 send 函数  也是查询字符串</span></span></span><br><span class="language-javascript"><span class="language-xml">    xhr.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;bookname=水浒传&amp;author=施耐庵&amp;publisher=上海图书出版社&#x27;</span>)</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-comment">// 5. 监听事件</span></span></span><br><span class="language-javascript"><span class="language-xml">    xhr.<span class="hljs-property">onreadystatechange</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-keyword">if</span> (xhr.<span class="hljs-property">readyState</span> === <span class="hljs-number">4</span> &amp;&amp; xhr.<span class="hljs-property">status</span> === <span class="hljs-number">200</span>) &#123;</span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(xhr.<span class="hljs-property">responseText</span>)</span></span><br><span class="language-javascript"><span class="language-xml">      &#125;</span></span><br><span class="language-javascript"><span class="language-xml">    &#125;</span></span><br><span class="language-javascript"><span class="language-xml">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br>&lt;/body&gt;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="数据交换格式"><a href="#数据交换格式" class="headerlink" title="数据交换格式"></a>数据交换格式</h2><h3 id="1-XML"><a href="#1-XML" class="headerlink" title="1.XML"></a>1.XML</h3><ul>
+<li>可扩展标记语言，与HTML类似</li>
+<li>被设计用来传输和储存数据，数据载体</li>
+<li>缺点<ul>
+<li>格式臃肿，体积大，效率低</li>
+<li>在JS中解析较麻烦</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-JSON"><a href="#2-JSON" class="headerlink" title="2.JSON"></a>2.JSON</h3><p>JSON的英文全称是JavaScriptObjectNotation，即“JavaScript对象表示法”。简单来讲，JSON 就是 Javascript对数组组的字符串表示法，它使用文本表示一个JS对象或数组的信息，因此，&#x3D;&#x3D;JSON 的本质是字符串&#x3D;&#x3D;。</p>
+<ul>
+<li>所有的字符串用双引号包裹</li>
+<li>属性名必须用双引号包裹</li>
+<li>不能写注释</li>
+<li>最外层必须是对象或数组格式</li>
+<li>不能使用undefined或函数作为JSON值</li>
+</ul>
+<h4 id="两种结构"><a href="#两种结构" class="headerlink" title="两种结构"></a>两种结构</h4><p>对象：</p>
+<p>对象结构在 JSON中表示为{} 括起来的内容。数据结构为{key: value, key: value, … } 的键值对结构。其中，key<br>必须是使用英文的双引号包裹的字符串，value的数据类型可以是数字、字符串、布尔值、null、数组、对象6种类型。</p>
+<p>数组：</p>
+<p>数组结构在 JSON中表示为[] 括起来的内容。数据结构为[“java”,”javascript”,30, true … ]。数组中数据的类型可以是数字、字符串、布尔值、null、数组、对象6种类型。</p>
+<h4 id="与js对象"><a href="#与js对象" class="headerlink" title="与js对象"></a>与js对象</h4><p>从JSON字符串到js对象  反序列化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> jsonStr = <span class="hljs-string">&#x27;&#123;&quot;a&quot;: &quot;Hello&quot;, &quot;b&quot;: &quot;world&quot;&#125;&#x27;</span><br>    <span class="hljs-keyword">var</span> obj = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(jsonStr)<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj)<br></code></pre></td></tr></table></figure>
+
+<p>从js对象到JSON字符串   序列化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj2 = &#123; <span class="hljs-attr">a</span>: <span class="hljs-string">&#x27;hello&#x27;</span>, <span class="hljs-attr">b</span>: <span class="hljs-string">&#x27;world&#x27;</span>, <span class="hljs-attr">c</span>: <span class="hljs-literal">false</span> &#125;<br><span class="hljs-keyword">var</span> str = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(obj2)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> str)<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="封装自己的ajax函数"><a href="#封装自己的ajax函数" class="headerlink" title="封装自己的ajax函数"></a>封装自己的ajax函数</h2><p>1.定义options参数选项</p>
+<p>2.处理data参数</p>
+<p>3.定义itheima函数</p>
+<p>4.判断请求的类型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">resolveData</span>(<span class="hljs-params">data</span>) &#123;<br>  <span class="hljs-keyword">var</span> arr = []<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> k <span class="hljs-keyword">in</span> data) &#123;<br>    <span class="hljs-keyword">var</span> str = k + <span class="hljs-string">&#x27;=&#x27;</span> + data[k]<br>    arr.<span class="hljs-title function_">push</span>(str)<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> arr.<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;&amp;&#x27;</span>)<br>&#125;<br><br><span class="hljs-comment">// var res = resolveData(&#123; name: &#x27;zs&#x27;, age: 20 &#125;)</span><br><span class="hljs-comment">// console.log(res)</span><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">itheima</span>(<span class="hljs-params">options</span>) &#123;<span class="hljs-comment">//options是定义的参数选项，接收一个配置对象作为参数</span><br>  <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>()<br><br>  <span class="hljs-comment">// 把外界传递过来的参数对象，转换为 查询字符串</span><br>  <span class="hljs-keyword">var</span> qs = <span class="hljs-title function_">resolveData</span>(options.<span class="hljs-property">data</span>)<br><br>  <span class="hljs-keyword">if</span> (options.<span class="hljs-property">method</span>.<span class="hljs-title function_">toUpperCase</span>() === <span class="hljs-string">&#x27;GET&#x27;</span>) &#123;<br>    <span class="hljs-comment">// 发起GET请求</span><br>    xhr.<span class="hljs-title function_">open</span>(options.<span class="hljs-property">method</span>, options.<span class="hljs-property">url</span> + <span class="hljs-string">&#x27;?&#x27;</span> + qs)<br>    xhr.<span class="hljs-title function_">send</span>()<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (options.<span class="hljs-property">method</span>.<span class="hljs-title function_">toUpperCase</span>() === <span class="hljs-string">&#x27;POST&#x27;</span>) &#123;<br>    <span class="hljs-comment">// 发起POST请求</span><br>    xhr.<span class="hljs-title function_">open</span>(options.<span class="hljs-property">method</span>, options.<span class="hljs-property">url</span>)<br>    xhr.<span class="hljs-title function_">setRequestHeader</span>(<span class="hljs-string">&#x27;Content-Type&#x27;</span>, <span class="hljs-string">&#x27;application/x-www-form-urlencoded&#x27;</span>)<br>    xhr.<span class="hljs-title function_">send</span>(qs)<br>  &#125;<br><br>  xhr.<span class="hljs-property">onreadystatechange</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">if</span> (xhr.<span class="hljs-property">readyState</span> === <span class="hljs-number">4</span> &amp;&amp; xhr.<span class="hljs-property">status</span> === <span class="hljs-number">200</span>) &#123;<br>      <span class="hljs-keyword">var</span> result = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(xhr.<span class="hljs-property">responseText</span>)<br>      options.<span class="hljs-title function_">success</span>(result)<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="xhr-level2新特性"><a href="#xhr-level2新特性" class="headerlink" title="xhr level2新特性"></a>xhr level2新特性</h2><p>①可以设置 HTTP 请求的时限</p>
+<p>②可以使用 FormData对象管理表单数据</p>
+<p>③可以上传文件</p>
+<p>④可以获得数据传输的进度信息</p>
+<h3 id="设置HTTP请求时限"><a href="#设置HTTP请求时限" class="headerlink" title="设置HTTP请求时限"></a>设置HTTP请求时限</h3><p>新版本的 XMLHttpRequest对象，增加了timeout属性，可以设置HTTP请求的时限：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js">xhr.<span class="hljs-property">timeout</span> = <span class="hljs-number">3000</span><br><span class="hljs-comment">//上面的语句，将最长等待时间设为 3000 毫秒。过了这个时限，就自动停止HTTP请求。与之配套的还有一个 timeout 事件，用来指定回调函数：</span><br>xhr.<span class="hljs-property">ontimeout</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>)&#123;<br>     <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;请求超时！&#x27;</span>)<br> &#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="FormData对象管理表单数据"><a href="#FormData对象管理表单数据" class="headerlink" title="FormData对象管理表单数据"></a>FormData对象管理表单数据</h3><p>提交表单数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script&gt;<br>    <span class="hljs-comment">// 1. 创建 FormData 实例</span><br>    <span class="hljs-keyword">var</span> fd = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FormData</span>()<br>    <span class="hljs-comment">// 2. 调用 append 函数，向 fd 中追加数据</span><br>    fd.<span class="hljs-title function_">append</span>(<span class="hljs-string">&#x27;uname&#x27;</span>, <span class="hljs-string">&#x27;zs&#x27;</span>)<br>    fd.<span class="hljs-title function_">append</span>(<span class="hljs-string">&#x27;upwd&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>)<br><br>    <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>()<br>    xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">&#x27;POST&#x27;</span>, <span class="hljs-string">&#x27;http://www.liulongbin.top:3006/api/formdata&#x27;</span>)<br>   <span class="hljs-comment">//直接提交fd</span><br>    xhr.<span class="hljs-title function_">send</span>(fd)<br><br>    xhr.<span class="hljs-property">onreadystatechange</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">if</span> (xhr.<span class="hljs-property">readyState</span> === <span class="hljs-number">4</span> &amp;&amp; xhr.<span class="hljs-property">status</span> === <span class="hljs-number">200</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(xhr.<span class="hljs-property">responseText</span>))<br>      &#125;<br>    &#125;<br>  &lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<p>获取网页表单的值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script&gt;<br>    <span class="hljs-comment">// 1. 通过 DOM 操作，获取到 form 表单元素</span><br>    <span class="hljs-keyword">var</span> form = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#form1&#x27;</span>)<br><br>    form.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;submit&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) &#123;<br>      <span class="hljs-comment">// 阻止表单的默认提交行为</span><br>      e.<span class="hljs-title function_">preventDefault</span>()<br><br>      <span class="hljs-comment">// 2.创建 FormData，快速获取到 form 表单中的数据</span><br>      <span class="hljs-keyword">var</span> fd = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FormData</span>(form)<br><br>      <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>()<br>      xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">&#x27;POST&#x27;</span>, <span class="hljs-string">&#x27;http://www.liulongbin.top:3006/api/formdata&#x27;</span>)<br>      <span class="hljs-comment">//3.将fd传入服务器</span><br>      xhr.<span class="hljs-title function_">send</span>(fd)<br><br>      xhr.<span class="hljs-property">onreadystatechange</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">if</span> (xhr.<span class="hljs-property">readyState</span> === <span class="hljs-number">4</span> &amp;&amp; xhr.<span class="hljs-property">status</span> === <span class="hljs-number">200</span>) &#123;<br>          <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(xhr.<span class="hljs-property">responseText</span>))<br>        &#125;<br>      &#125;<br>    &#125;)<br>  &lt;/script&gt;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h3><p>新版 XMLHttpRequest对象，不仅可以发送文本信息，还可以上传文件。</p>
+<p>实现步骤：</p>
+<p>①定义 UI结构</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;!-- <span class="hljs-number">1.</span> 文件选择框 --&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;file&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;file1&quot;</span> /&gt;</span></span><br>  &lt;!-- <span class="hljs-number">2.</span> 上传文件的按钮 --&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;btnUpload&quot;</span>&gt;</span>上传文件<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span></span><br>  &lt;!-- <span class="hljs-number">3.</span> img 标签，来显示上传成功以后的图片 --&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;img&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;800&quot;</span> /&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<p>②验证是否选择了文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script&gt;<br><span class="hljs-keyword">var</span> btnUpload = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#btnUpload&#x27;</span>)<br>    <span class="hljs-comment">// 2. 为按钮绑定单击事件处理函数</span><br>    btnUpload.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-comment">// 3. 获取到用户选择的文件列表</span><br>      <span class="hljs-keyword">var</span> files = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#file1&#x27;</span>).<span class="hljs-property">files</span> <span class="hljs-comment">// 对象，length和0都是属性名</span><br>      <span class="hljs-keyword">if</span> (files.<span class="hljs-property">length</span> &lt;= <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;请选择要上传的文件！&#x27;</span>)<br>      &#125;<br>   ......<br></code></pre></td></tr></table></figure>
+
+<p>③向 FormData中追加文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> fd = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FormData</span>()<br>      <span class="hljs-comment">// 将用户选择的文件，添加到 FormData 中</span><br> fd.<span class="hljs-title function_">append</span>(<span class="hljs-string">&#x27;avatar&#x27;</span>, files[<span class="hljs-number">0</span>])     <span class="hljs-comment">//avatar是自定义的值</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>④使用 xhr发起上传文件的请求</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>()<br> xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">&#x27;POST&#x27;</span>, <span class="hljs-string">&#x27;http://www.liulongbin.top:3006/api/upload/avatar&#x27;</span>)<br> xhr.<span class="hljs-title function_">send</span>(fd)<br></code></pre></td></tr></table></figure>
+
+
+
+<p>⑤监听 onreadystatechange事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js">xhr.<span class="hljs-property">onreadystatechange</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">if</span> (xhr.<span class="hljs-property">readyState</span> === <span class="hljs-number">4</span> &amp;&amp; xhr.<span class="hljs-property">status</span> === <span class="hljs-number">200</span>) &#123;<br>          <span class="hljs-keyword">var</span> data = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(xhr.<span class="hljs-property">responseText</span>)<br>          <span class="hljs-keyword">if</span> (data.<span class="hljs-property">status</span> === <span class="hljs-number">200</span>) &#123;<br>            <span class="hljs-comment">// 上传成功</span><br>            <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#img&#x27;</span>).<span class="hljs-property">src</span> = <span class="hljs-string">&#x27;http://www.liulongbin.top:3006&#x27;</span> + data.<span class="hljs-property">url</span><br>          &#125; <span class="hljs-keyword">else</span> &#123;                                                    <span class="hljs-comment">//根目录+返回的url</span><br>            <span class="hljs-comment">// 上传失败</span><br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;图片上传失败！&#x27;</span> + data.<span class="hljs-property">message</span>)<br>          &#125;<br>        &#125;<br>      &#125;<br>    &#125;)<br> &lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="显示文件上传进度"><a href="#显示文件上传进度" class="headerlink" title="显示文件上传进度"></a>显示文件上传进度</h3><p>新版本的 XMLHttpRequest对象中，可以通过监听 xhr.upload.onprogress 事件，来获取到文件的上传进度。语法格式如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 创建 XHR 对象</span><br> <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>()<br> <span class="hljs-comment">// 监听 xhr.upload 的 onprogress 事件</span><br> xhr.<span class="hljs-property">upload</span>.<span class="hljs-property">onprogress</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) &#123;<br>    <span class="hljs-comment">// e.lengthComputable 是一个布尔值，表示当前上传的资源是否具有可计算的长度</span><br>    <span class="hljs-keyword">if</span> (e.<span class="hljs-property">lengthComputable</span>) &#123;<br>        <span class="hljs-comment">// e.loaded 已传输的字节</span><br>        <span class="hljs-comment">// e.total  需传输的总字节</span><br>        <span class="hljs-keyword">var</span> percentComplete = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">ceil</span>((e.<span class="hljs-property">loaded</span> / e.<span class="hljs-property">total</span>) * <span class="hljs-number">100</span>)<br>    &#125;<br> &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="jQuery实现文件上传"><a href="#jQuery实现文件上传" class="headerlink" title="jQuery实现文件上传"></a>jQuery实现文件上传</h3><p>步骤与xhr上传相同，值得注意的是用$.ajax()上传时有两个新的参数且不可缺少</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script&gt;<br>    $(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-comment">// 监听到Ajax请求被发起了</span><br>      $(<span class="hljs-variable language_">document</span>).<span class="hljs-title function_">ajaxStart</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        $(<span class="hljs-string">&#x27;#loading&#x27;</span>).<span class="hljs-title function_">show</span>()<br>      &#125;)<br><br>      <span class="hljs-comment">// 监听到 Ajax 完成的事件</span><br>      $(<span class="hljs-variable language_">document</span>).<span class="hljs-title function_">ajaxStop</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        $(<span class="hljs-string">&#x27;#loading&#x27;</span>).<span class="hljs-title function_">hide</span>()<br>      &#125;)<br>      <span class="hljs-comment">//loading效果</span><br>   <br>      $(<span class="hljs-string">&#x27;#btnUpload&#x27;</span>).<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">var</span> files = $(<span class="hljs-string">&#x27;#file1&#x27;</span>)[<span class="hljs-number">0</span>].<span class="hljs-property">files</span><br>        <span class="hljs-keyword">if</span> (files.<span class="hljs-property">length</span> &lt;= <span class="hljs-number">0</span>) &#123;<br>          <span class="hljs-keyword">return</span> <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;请选择文件后再上传！&#x27;</span>)<br>        &#125;<br><br>        <span class="hljs-keyword">var</span> fd = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FormData</span>()<br>        fd.<span class="hljs-title function_">append</span>(<span class="hljs-string">&#x27;avatar&#x27;</span>, files[<span class="hljs-number">0</span>])<br><br>        <span class="hljs-comment">// 发起 jQuery 的 Ajax 请求，上传文件        </span><br>        $.<span class="hljs-title function_">ajax</span>(&#123;<br>          <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>          <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;http://www.liulongbin.top:3006/api/upload/avatar&#x27;</span>,<br>          <span class="hljs-attr">data</span>: fd,<br>          <span class="hljs-attr">processData</span>: <span class="hljs-literal">false</span>,  <span class="hljs-comment">//不可省略</span><br>          <span class="hljs-attr">contentType</span>: <span class="hljs-literal">false</span>,  <span class="hljs-comment">//不可省略</span><br>          <span class="hljs-attr">success</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res)<br>          &#125;<br>        &#125;)<br>      &#125;)<br>    &#125;)<br> &lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>注：上传文件只能用$.ajax(),POST方式</li>
+<li>$(document).ajaxStart()函数会监听当前文档内所有的Ajax请求。</li>
+</ul>
+<h2 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h2><p>专注于网络数据请求的库</p>
+<p>axios.js</p>
+<h3 id="发起GET请求"><a href="#发起GET请求" class="headerlink" title="发起GET请求"></a>发起GET请求</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;url&#x27;</span>, &#123; <span class="hljs-attr">params</span>: &#123; <span class="hljs-comment">/*参数*/</span> &#125; &#125;).<span class="hljs-title function_">then</span>(callback)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#btn1&#x27;</span>).<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">var</span> url = <span class="hljs-string">&#x27;http://www.liulongbin.top:3006/api/get&#x27;</span><br>      <span class="hljs-keyword">var</span> paramsObj = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;zs&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">20</span> &#125;<br>      axios.<span class="hljs-title function_">get</span>(url, &#123; <span class="hljs-attr">params</span>: paramsObj &#125;).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res.<span class="hljs-property">data</span>)  <span class="hljs-comment">//res.data才是服务器返回的数据，res是axios封装的对象</span><br>      &#125;)<br>    &#125;)<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="发起POST请求"><a href="#发起POST请求" class="headerlink" title="发起POST请求"></a>发起POST请求</h3><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsp">axios.post(<span class="hljs-string">&#x27;url&#x27;</span>, &#123; <span class="hljs-comment">/*参数*/</span> &#125;).then(callback)  参数直接放一个对象<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#btn2&#x27;</span>).<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">var</span> url = <span class="hljs-string">&#x27;http://www.liulongbin.top:3006/api/post&#x27;</span><br>      <span class="hljs-keyword">var</span> dataObj = &#123; <span class="hljs-attr">address</span>: <span class="hljs-string">&#x27;北京&#x27;</span>, <span class="hljs-attr">location</span>: <span class="hljs-string">&#x27;顺义区&#x27;</span> &#125;<br>      axios.<span class="hljs-title function_">post</span>(url, dataObj).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res.<span class="hljs-property">data</span>)<br>      &#125;)<br>    &#125;)<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="直接用axios"><a href="#直接用axios" class="headerlink" title="直接用axios"></a>直接用axios</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">axios</span>(&#123;<br>     <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;请求类型&#x27;</span>,<br>     <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;请求的URL地址&#x27;</span>,<br>     <span class="hljs-attr">data</span>: &#123; <span class="hljs-comment">/* POST数据 */</span> &#125;,<br>     <span class="hljs-attr">params</span>: &#123; <span class="hljs-comment">/* GET参数 */</span> &#125;<br> &#125;) .<span class="hljs-title function_">then</span>(callback)<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#btn3&#x27;</span>).<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">var</span> url = <span class="hljs-string">&#x27;http://www.liulongbin.top:3006/api/get&#x27;</span><br>      <span class="hljs-keyword">var</span> paramsData = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;钢铁侠&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">35</span> &#125;<br>      <span class="hljs-title function_">axios</span>(&#123;<br>        <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,<br>        <span class="hljs-attr">url</span>: url,<br>        <span class="hljs-attr">params</span>: paramsData<br>      &#125;).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res.<span class="hljs-property">data</span>)<br>      &#125;)<br>    &#125;)<br><br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#btn4&#x27;</span>).<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-title function_">axios</span>(&#123;<br>        <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>        <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;http://www.liulongbin.top:3006/api/post&#x27;</span>,<br>        <span class="hljs-attr">data</span>: &#123;<br>          <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;娃哈哈&#x27;</span>,<br>          <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>,<br>          <span class="hljs-attr">gender</span>: <span class="hljs-string">&#x27;女&#x27;</span><br>        &#125;<br>      &#125;).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res.<span class="hljs-property">data</span>)<br>      &#125;)<br>    &#125;)<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/web/" class="category-chain-item">web</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/web/Ajax/" class="category-chain-item">Ajax</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Ajax/">#Ajax</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Ajax-3-xhr</div>
+      <div>https://wjcbolg.cn/2023/05/04/Ajax-3/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>JasonWang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-JW
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/05/04/Ajax-4/" title="Ajax-4-跨域">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Ajax-4-跨域</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/05/04/Ajax-2/" title="Ajax-2-from-模板引擎">
+                        <span class="hidden-mobile">Ajax-2-from-模板引擎</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script>
+      function setClipboardText(event){
+          // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+          let clipboardData = event.clipboardData || window.clipboardData;
+          // 如果未复制或者未剪切，则return出去
+          if (!clipboardData) { return; }
+          event.preventDefault();
+          // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+          //     声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+          let text = window.getSelection().toString();
+
+          if (text) {
+            // 如果文本存在则先取消文本默认事件
+            event.preventDefault();
+            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+            // data: 一个 DOMString表示要添加到 drag object的数据。
+            var copyright = '\n\n'
+                            + '\n著作权归作者所有。'
+                            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+                            + '\n作者: JasonWang'
+                            + '\n邮箱: 1536794549@qq.com'
+                            + '\n原文地址: https://wjcbolg.cn/2023/05/04/Ajax-3/'
+
+            clipboardData.setData('text/plain', text + copyright);
+
+          }
+      };
+      var contents = document.getElementsByClassName("markdown-body");
+      // 监听文章内容的copy事件
+      contents[0].addEventListener('copy',function(e){
+          setClipboardText(e);
+      });
+  </script>
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
