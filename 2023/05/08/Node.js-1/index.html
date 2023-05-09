@@ -18,7 +18,7 @@
   
     <meta name="description" content="Node.js-1初识Node.js为什么JS可以在浏览器中被执行  为什么JS可以操作DOM和BOM 每个浏览器都内置了 DOM、BOM这样的API函数，因此，浏览器中的JavaScript才可以调用它们。  浏览器中的JS运行环境 运行环境是指代码正常运行所需的必要环境 ①V8 引擎负责解析和执行JavaScript代码。 ②内置 API是由运行环境提供的特殊接口，只能在所属的运行环境中被调用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JasonW">
+<meta property="og:title" content="Node.js-1">
 <meta property="og:url" content="https://wjcbolg.cn/2023/05/08/Node.js-1/index.html">
 <meta property="og:site_name" content="JasonW">
 <meta property="og:description" content="Node.js-1初识Node.js为什么JS可以在浏览器中被执行  为什么JS可以操作DOM和BOM 每个浏览器都内置了 DOM、BOM这样的API函数，因此，浏览器中的JavaScript才可以调用它们。  浏览器中的JS运行环境 运行环境是指代码正常运行所需的必要环境 ①V8 引擎负责解析和执行JavaScript代码。 ②内置 API是由运行环境提供的特殊接口，只能在所属的运行环境中被调用">
@@ -31,14 +31,15 @@
 <meta property="og:image" content="https://wjcbolg.cn/image/node.js-1-6.PNG">
 <meta property="og:image" content="https://wjcbolg.cn/image/node.js-1-7.PNG">
 <meta property="article:published_time" content="2023-05-08T15:41:49.933Z">
-<meta property="article:modified_time" content="2023-05-06T12:01:39.727Z">
+<meta property="article:modified_time" content="2023-05-09T01:22:45.349Z">
 <meta property="article:author" content="JasonWang">
+<meta property="article:tag" content="Node.js">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://wjcbolg.cn/image/node.js-1-1.PNG">
   
   
   
-  <title>JasonW</title>
+  <title>Node.js-1 - JasonW</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -208,7 +209,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="Node.js-1"></span>
           
         </div>
 
@@ -280,7 +281,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">Node.js-1</h1>
             
             
               <div class="markdown-body">
@@ -406,6 +407,41 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/web/" class="category-chain-item">web</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/web/Node-js/" class="category-chain-item">Node.js</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Node-js/">#Node.js</a>
+      
+    </div>
   
 </div>
 
@@ -415,7 +451,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>Node.js-1</div>
       <div>https://wjcbolg.cn/2023/05/08/Node.js-1/</div>
     </div>
     <div class="license-meta">
@@ -522,6 +558,41 @@
 
 
 
+
+  <script>
+      function setClipboardText(event){
+          // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+          let clipboardData = event.clipboardData || window.clipboardData;
+          // 如果未复制或者未剪切，则return出去
+          if (!clipboardData) { return; }
+          event.preventDefault();
+          // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+          //     声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+          let text = window.getSelection().toString();
+
+          if (text) {
+            // 如果文本存在则先取消文本默认事件
+            event.preventDefault();
+            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+            // data: 一个 DOMString表示要添加到 drag object的数据。
+            var copyright = '\n\n'
+                            + '\n著作权归作者所有。'
+                            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+                            + '\n作者: JasonWang'
+                            + '\n邮箱: 1536794549@qq.com'
+                            + '\n原文地址: https://wjcbolg.cn/2023/05/08/Node.js-1/'
+
+            clipboardData.setData('text/plain', text + copyright);
+
+          }
+      };
+      var contents = document.getElementsByClassName("markdown-body");
+      // 监听文章内容的copy事件
+      contents[0].addEventListener('copy',function(e){
+          setClipboardText(e);
+      });
+  </script>
 
 
 
