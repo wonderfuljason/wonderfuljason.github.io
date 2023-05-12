@@ -1,0 +1,753 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="JasonWang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="webpack前端工程化 模块化（js 的模块化、css 的模块化、资源的模块化） 组件化（复用现有的 UI 结构、样式、行为） 规范化（目录结构的划分、编码规范化、接口规范化、文档规范化、 Git 分支管理） 自动化（自动化构建、自动部署、自动化测试）  webpackwebpack 是前端项目工程化的具体解决方案 主要功能：它提供了友好的前端模块化开发支持，以及代码压缩混淆、处理浏览器端 Ja">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack介绍">
+<meta property="og:url" content="https://wjcbolg.cn/2023/05/12/webpack/index.html">
+<meta property="og:site_name" content="JasonW">
+<meta property="og:description" content="webpack前端工程化 模块化（js 的模块化、css 的模块化、资源的模块化） 组件化（复用现有的 UI 结构、样式、行为） 规范化（目录结构的划分、编码规范化、接口规范化、文档规范化、 Git 分支管理） 自动化（自动化构建、自动部署、自动化测试）  webpackwebpack 是前端项目工程化的具体解决方案 主要功能：它提供了友好的前端模块化开发支持，以及代码压缩混淆、处理浏览器端 Ja">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wjcbolg.cn/image/vue2.0-1-1.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/vue2.0-1-2.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/vue2.0-1-3.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/vue2.0-1-4.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/vue2.0-1-5.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/vue2.0-1-6.PNG">
+<meta property="article:published_time" content="2023-05-12T15:50:49.725Z">
+<meta property="article:modified_time" content="2023-05-12T15:51:38.371Z">
+<meta property="article:author" content="JasonWang">
+<meta property="article:tag" content="webpack">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wjcbolg.cn/image/vue2.0-1-1.PNG">
+  
+  
+  
+  <title>webpack介绍 - JasonW</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wjcbolg.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jason</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="webpack介绍"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-12 23:50" pubdate>
+          2023年5月12日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">webpack介绍</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h1><h2 id="前端工程化"><a href="#前端工程化" class="headerlink" title="前端工程化"></a>前端工程化</h2><ul>
+<li>模块化（js 的模块化、css 的模块化、资源的模块化）</li>
+<li>组件化（复用现有的 UI 结构、样式、行为）</li>
+<li>规范化（目录结构的划分、编码规范化、接口规范化、文档规范化、 Git 分支管理）</li>
+<li>自动化（自动化构建、自动部署、自动化测试）</li>
+</ul>
+<h2 id="webpack-1"><a href="#webpack-1" class="headerlink" title="webpack"></a>webpack</h2><p>webpack 是前端项目工程化的具体解决方案</p>
+<p>主要功能：它提供了友好的前端模块化开发支持，以及代码压缩混淆、处理浏览器端 JavaScript 的兼容性、性<br>能优化等强大的功能。</p>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><h4 id="创建列表隔行变色项目"><a href="#创建列表隔行变色项目" class="headerlink" title="创建列表隔行变色项目"></a>创建列表隔行变色项目</h4><p>① 新建项目空白目录，并运行 npm init –y 命令，初始化包管理配置文件 package.json<br>② 新建 src 源代码目录<br>③ 新建 src -&gt; index.html 首页和 src -&gt; index.js 脚本文件<br>④ 初始化首页基本的结构<br>⑤ 运行 npm install jquery –S 命令，安装 jQuery<br>⑥ 通过 ES6 模块化的方式导入 jQuery，实现列表隔行变色效果</p>
+<h4 id="在项目中安装-webpack"><a href="#在项目中安装-webpack" class="headerlink" title="在项目中安装 webpack"></a>在项目中安装 webpack</h4><p><code>npm install webpack webpack-cli -D</code>           (-D表示记录到 devDependencies节点中)</p>
+<h4 id="在项目中配置webpack"><a href="#在项目中配置webpack" class="headerlink" title="在项目中配置webpack"></a>在项目中配置webpack</h4><p><img src="/image/vue2.0-1-1.PNG" srcset="/img/loading.gif" lazyload></p>
+<p>mode 节点的可选值有两个，分别是：<br>① development</p>
+<ul>
+<li>开发环境</li>
+<li>不会对打包生成的文件进行代码压缩和性能优化</li>
+<li>打包速度快，适合在开发阶段使用</li>
+</ul>
+<p>② production</p>
+<ul>
+<li>生产环境</li>
+<li>会对打包生成的文件进行代码压缩和性能优化</li>
+<li>打包速度很慢，仅适合在项目发布阶段使用</li>
+</ul>
+<hr>
+<p>webpack.config.js 是 webpack 的配置文件。webpack 在真正开始打包构建之前，会先读取这个配置文件，<br>从而基于给定的配置，对项目进行打包。<br>注意：由于 webpack 是基于 node.js 开发出来的打包工具，因此在它的配置文件中，支持使用 node.js 相关<br>的语法和模块进行 webpack 的个性化配置</p>
+<h4 id="webpack中的默认约定"><a href="#webpack中的默认约定" class="headerlink" title="webpack中的默认约定"></a>webpack中的默认约定</h4><p>在 webpack 4.x 和 5.x 的版本中，有如下的默认约定：<br>① 默认的打包入口文件为 src -&gt; index.js<br>② 默认的输出文件路径为 dist -&gt; main.js</p>
+<p>注意：可以在 webpack.config.js 中修改打包的默认约定</p>
+<p><img src="/image/vue2.0-1-2.PNG" srcset="/img/loading.gif" lazyload></p>
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p>通过安装和配置第三方的插件，可以拓展 webpack 的能力，从而让 webpack 用起来更方便。最常用的<br>webpack 插件有如下两个：<br>① webpack-dev-server</p>
+<ul>
+<li>类似于 node.js 阶段用到的 nodemon 工具</li>
+<li>每当修改了源代码，webpack 会自动进行项目的打包和构建</li>
+</ul>
+<p>② html-webpack-plugin</p>
+<ul>
+<li>webpack 中的 HTML 插件（类似于一个模板引擎插件）</li>
+<li>可以通过此插件自定制 index.html 页面的内容</li>
+</ul>
+<p>（了解即可，因为vue-cli帮助完成了webpack的相关配置）</p>
+<h3 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h3><p>在实际开发过程中，webpack 默认只能打包处理以 .js 后缀名结尾的模块。其他非 .js 后缀名结尾的模块，<br>webpack 默认处理不了，需要调用 loader 加载器才可以正常打包，否则会报错！<br>loader 加载器的作用：协助 webpack 打包处理特定的文件模块。比如：</p>
+<ul>
+<li>css-loader 可以打包处理 .css 相关的文件</li>
+<li>less-loader 可以打包处理 .less 相关的文件</li>
+<li>babel-loader 可以打包处理 webpack 无法处理的高级 JS 语法</li>
+</ul>
+<h3 id="打包发布"><a href="#打包发布" class="headerlink" title="打包发布"></a>打包发布</h3><p>项目开发完成之后，需要使用 webpack 对项目进行打包发布，主要原因有以下两点：<br>① 开发环境下，打包生成的文件存放于内存中，无法获取到最终打包生成的文件<br>② 开发环境下，打包生成的文件不会进行代码压缩和性能优化<br>为了让项目能够在生产环境中高性能的运行，因此需要对项目进行打包发布。</p>
+<h4 id="配置webpack的打包发布"><a href="#配置webpack的打包发布" class="headerlink" title="配置webpack的打包发布"></a>配置webpack的打包发布</h4><p>在 package.json 文件的 scripts 节点下，新增 build 命令如下：</p>
+<p><img src="/image/vue2.0-1-3.PNG" srcset="/img/loading.gif" lazyload></p>
+<p>–model 是一个参数项，用来指定 webpack 的运行模式。production 代表生产环境，会对打包生成的文件<br>进行代码压缩和性能优化。<br>注意：通过 –model 指定的参数项，会覆盖 webpack.config.js 中的 model 选项</p>
+<h4 id="把-JavaScript-文件统一生成到-js-目录中"><a href="#把-JavaScript-文件统一生成到-js-目录中" class="headerlink" title="把 JavaScript 文件统一生成到 js 目录中"></a>把 JavaScript 文件统一生成到 js 目录中</h4><p><img src="/image/vue2.0-1-4.PNG" srcset="/img/loading.gif" lazyload></p>
+<h4 id="把图片文件统一生成到-image-目录中"><a href="#把图片文件统一生成到-image-目录中" class="headerlink" title="把图片文件统一生成到 image 目录中"></a>把图片文件统一生成到 image 目录中</h4><p>修改 webpack.config.js 中的 url-loader 配置项，新增 outputPath 选项即可指定图片文件的输出路径：</p>
+<p><img src="/image/vue2.0-1-5.PNG" srcset="/img/loading.gif" lazyload></p>
+<h4 id="自动清理-dist-目录下的旧文件"><a href="#自动清理-dist-目录下的旧文件" class="headerlink" title="自动清理 dist 目录下的旧文件"></a>自动清理 dist 目录下的旧文件</h4><p><img src="/image/vue2.0-1-6.PNG" srcset="/img/loading.gif" lazyload></p>
+<h3 id="source-map"><a href="#source-map" class="headerlink" title="source map"></a>source map</h3><p>Source Map 就是一个信息文件，里面储存着位置信息。也就是说，Source Map 文件中存储着压缩混淆后的<br>代码，所对应的转换前的位置。<br>有了它，出错的时候，除错工具将直接显示原始代码，而不是转换后的代码，能够极大的方便后期的调试.</p>
+<p>① 开发环境下：</p>
+<ul>
+<li>建议把 devtool 的值设置为 eval-source-map</li>
+<li>好处：可以精准定位到具体的错误行</li>
+</ul>
+<p>② 生产环境下：</p>
+<ul>
+<li>建议关闭 Source Map 或将 devtool 的值设置为 nosources-source-map</li>
+<li>好处：防止源码泄露，提高网站的安全性</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/web/" class="category-chain-item">web</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/web/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" class="category-chain-item">前端工程化</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/webpack/">#webpack</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>webpack介绍</div>
+      <div>https://wjcbolg.cn/2023/05/12/webpack/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>JasonWang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-JW
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/05/09/Node.js-2/" title="Node.js-2-模块">
+                        <span class="hidden-mobile">Node.js-2-模块</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script>
+      function setClipboardText(event){
+          // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+          let clipboardData = event.clipboardData || window.clipboardData;
+          // 如果未复制或者未剪切，则return出去
+          if (!clipboardData) { return; }
+          event.preventDefault();
+          // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+          //     声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+          let text = window.getSelection().toString();
+
+          if (text) {
+            // 如果文本存在则先取消文本默认事件
+            event.preventDefault();
+            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+            // data: 一个 DOMString表示要添加到 drag object的数据。
+            var copyright = '\n\n'
+                            + '\n著作权归作者所有。'
+                            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+                            + '\n作者: JasonWang'
+                            + '\n邮箱: 1536794549@qq.com'
+                            + '\n原文地址: https://wjcbolg.cn/2023/05/12/webpack/'
+
+            clipboardData.setData('text/plain', text + copyright);
+
+          }
+      };
+      var contents = document.getElementsByClassName("markdown-body");
+      // 监听文章内容的copy事件
+      contents[0].addEventListener('copy',function(e){
+          setClipboardText(e);
+      });
+  </script>
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
