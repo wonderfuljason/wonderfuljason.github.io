@@ -1,0 +1,759 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="JasonWang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="关于前端笔试和面试的一些知识点1.NaN 2.一个商人骑一头驴要穿越1000公里长的沙漠，去卖3000根胡萝卜。已知驴一次性可驮1000根胡萝卜，但每走一公里又要吃掉一根胡萝卜。问：商人共可卖出多少胡萝卜？1234567891011121314假设出沙漠时有1000根萝卜，那么在出沙漠之前一定不只1000根，那么至少要驮两次才会出沙漠，那样从出发地到沙漠边缘都会有往返的里程，那所走的路程将大于30">
+<meta property="og:type" content="article">
+<meta property="og:title" content="五月笔试准备（之前忘记上传了）">
+<meta property="og:url" content="https://wjcbolg.cn/2023/05/31/%E5%85%B3%E4%BA%8E%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95%E5%92%8C%E9%9D%A2%E8%AF%95%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+<meta property="og:site_name" content="JasonW">
+<meta property="og:description" content="关于前端笔试和面试的一些知识点1.NaN 2.一个商人骑一头驴要穿越1000公里长的沙漠，去卖3000根胡萝卜。已知驴一次性可驮1000根胡萝卜，但每走一公里又要吃掉一根胡萝卜。问：商人共可卖出多少胡萝卜？1234567891011121314假设出沙漠时有1000根萝卜，那么在出沙漠之前一定不只1000根，那么至少要驮两次才会出沙漠，那样从出发地到沙漠边缘都会有往返的里程，那所走的路程将大于30">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wjcbolg.cn/image/prepare-1.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/prepare-2.PNG">
+<meta property="article:published_time" content="2023-05-31T01:19:26.488Z">
+<meta property="article:modified_time" content="2023-05-31T00:14:18.882Z">
+<meta property="article:author" content="JasonWang">
+<meta property="article:tag" content="面经">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wjcbolg.cn/image/prepare-1.PNG">
+  
+  
+  
+  <title>五月笔试准备（之前忘记上传了） - JasonW</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wjcbolg.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jason</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="五月笔试准备（之前忘记上传了）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-31 09:19" pubdate>
+          2023年5月31日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">五月笔试准备（之前忘记上传了）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="关于前端笔试和面试的一些知识点"><a href="#关于前端笔试和面试的一些知识点" class="headerlink" title="关于前端笔试和面试的一些知识点"></a>关于前端笔试和面试的一些知识点</h1><h2 id="1-NaN"><a href="#1-NaN" class="headerlink" title="1.NaN"></a>1.NaN</h2><p><img src="/image/prepare-1.PNG" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-一个商人骑一头驴要穿越1000公里长的沙漠，去卖3000根胡萝卜。已知驴一次性可驮1000根胡萝卜，但每走一公里又要吃掉一根胡萝卜。问：商人共可卖出多少胡萝卜？"><a href="#2-一个商人骑一头驴要穿越1000公里长的沙漠，去卖3000根胡萝卜。已知驴一次性可驮1000根胡萝卜，但每走一公里又要吃掉一根胡萝卜。问：商人共可卖出多少胡萝卜？" class="headerlink" title="2.一个商人骑一头驴要穿越1000公里长的沙漠，去卖3000根胡萝卜。已知驴一次性可驮1000根胡萝卜，但每走一公里又要吃掉一根胡萝卜。问：商人共可卖出多少胡萝卜？"></a>2.一个商人骑一头驴要穿越1000公里长的沙漠，去卖3000根胡萝卜。已知驴一次性可驮1000根胡萝卜，但每走一公里又要吃掉一根胡萝卜。问：商人共可卖出多少胡萝卜？</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs routeros">假设出沙漠时有1000根萝卜，那么在出沙漠之前一定不只1000根，那么至少要驮两次才会出沙漠，那样从出发地到沙漠边缘都会有往返的里程，那所走的路程将大于3000公里，故最后能卖出萝卜的数量一定是小于1000根的。<br>那么在走到某一个位置的时候萝卜的总数会恰好是1000根。<br>因为驴每次最多驮1000，那么为了最大的利用驴，第一次卸下的地点应该是使萝卜的数量为2000的地点。<br>因为一开始有3000萝卜，当胡萝卜数大于2000时，路程必须来回三趟，第三趟不用回去，驴必须要驮三次，设驴走X公里第一次卸下萝卜<br>则：<span class="hljs-attribute">5X</span>=1000（吃萝卜的数量，也等于所行走的公里数）<br><span class="hljs-attribute">X</span>=200，也就是说第一次只走200公里<br>验算：驴驮1000根走200公里时剩800根，卸下600根，返回出发地<br>前两次就囤积了1200根，第三次不用返回则剩800根，则总共是2000根萝卜了。<br>第二次驴只需要驮两次，胡萝卜数大于1000时，路程必须来回二趟，第二趟不用回去，设驴走Y公里第二次卸下萝卜<br>则：<span class="hljs-attribute">3Y</span>=1000， <span class="hljs-attribute">Y</span>=333.3<br>验算：驴驮1000根走333.3公里时剩667根，卸下334根，返回第一次卸萝卜地点<br>第二次在途中会吃掉334根萝卜，到第二次卸萝卜地点是加上卸下的334根，刚好是1000根。<br>而此时总共走了：200+333.<span class="hljs-attribute">3</span>=533.3公里，而剩下的466.7公里只需要吃466根萝卜<br>所以可以卖萝卜的数量就是<span class="hljs-attribute">1000-466</span>=534<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-立即执行函数的实际应用"><a href="#3-立即执行函数的实际应用" class="headerlink" title="3.立即执行函数的实际应用"></a>3.立即执行函数的实际应用</h2><p>这个点可以结合var和let的区别来看</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">6</span>; i++) &#123; <br>	<span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i);  <br>	 &#125;,<span class="hljs-number">1000</span>);  <br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>我们的预期结果是0，1，2，3，4，5</p>
+<p>但是实际上打印处理6个6</p>
+<blockquote>
+<p>这是因为var是全局作用域，而setimeout是一个异步函数，for循环又是一个同步执行的。<strong>记住一个口诀 同步 &#x3D;&gt; 异步 &#x3D;&gt; 回调</strong>，所以for循环先执行又因为i是用var定义的。所以同步执行完后i&#x3D;6，接下来执行异步函数输出6个6</p>
+</blockquote>
+<h3 id="用立即执行函数解决这个问题"><a href="#用立即执行函数解决这个问题" class="headerlink" title="用立即执行函数解决这个问题"></a>用立即执行函数解决这个问题</h3><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">6</span>;i++)&#123;<br>  (<span class="hljs-keyword">function</span>(<span class="hljs-params">lockindex</span>)&#123;<br>    setTimeout(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>      <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(lockindex)<br>    &#125;,<span class="hljs-number">500</span>)<br>  &#125;)(i)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>尽管循环执行结束，i值已经变成了6。但因遇到了自执行函数，当时的i值已经被 lockedIndex锁住了。也可以理解为 自执行函数属于for循环一部分，每次遍历i，自执行函数也会立即执行。所以尽管有延时器，但依旧会保留住立即执行时的i值.<br>简单理解当同步执行的时候把for循环i的值,传递给了延时器,让延时器也能保留i的值,当执行到setimeout时候也能打印出i的值</p>
+<blockquote>
+<p>这里使用IIFE的目的是使用闭包。每一层循环执行IIFE相当于为每一层循环都创建了一个函数作用域</p>
+</blockquote>
+<h3 id="用let的块级作用域解决这个问题"><a href="#用let的块级作用域解决这个问题" class="headerlink" title="用let的块级作用域解决这个问题"></a>用let的块级作用域解决这个问题</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">6</span>; i++) &#123;     <span class="hljs-comment">//let 代替 var</span><br>	<span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i);  <br>	 &#125;,<span class="hljs-number">1000</span>);  <br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>变量i是let声明的，当前的i只在本轮循环有效，所以每一次循环的i其实都是一个新的变量</p>
+<p>setTimeout的回调函数的词法作用域是for循环内部的块作用域，而这个回调函数会作为异步代码在同步代码之后执行，因此它会在词法作用域之外调用；并且当它被调用的时候js引擎会对i进行RHS引用，因此即使for循环已经执行完毕，其每一层循环的作用域依旧被() &#x3D;&gt; console.log(i)维持，因此setTimeout在执行的时候可以访问到每一层循环的i。这实际上形成了我们常说的[闭包]（一个函数在其被定义的词法作用域以外被调用，并且维持着对其被定义的词法作用域中变量的引用）。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>let的方法和闭包的方法原理类似，都是每一轮循环产生一个私有的作用域，（LET块级作用域），保存住当前循环i的值，以供后期调用</p>
+<h2 id="4-输入URL回车后经过哪些过程"><a href="#4-输入URL回车后经过哪些过程" class="headerlink" title="4.输入URL回车后经过哪些过程"></a>4.输入URL回车后经过哪些过程</h2><ol>
+<li>解析 URL，判断是否命中缓存（DNS prefetch）</li>
+<li>访问 DNS 服务器，将域名解析获取 IP 地址</li>
+<li>三次握手建立 TCP 连接</li>
+<li>发送 HTTP 请求</li>
+<li>服务器处理请求并返回 HTTP 报文</li>
+<li>浏览器解析渲染页面</li>
+<li>断开连接：TCP 四次挥手</li>
+</ol>
+<h2 id="let和var"><a href="#let和var" class="headerlink" title="let和var"></a>let和var</h2><h3 id><a href="#" class="headerlink" title></a></h3><ol>
+<li><p>var有变量提升机制，把变量的声明提升到作用域的上面，只提升声明不提升调用；</p>
+<p>​</p>
+</li>
+</ol>
+<p>（function也有提升，只提升声明不提升调用）</p>
+<ol start="2">
+<li><p>var允许重复声明变量，let不允许重复声明变量</p>
+<p>所谓重复就是：不管之前通过什么方法，只要当前栈内存中存在了这个变量，我们使用<code>let/const</code>等重复再声明这个变量就是语法错误。</p>
+</li>
+</ol>
+<blockquote>
+<p>​     在浏览器开辟栈内存供代码自上而下执行之前，不仅有变量提升的操作，还有很多其他的操作 &#x3D;&gt; “词法解析”或者“词法检测”：就是检测当前即将要执行的代码是否会出现“语法错误 SyntaxError”，如果出现错误，代码将不会再执行（第一行都不会执行）</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span>)  <span class="hljs-comment">// =&gt; 这行代码就已经不会执行了</span><br><span class="hljs-keyword">let</span> a = <span class="hljs-number">12</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a)<br><span class="hljs-keyword">let</span> a = <span class="hljs-number">13</span>      <span class="hljs-comment">// =&gt; 此行出错：SyntaxError: Identifier &#x27;a&#x27; has already been declared</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a)<br><br><br></code></pre></td></tr></table></figure>
+
+<p>3.let能解决typeof检测时出现的暂时性死区问题</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a)<br><span class="hljs-comment">// =&gt; ReferenceError: a is not defined</span><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> a)<br><span class="hljs-comment">// =&gt;  &#x27;undefined&#x27; 这是浏览器的bug，本应报错，因为没有a（暂时性死区）</span><br><br></code></pre></td></tr></table></figure>
+
+<p>用了let后</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> a)<br><span class="hljs-comment">// =&gt; ReferenceError: Cannot access &#x27;a&#x27; before initialization</span><br><span class="hljs-keyword">let</span> a<br><br></code></pre></td></tr></table></figure>
+
+
+
+<ol start="4">
+<li>let创建的全局变量没有给window设置对应的属性</li>
+</ol>
+<p><img src="/image/prepare-2.PNG" srcset="/img/loading.gif" lazyload></p>
+<ol start="5">
+<li>let会产生块级作用域</li>
+</ol>
+<h2 id="面试"><a href="#面试" class="headerlink" title="面试"></a>面试</h2><p>项目                       css布局上            路由上</p>
+<p>css flex 和grid </p>
+<p>原型链</p>
+<p>节流和防抖</p>
+<p>元素垂直居中</p>
+<p>html 5</p>
+<p>es6</p>
+<p>webpack</p>
+<p>面试官您好，我叫王佳晨，来自杭州电子科技大学计算机学院，计算机科学与技术专业，我求职方向是web前端方向，掌握html,css,js,jquery,ajax,了解过node.js,用vue2开发过一个基于深度学习的美学评价系统，有一个自己的技术博客</p>
+<p>主要实现了两个功能：指定风格的图片生成和图片评分</p>
+<p>输入想要生成的风格，发起get请求，后端处理后给出生成的图片              axios</p>
+<p>导入本地的图片,发起get请求，后端处理给出得分</p>
+<p>在项目中主要是两个大的界面,界面中有根据头部，主体，底部分为三个sfc组件</p>
+<p>通过vue的路由实现跳转</p>
+<p>数组常用方法</p>
+<p>数组遍历方式</p>
+<p>面完了：</p>
+<p>感觉很好，但是很不安，面试主要就问了项目，怎么用vue2去开发的这个项目，我大概介绍了项目的功能模块，包括用到的几个SFC,结合了vue里面的一些知识点介绍了项目。后面就直接问了我有没有参加什么社团，有什么爱好（很奇怪技术岗会问这个，我提到了健身后甚至问了我健身房的价格），后面问我大学时期做得最有成就的一件事是什么，是哪人，有没有女朋友，然后问我每天大概多少多少时间学vue，我说我目前在看node.js，然后近期在开发一个项目，我介绍了功能需求，之后就结束了，换我问，我问了公司的业务现在是vue2还是vue3,然后问了前端方面还有哪些可以努力的地方。</p>
+<p>整体面下来，没有问八股，没有问具体的前端的知识，比如什么是闭包这类，这是最奇怪的。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E7%82%B9/" class="category-chain-item">前端知识点</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%9D%A2%E7%BB%8F/">#面经</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>五月笔试准备（之前忘记上传了）</div>
+      <div>https://wjcbolg.cn/2023/05/31/关于前端笔试和面试的一些知识点/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>JasonWang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-JW
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/05/27/node.js-3/" title="Node.js-3-express">
+                        <span class="hidden-mobile">Node.js-3-express</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script>
+      function setClipboardText(event){
+          // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+          let clipboardData = event.clipboardData || window.clipboardData;
+          // 如果未复制或者未剪切，则return出去
+          if (!clipboardData) { return; }
+          event.preventDefault();
+          // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+          //     声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+          let text = window.getSelection().toString();
+
+          if (text) {
+            // 如果文本存在则先取消文本默认事件
+            event.preventDefault();
+            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+            // data: 一个 DOMString表示要添加到 drag object的数据。
+            var copyright = '\n\n'
+                            + '\n著作权归作者所有。'
+                            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+                            + '\n作者: JasonWang'
+                            + '\n邮箱: 1536794549@qq.com'
+                            + '\n原文地址: https://wjcbolg.cn/2023/05/31/%E5%85%B3%E4%BA%8E%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95%E5%92%8C%E9%9D%A2%E8%AF%95%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%82%B9/'
+
+            clipboardData.setData('text/plain', text + copyright);
+
+          }
+      };
+      var contents = document.getElementsByClassName("markdown-body");
+      // 监听文章内容的copy事件
+      contents[0].addEventListener('copy',function(e){
+          setClipboardText(e);
+      });
+  </script>
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
