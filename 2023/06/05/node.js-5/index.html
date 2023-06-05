@@ -1,0 +1,822 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="JasonWang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="node.js-5Web开发模式服务端渲染的 Web 开发模式服务端渲染的概念：服务器发送给客户端的 HTML页面，是在服务器通过字符串的拼接，动态生成的。因此，客户端不需要使用 Ajax这样的技术额外请求页面的数据。  优点： ① 前端耗时少。因为服务器端负责动态生成HTML内容，浏览器只需要直接渲染页面即可。尤其是移动端，更省电。 ② 有利于SEO。因为服务器端响应的是完整的HTML页面内容，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js-5-session&amp;jwt">
+<meta property="og:url" content="https://wjcbolg.cn/2023/06/05/node.js-5/index.html">
+<meta property="og:site_name" content="JasonW">
+<meta property="og:description" content="node.js-5Web开发模式服务端渲染的 Web 开发模式服务端渲染的概念：服务器发送给客户端的 HTML页面，是在服务器通过字符串的拼接，动态生成的。因此，客户端不需要使用 Ajax这样的技术额外请求页面的数据。  优点： ① 前端耗时少。因为服务器端负责动态生成HTML内容，浏览器只需要直接渲染页面即可。尤其是移动端，更省电。 ② 有利于SEO。因为服务器端响应的是完整的HTML页面内容，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wjcbolg.cn/image/node.js-5-1.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/node.js-5-2.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/node.js-5-3.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/node.js-5-4.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/node.js-5-5.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/node.js-5-6.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/node.js-5-7.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/node.js-5-8.PNG">
+<meta property="article:published_time" content="2023-06-05T03:53:01.655Z">
+<meta property="article:modified_time" content="2023-06-05T03:52:11.073Z">
+<meta property="article:author" content="JasonWang">
+<meta property="article:tag" content="Node.js">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wjcbolg.cn/image/node.js-5-1.PNG">
+  
+  
+  
+  <title>Node.js-5-session&amp;jwt - JasonW</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wjcbolg.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jason</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Node.js-5-session&amp;jwt"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-06-05 11:53" pubdate>
+          2023年6月5日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          73 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Node.js-5-session&amp;jwt</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="node-js-5"><a href="#node-js-5" class="headerlink" title="node.js-5"></a>node.js-5</h1><h2 id="Web开发模式"><a href="#Web开发模式" class="headerlink" title="Web开发模式"></a>Web开发模式</h2><h3 id="服务端渲染的-Web-开发模式"><a href="#服务端渲染的-Web-开发模式" class="headerlink" title="服务端渲染的 Web 开发模式"></a>服务端渲染的 Web 开发模式</h3><p>服务端渲染的概念：服务器发送给客户端的 HTML页面，是在服务器通过字符串的拼接，动态生成的。因此，客户端不需要使用 Ajax这样的技术额外请求页面的数据。</p>
+<p><img src="/image/node.js-5-1.PNG" srcset="/img/loading.gif" lazyload></p>
+<p>优点：</p>
+<p>① 前端耗时少。因为服务器端负责动态生成HTML内容，浏览器只需要直接渲染页面即可。尤其是移动端，更省电。</p>
+<p>② 有利于SEO。因为服务器端响应的是完整的HTML页面内容，所以爬虫更容易爬取获得信息，更有利于SEO。</p>
+<p>缺点：</p>
+<p>① 占用服务器端资源。即服务器端完成HTML 页面内容的拼接，如果请求较多，会对服务器造成一定的访问压力。</p>
+<p>② 不利于前后端分离，开发效率低。使用服务器端渲染，则无法进行分工合作，尤其对于前端复杂度高的项目，不利于项目高效开发。</p>
+<h3 id="前后端分离的-Web-开发模式"><a href="#前后端分离的-Web-开发模式" class="headerlink" title="前后端分离的 Web 开发模式"></a>前后端分离的 Web 开发模式</h3><p>  前后端分离的概念：前后端分离的开发模式，依赖于 Ajax 技术的广泛应用。简而言之，前后端分离的 Web开发模式，就是后端只负责提供 API 接口，前端使用 Ajax 调用接口的开发模式。</p>
+<p>优点：</p>
+<p>① 开发体验好。前端专注于UI页面的开发，后端专注于api的开发，且前端有更多的选择性。</p>
+<p>② 用户体验好。Ajax技术的广泛应用，极大的提高了用户的体验，可以轻松实现页面的局部刷新。</p>
+<p>③ 减轻了服务器端的渲染压力。因为页面最终是在每个用户的浏览器中生成的。</p>
+<p>缺点：</p>
+<p>① 不利于 SEO。因为完整的HTML页面需要在客户端动态拼接完成，所以爬虫对无法爬取页面的有效信息。（解决方案：利用Vue、React等前端框架的SSR（serverside render）技术能够很好的解决SEO问题！）</p>
+<h2 id="身份认证"><a href="#身份认证" class="headerlink" title="身份认证"></a>身份认证</h2><p>对于服务端渲染和前后端分离这两种开发模式来说，分别有着不同的身份认证方案：</p>
+<p>① 服务端渲染推荐使用Session 认证机制</p>
+<p>② 前后端分离推荐使用JWT 认证机制</p>
+<h3 id="Session-认证机制"><a href="#Session-认证机制" class="headerlink" title="Session 认证机制"></a>Session 认证机制</h3><p>HTTP协议的无状态性，指的是客户端的每次 HTTP 请求都是独立的，连续多个请求之间没有直接的关系，服务器不会主动保留每次 HTTP 请求的状态。</p>
+<h4 id="突破HTTP协议的无状态性：cookie"><a href="#突破HTTP协议的无状态性：cookie" class="headerlink" title="突破HTTP协议的无状态性：cookie"></a>突破HTTP协议的无状态性：cookie</h4><p>Cookie是存储在用户浏览器中的一段不超过 4 KB 的字符串。它由一个名称（Name）、一个值（Value）和其它几个用于控制Cookie有效期、安全性、使用范围的可选属性组成。</p>
+<p>不同域名下的Cookie各自独立，每当客户端发起请求时，会自动把当前域名下所有未过期的 Cookie 一同发送到服务器。</p>
+<p>Cookie的几大特性：</p>
+<p>①自动发送</p>
+<p>②域名独立</p>
+<p>③过期时限</p>
+<p>④4KB限制</p>
+<h4 id="cookie在身份认证中的作用"><a href="#cookie在身份认证中的作用" class="headerlink" title="cookie在身份认证中的作用"></a>cookie在身份认证中的作用</h4><p>客户端第一次请求服务器的时候，服务器通过响应头的形式，向客户端发送一个身份认证的 Cookie，客户端会自动将Cookie保存在浏览器中。</p>
+<p>随后，当客户端浏览器每次请求服务器的时候，浏览器会自动将身份认证相关的Cookie，通过请求头的形式发送给服务器，服务器即可验明客户端的身份。</p>
+<p><img src="/image/node.js-5-2.PNG" srcset="/img/loading.gif" lazyload></p>
+<p>由于Cookie是存储在浏览器中的，而且浏览器也提供了读写 Cookie 的 API，因此Cookie 很容易被伪造，不具有安全性。因此不建议服务器将重要的隐私数据，通过Cookie的形式发送给浏览器。</p>
+<blockquote>
+<p>cookie是一种客户端的状态管理技术</p>
+<p>当浏览器向服务器发送请求时，服务器会将少量的数据以set-cookie消息头的方式发送给浏览器</p>
+<p>浏览器会将这些数据保存下来。当浏览器再次访问服务器时，会将这些数据以cookie消息头的方式发送给服务器。</p>
+</blockquote>
+<h4 id="session的工作原理"><a href="#session的工作原理" class="headerlink" title="session的工作原理"></a>session的工作原理</h4><p><img src="/image/node.js-5-3.PNG" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>session是一种服务器端的状态管理技术。</p>
+<p>当浏览器访问服务器时，服务器创建一个session对象(该对象有一个唯一的id号，称之为sessionId),服务器在默认情况下，会将sessionId以cookie的方式(set-cookie消息头)发送给浏览器,浏览器会将sessionId保存到内存。当浏览器再次访问服务器时，会将sessionId发送给服务器，服务器依据sessionId就可找到之前创建的session对象。</p>
+</blockquote>
+<h3 id="在express中使用session认证"><a href="#在express中使用session认证" class="headerlink" title="在express中使用session认证"></a>在express中使用session认证</h3><p>1.在Express项目中，只需要安装express-session 中间件，即可在项目中使用 Session 认证：</p>
+<p><img src="/image/node.js-5-4.PNG" srcset="/img/loading.gif" lazyload></p>
+<p>2.express-session 中间件安装成功后，需要通过app.use() 来注册 session 中间件，示例代码如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// TODO_01：请配置 Session 中间件</span><br><span class="hljs-keyword">const</span> session = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express-session&#x27;</span>)<br>app.<span class="hljs-title function_">use</span>(<br>  <span class="hljs-title function_">session</span>(&#123;<br>    <span class="hljs-attr">secret</span>: <span class="hljs-string">&#x27;itheima&#x27;</span>,<br>    <span class="hljs-attr">resave</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">saveUninitialized</span>: <span class="hljs-literal">true</span>,<br>  &#125;)<br>)<br></code></pre></td></tr></table></figure>
+
+<p><strong>需要在路由之前配置</strong></p>
+<p>3.当 express-session中间件配置成功后，即可通过req.session 来访问和使用session对象，从而存储用户的关键信息</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js">app.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/api/login&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  <span class="hljs-comment">// 判断用户提交的登录信息是否正确</span><br>  <span class="hljs-keyword">if</span> (req.<span class="hljs-property">body</span>.<span class="hljs-property">username</span> !== <span class="hljs-string">&#x27;admin&#x27;</span> || req.<span class="hljs-property">body</span>.<span class="hljs-property">password</span> !== <span class="hljs-string">&#x27;000000&#x27;</span>) &#123;<br>    <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">send</span>(&#123; <span class="hljs-attr">status</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">msg</span>: <span class="hljs-string">&#x27;登录失败&#x27;</span> &#125;)<br>  &#125;<br><br>  <span class="hljs-comment">// TODO_02：请将登录成功后的用户信息，保存到 Session 中</span><br>  <span class="hljs-comment">// 注意：只有成功配置了 express-session 这个中间件之后，才能够通过 req 点出来 session 这个属性</span><br>  req.<span class="hljs-property">session</span>.<span class="hljs-property">user</span> = req.<span class="hljs-property">body</span> <span class="hljs-comment">// 用户的信息</span><br>  req.<span class="hljs-property">session</span>.<span class="hljs-property">islogin</span> = <span class="hljs-literal">true</span> <span class="hljs-comment">// 用户的登录状态</span><br><br>  res.<span class="hljs-title function_">send</span>(&#123; <span class="hljs-attr">status</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">msg</span>: <span class="hljs-string">&#x27;登录成功&#x27;</span> &#125;)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>4.可以直接从 req.session 对象上获取之前存储的数据，示例代码如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js">app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/api/username&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  <span class="hljs-comment">// TODO_03：请从 Session 中获取用户的名称，响应给客户端</span><br>  <span class="hljs-keyword">if</span> (!req.<span class="hljs-property">session</span>.<span class="hljs-property">islogin</span>) &#123;<br>    <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">send</span>(&#123; <span class="hljs-attr">status</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">msg</span>: <span class="hljs-string">&#x27;fail&#x27;</span> &#125;)<br>  &#125;<br>  res.<span class="hljs-title function_">send</span>(&#123;<br>    <span class="hljs-attr">status</span>: <span class="hljs-number">0</span>,<br>    <span class="hljs-attr">msg</span>: <span class="hljs-string">&#x27;success&#x27;</span>,<br>    <span class="hljs-attr">username</span>: req.<span class="hljs-property">session</span>.<span class="hljs-property">user</span>.<span class="hljs-property">username</span>,<br>  &#125;)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>5.调用req.session.destroy() 函数，即可清空服务器保存的session信息。</p>
+<p>(清空当前用户对应的session)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 退出登录的接口</span><br>app.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/api/logout&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  <span class="hljs-comment">// TODO_04：清空 Session 信息</span><br>  req.<span class="hljs-property">session</span>.<span class="hljs-title function_">destroy</span>()<br>  res.<span class="hljs-title function_">send</span>(&#123;<br>    <span class="hljs-attr">status</span>: <span class="hljs-number">0</span>,<br>    <span class="hljs-attr">msg</span>: <span class="hljs-string">&#x27;退出登录成功&#x27;</span>,<br>  &#125;)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="JWT认证机制"><a href="#JWT认证机制" class="headerlink" title="JWT认证机制"></a>JWT认证机制</h3><h4 id="session局限性"><a href="#session局限性" class="headerlink" title="session局限性"></a>session局限性</h4><p>Session认证机制需要配合 Cookie 才能实现。由于Cookie默认不支持跨域访问，所以，当涉及到前端跨域请求后端接口的时候，需要做很多额外的配置，才能实现跨域 Session认证。</p>
+<p>注意：</p>
+<ul>
+<li><p>当前端请求后端接口不存在跨域问题的时候，推荐使用 Session 身份认证机制。</p>
+</li>
+<li><p>当前端需要跨域请求后端接口的时候，不推荐使用 Session身份认证机制，推荐使用JWT认证机制。</p>
+</li>
+</ul>
+<p>JWT（英文全称：JSONWeb Token）是目前最流行的跨域认证解决方案。</p>
+<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><p><img src="/image/node.js-5-5.PNG" srcset="/img/loading.gif" lazyload></p>
+<p>总结：用户的信息通过Token字符串的形式，保存在客户端浏览器中。服务器通过还原Token字符串的形式来认证用户的身份。</p>
+<h4 id="组成部分"><a href="#组成部分" class="headerlink" title="组成部分"></a>组成部分</h4><p>JWT通常由三部分组成，分别是Header（头部）、Payload（有效荷载）、Signature（签名）。</p>
+<p>三者之间使用英文的“.”分隔，格式如下：</p>
+<p><img src="/image/node.js-5-6.PNG" srcset="/img/loading.gif" lazyload></p>
+<p>JWT的三个组成部分，从前到后分别是Header、Payload、Signature。</p>
+<p>其中：</p>
+<ul>
+<li>Payload 部分才是真正的用户信息，它是用户信息经过加密之后生成的字符串。</li>
+<li>Header 和Signature是安全性相关的部分，只是为了保证Token的安全性。</li>
+</ul>
+<p><img src="/image/node.js-5-7.PNG" srcset="/img/loading.gif" lazyload></p>
+<h4 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h4><p>客户端收到服务器返回的JWT之后，通常会将它储存在localStorage或sessionStorage中。</p>
+<p>此后，客户端每次与服务器通信，都要带上这个JWT的字符串，从而进行身份认证。推荐的做法是把 JWT 放在 HTTP 请求头的 Authorization 字段中，格式如下：</p>
+<p><img src="/image/node.js-5-8.PNG" srcset="/img/loading.gif" lazyload></p>
+<h4 id="在expresss中使用jwt"><a href="#在expresss中使用jwt" class="headerlink" title="在expresss中使用jwt"></a>在expresss中使用jwt</h4><h5 id="1-安装相关的包"><a href="#1-安装相关的包" class="headerlink" title="1.安装相关的包"></a>1.安装相关的包</h5><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">npm <span class="hljs-keyword">install </span><span class="hljs-keyword">jsonwebtoken </span>express-<span class="hljs-keyword">jwt</span><br></code></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li>jsonwebtoken 用于生成 JWT 字符串</li>
+<li>express-jwt 用于将 JWT 字符串解析还原成 JSON 对象</li>
+</ul>
+<h5 id="2-导入相关的包"><a href="#2-导入相关的包" class="headerlink" title="2.导入相关的包"></a>2.导入相关的包</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// TODO_01：安装并导入 JWT 相关的两个包，分别是 jsonwebtoken 和 express-jwt</span><br><span class="hljs-keyword">const</span> jwt = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;jsonwebtoken&#x27;</span>)<br><span class="hljs-keyword">const</span> expressJWT = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express-jwt&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h5 id="3-定义secret-密钥"><a href="#3-定义secret-密钥" class="headerlink" title="3.定义secret 密钥"></a>3.定义secret 密钥</h5><p>为了保证 JWT 字符串的安全性，防止 JWT字符串在网络传输过程中被别人破解，我们需要专门定义一个用于加密和解密的secret密钥：</p>
+<p>①当生成 JWT字符串的时候，需要使用secret密钥对用户的信息进行加密，最终得到加密好的JWT字符串</p>
+<p>②当把 JWT字符串解析还原成JSON对象的时候，需要使用secret密钥进行解密</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// TODO_02：定义 secret 密钥，建议将密钥命名为 secretKey</span><br><span class="hljs-keyword">const</span> secretKey = <span class="hljs-string">&#x27;jason1332 No1 ^_^&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="4-在登录成功后生成-JWT-字符串-在登录接口中处理"><a href="#4-在登录成功后生成-JWT-字符串-在登录接口中处理" class="headerlink" title="4.在登录成功后生成 JWT 字符串(在登录接口中处理)"></a>4.在登录成功后生成 JWT 字符串(在登录接口中处理)</h5><p>调用 jsonwebtoken 包提供的sign()方法，将用户的信息加密成JWT字符串，响应给客户端</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs js">app.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/api/login&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) &#123;<br>  <span class="hljs-comment">// 将 req.body 请求体中的数据，转存为 userinfo 常量</span><br>  <span class="hljs-keyword">const</span> userinfo = req.<span class="hljs-property">body</span><br>  <span class="hljs-comment">// 登录失败</span><br>  <span class="hljs-keyword">if</span> (userinfo.<span class="hljs-property">username</span> !== <span class="hljs-string">&#x27;admin&#x27;</span> || userinfo.<span class="hljs-property">password</span> !== <span class="hljs-string">&#x27;000000&#x27;</span>) &#123;<br>    <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">send</span>(&#123;<br>      <span class="hljs-attr">status</span>: <span class="hljs-number">400</span>,<br>      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;登录失败！&#x27;</span>,<br>    &#125;)<br>  &#125;<br>  <span class="hljs-comment">// 登录成功</span><br>  <span class="hljs-comment">// TODO_03：在登录成功之后，调用 jwt.sign() 方法生成 JWT 字符串。并通过 token 属性发送给客户端</span><br>  <span class="hljs-comment">// 参数1：用户的信息对象</span><br>  <span class="hljs-comment">// 参数2：加密的秘钥</span><br>  <span class="hljs-comment">// 参数3：配置对象，可以配置当前 token 的有效期</span><br>  <span class="hljs-comment">// 记住：千万不要把密码加密到 token 字符中</span><br>  <span class="hljs-keyword">const</span> tokenStr = jwt.<span class="hljs-title function_">sign</span>(&#123; <span class="hljs-attr">username</span>: userinfo.<span class="hljs-property">username</span> &#125;, secretKey, &#123; <span class="hljs-attr">expiresIn</span>: <span class="hljs-string">&#x27;30s&#x27;</span> &#125;)<br>  res.<span class="hljs-title function_">send</span>(&#123;<br>    <span class="hljs-attr">status</span>: <span class="hljs-number">200</span>,<br>    <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;登录成功！&#x27;</span>,<br>    <span class="hljs-attr">token</span>: tokenStr, <span class="hljs-comment">// 要发送给客户端的 token 字符串</span><br>  &#125;)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h5 id="5-将JWT-字符串还原为-JSON-对象-设置中间件"><a href="#5-将JWT-字符串还原为-JSON-对象-设置中间件" class="headerlink" title="5.将JWT 字符串还原为 JSON 对象(设置中间件)"></a>5.将JWT 字符串还原为 JSON 对象(设置中间件)</h5><p>这一步非常关键</p>
+<p>使用 unless() 方法指定某些路径不需要进行 token 验证</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// TODO_04：注册将 JWT 字符串解析还原成 JSON 对象的中间件</span><br><span class="hljs-comment">// 注意：只要配置成功了 express-jwt 这个中间件，就可以把解析出来的用户信息，挂载到 req.user 属性上</span><br>app.<span class="hljs-title function_">use</span>(<span class="hljs-title function_">expressJWT</span>(&#123; <span class="hljs-attr">secret</span>: secretKey &#125;).<span class="hljs-title function_">unless</span>(&#123; <span class="hljs-attr">path</span>: [<span class="hljs-regexp">/^\/api\//</span>] &#125;))<br></code></pre></td></tr></table></figure>
+
+<p>注意：只要配置成功了 express-jwt 这个中间件，就可以把解析出来的用户信息，挂载到 req.user 属性上</p>
+<p>(一定要放在路由之前)</p>
+<h5 id="6-使用req-user-获取用户信息"><a href="#6-使用req-user-获取用户信息" class="headerlink" title="6.使用req.user 获取用户信息"></a>6.使用req.user 获取用户信息</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js">app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/admin/getinfo&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) &#123;<br>  <span class="hljs-comment">// TODO_05：使用 req.user 获取用户信息，并使用 data 属性将用户信息发送给客户端</span><br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(req.<span class="hljs-property">user</span>)<br>  res.<span class="hljs-title function_">send</span>(&#123;<br>    <span class="hljs-attr">status</span>: <span class="hljs-number">200</span>,<br>    <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;获取用户信息成功！&#x27;</span>,<br>    <span class="hljs-attr">data</span>: req.<span class="hljs-property">user</span>, <span class="hljs-comment">// 要发送给客户端的用户信息</span><br>  &#125;)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h5 id="7-错误处理"><a href="#7-错误处理" class="headerlink" title="7.错误处理"></a>7.错误处理</h5><p>当使用 express-jwt解析Token字符串时，如果客户端发送过来的Token字符串过期或不合法，会产生一个解析失败的错误，影响项目的正常运行。我们可以通过Express 的错误中间件，捕获这个错误并进行相关的处理，示例代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// TODO_06：使用全局错误处理中间件，捕获解析 JWT 失败后产生的错误</span><br>app.<span class="hljs-title function_">use</span>(<span class="hljs-function">(<span class="hljs-params">err, req, res, next</span>) =&gt;</span> &#123;<br>  <span class="hljs-comment">// 这次错误是由 token 解析失败导致的</span><br>  <span class="hljs-keyword">if</span> (err.<span class="hljs-property">name</span> === <span class="hljs-string">&#x27;UnauthorizedError&#x27;</span>) &#123;<br>    <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">send</span>(&#123;<br>      <span class="hljs-attr">status</span>: <span class="hljs-number">401</span>,<br>      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;无效的token&#x27;</span>,<br>    &#125;)<br>  &#125;<br>  res.<span class="hljs-title function_">send</span>(&#123;<br>    <span class="hljs-attr">status</span>: <span class="hljs-number">500</span>,<br>    <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;未知的错误&#x27;</span>,<br>  &#125;)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h5 id="8-案例"><a href="#8-案例" class="headerlink" title="8.案例"></a>8.案例</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 导入 express 模块</span><br><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)<br><span class="hljs-comment">// 创建 express 的服务器实例</span><br><span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>()<br><br><span class="hljs-comment">// TODO_01：安装并导入 JWT 相关的两个包，分别是 jsonwebtoken 和 express-jwt</span><br><span class="hljs-keyword">const</span> jwt = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;jsonwebtoken&#x27;</span>)<br><span class="hljs-keyword">const</span> expressJWT = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express-jwt&#x27;</span>)<br><br><span class="hljs-comment">// 允许跨域资源共享</span><br><span class="hljs-keyword">const</span> cors = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;cors&#x27;</span>)<br>app.<span class="hljs-title function_">use</span>(<span class="hljs-title function_">cors</span>())<br><br><span class="hljs-comment">// 解析 post 表单数据的中间件</span><br><span class="hljs-keyword">const</span> bodyParser = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;body-parser&#x27;</span>)<br>app.<span class="hljs-title function_">use</span>(bodyParser.<span class="hljs-title function_">urlencoded</span>(&#123; <span class="hljs-attr">extended</span>: <span class="hljs-literal">false</span> &#125;))<br><br><span class="hljs-comment">// TODO_02：定义 secret 密钥，建议将密钥命名为 secretKey</span><br><span class="hljs-keyword">const</span> secretKey = <span class="hljs-string">&#x27;jason213 No1 ^_^&#x27;</span><br><br><span class="hljs-comment">// TODO_04：注册将 JWT 字符串解析还原成 JSON 对象的中间件</span><br><span class="hljs-comment">// 注意：只要配置成功了 express-jwt 这个中间件，就可以把解析出来的用户信息，挂载到 req.user 属性上</span><br>app.<span class="hljs-title function_">use</span>(<span class="hljs-title function_">expressJWT</span>(&#123; <span class="hljs-attr">secret</span>: secretKey &#125;).<span class="hljs-title function_">unless</span>(&#123; <span class="hljs-attr">path</span>: [<span class="hljs-regexp">/^\/api\//</span>] &#125;))<br><br><span class="hljs-comment">// 登录接口</span><br>app.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/api/login&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) &#123;<br>  <span class="hljs-comment">// 将 req.body 请求体中的数据，转存为 userinfo 常量</span><br>  <span class="hljs-keyword">const</span> userinfo = req.<span class="hljs-property">body</span><br>  <span class="hljs-comment">// 登录失败</span><br>  <span class="hljs-keyword">if</span> (userinfo.<span class="hljs-property">username</span> !== <span class="hljs-string">&#x27;admin&#x27;</span> || userinfo.<span class="hljs-property">password</span> !== <span class="hljs-string">&#x27;000000&#x27;</span>) &#123;<br>    <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">send</span>(&#123;<br>      <span class="hljs-attr">status</span>: <span class="hljs-number">400</span>,<br>      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;登录失败！&#x27;</span>,<br>    &#125;)<br>  &#125;<br>  <span class="hljs-comment">// 登录成功</span><br>  <span class="hljs-comment">// TODO_03：在登录成功之后，调用 jwt.sign() 方法生成 JWT 字符串。并通过 token 属性发送给客户端</span><br>  <span class="hljs-comment">// 参数1：用户的信息对象</span><br>  <span class="hljs-comment">// 参数2：加密的秘钥</span><br>  <span class="hljs-comment">// 参数3：配置对象，可以配置当前 token 的有效期</span><br>  <span class="hljs-comment">// 记住：千万不要把密码加密到 token 字符中</span><br>  <span class="hljs-keyword">const</span> tokenStr = jwt.<span class="hljs-title function_">sign</span>(&#123; <span class="hljs-attr">username</span>: userinfo.<span class="hljs-property">username</span> &#125;, secretKey, &#123; <span class="hljs-attr">expiresIn</span>: <span class="hljs-string">&#x27;30s&#x27;</span> &#125;)<br>  res.<span class="hljs-title function_">send</span>(&#123;<br>    <span class="hljs-attr">status</span>: <span class="hljs-number">200</span>,<br>    <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;登录成功！&#x27;</span>,<br>    <span class="hljs-attr">token</span>: tokenStr, <span class="hljs-comment">// 要发送给客户端的 token 字符串</span><br>  &#125;)<br>&#125;)<br><br><span class="hljs-comment">// 这是一个有权限的 API 接口</span><br>app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/admin/getinfo&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) &#123;<br>  <span class="hljs-comment">// TODO_05：使用 req.user 获取用户信息，并使用 data 属性将用户信息发送给客户端</span><br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(req.<span class="hljs-property">user</span>)<br>  res.<span class="hljs-title function_">send</span>(&#123;<br>    <span class="hljs-attr">status</span>: <span class="hljs-number">200</span>,<br>    <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;获取用户信息成功！&#x27;</span>,<br>    <span class="hljs-attr">data</span>: req.<span class="hljs-property">user</span>, <span class="hljs-comment">// 要发送给客户端的用户信息</span><br>  &#125;)<br>&#125;)<br><br><span class="hljs-comment">// TODO_06：使用全局错误处理中间件，捕获解析 JWT 失败后产生的错误</span><br>app.<span class="hljs-title function_">use</span>(<span class="hljs-function">(<span class="hljs-params">err, req, res, next</span>) =&gt;</span> &#123;<br>  <span class="hljs-comment">// 这次错误是由 token 解析失败导致的</span><br>  <span class="hljs-keyword">if</span> (err.<span class="hljs-property">name</span> === <span class="hljs-string">&#x27;UnauthorizedError&#x27;</span>) &#123;<br>    <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">send</span>(&#123;<br>      <span class="hljs-attr">status</span>: <span class="hljs-number">401</span>,<br>      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;无效的token&#x27;</span>,<br>    &#125;)<br>  &#125;<br>  res.<span class="hljs-title function_">send</span>(&#123;<br>    <span class="hljs-attr">status</span>: <span class="hljs-number">500</span>,<br>    <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;未知的错误&#x27;</span>,<br>  &#125;)<br>&#125;)<br><br><span class="hljs-comment">// 调用 app.listen 方法，指定端口号并启动web服务器</span><br>app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">8888</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Express server running at http://127.0.0.1:8888&#x27;</span>)<br>&#125;)<br><br></code></pre></td></tr></table></figure>
+
+<p>res.send只能发送一次</p>
+<blockquote>
+<p>在代码中，<code>/admin/getinfo</code> 是一个有权限的 API 接口，需要进行身份验证才能访问。这是通过使用 express-jwt 中间件来实现的。</p>
+<p>在以下代码片段中，<code>expressJWT(&#123; secret: secretKey &#125;)</code> 中间件被应用到整个 Express 应用程序，并配置了一个密钥 <code>secretKey</code> 用于验证 JWT 令牌。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&gt;app.<span class="hljs-title function_">use</span>(<span class="hljs-title function_">expressJWT</span>(&#123; <span class="hljs-attr">secret</span>: secretKey &#125;).<span class="hljs-title function_">unless</span>(&#123; <span class="hljs-attr">path</span>: [<span class="hljs-regexp">/^\/api\//</span>] &#125;))<br></code></pre></td></tr></table></figure>
+
+<p>这里使用了 <code>unless()</code> 方法指定了一个例外条件，即以 <code>/api/</code> 开头的路径不需要进行 JWT 令牌验证。因此，只有不以 <code>/api/</code> 开头的路径需要进行验证。</p>
+<p>对于 <code>/admin/getinfo</code> 接口，它没有被排除在 JWT 验证之外，因此在访问该接口时，中间件会首先解析请求头中的 JWT 令牌，并验证其有效性和完整性。如果令牌验证通过，中间件会将解析后的用户信息存储在 <code>req.user</code> 属性中，然后继续执行后续的路由处理程序，从而允许用户访问受限资源。</p>
+<p>如果令牌验证失败（令牌无效、过期或签名不匹配等），中间件会抛出一个 <code>UnauthorizedError</code>，并由全局错误处理中间件捕获。在全局错误处理中间件中，可以根据错误类型返回相应的错误响应。</p>
+<p>总之，<code>/admin/getinfo</code> 接口需要进行身份验证是因为它没有被例外条件排除在 JWT 验证之外，并且只有通过 JWT 令牌验证的用户才能成功访问该接口。</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/web/" class="category-chain-item">web</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/web/Node-js/" class="category-chain-item">Node.js</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Node-js/">#Node.js</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Node.js-5-session&amp;jwt</div>
+      <div>https://wjcbolg.cn/2023/06/05/node.js-5/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>JasonWang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年6月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-JW
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/06/05/Node%E4%B8%ADreq.params%EF%BC%8Creq.query%EF%BC%8Creq.body/" title="Node.js-req.params&amp;req.query&amp;req.body">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Node.js-req.params&amp;req.query&amp;req.body</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/03/node.js-4/" title="Node.js-4-express&amp;cors&amp;mysql">
+                        <span class="hidden-mobile">Node.js-4-express&amp;cors&amp;mysql</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script>
+      function setClipboardText(event){
+          // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+          let clipboardData = event.clipboardData || window.clipboardData;
+          // 如果未复制或者未剪切，则return出去
+          if (!clipboardData) { return; }
+          event.preventDefault();
+          // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+          //     声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+          let text = window.getSelection().toString();
+
+          if (text) {
+            // 如果文本存在则先取消文本默认事件
+            event.preventDefault();
+            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+            // data: 一个 DOMString表示要添加到 drag object的数据。
+            var copyright = '\n\n'
+                            + '\n著作权归作者所有。'
+                            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+                            + '\n作者: JasonWang'
+                            + '\n邮箱: 1536794549@qq.com'
+                            + '\n原文地址: https://wjcbolg.cn/2023/06/05/node.js-5/'
+
+            clipboardData.setData('text/plain', text + copyright);
+
+          }
+      };
+      var contents = document.getElementsByClassName("markdown-body");
+      // 监听文章内容的copy事件
+      contents[0].addEventListener('copy',function(e){
+          setClipboardText(e);
+      });
+  </script>
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
