@@ -1,0 +1,917 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="JasonWang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ES6模块化和异步编程高级用法ES6模块化node中如何实现模块化node.js 遵循了 CommonJS 的模块化规范。其中：  导入其它模块使用 require() 方法 模块对外共享成员使用 module.exports 对象  前端模块化的分类 在 ES6 模块化规范诞生之前，JavaScript 社区已经尝试并提出了 AMD、CMD、CommonJS 等模块化规范。 但是，这些由社区提出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6模块化&amp;Promise&amp;EventLoop">
+<meta property="og:url" content="https://wjcbolg.cn/2023/06/08/ES6%E6%A8%A1%E5%9D%97%E5%8C%96%E5%92%8C%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:site_name" content="JasonW">
+<meta property="og:description" content="ES6模块化和异步编程高级用法ES6模块化node中如何实现模块化node.js 遵循了 CommonJS 的模块化规范。其中：  导入其它模块使用 require() 方法 模块对外共享成员使用 module.exports 对象  前端模块化的分类 在 ES6 模块化规范诞生之前，JavaScript 社区已经尝试并提出了 AMD、CMD、CommonJS 等模块化规范。 但是，这些由社区提出">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wjcbolg.cn/image/es6-1.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/es6-2.PNG">
+<meta property="article:published_time" content="2023-06-08T03:37:04.006Z">
+<meta property="article:modified_time" content="2023-06-08T03:40:45.470Z">
+<meta property="article:author" content="JasonWang">
+<meta property="article:tag" content="es6">
+<meta property="article:tag" content="promise">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wjcbolg.cn/image/es6-1.PNG">
+  
+  
+  
+  <title>ES6模块化&amp;Promise&amp;EventLoop - JasonW</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wjcbolg.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jason</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ES6模块化&amp;Promise&amp;EventLoop"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-06-08 11:37" pubdate>
+          2023年6月8日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          10k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          84 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">ES6模块化&amp;Promise&amp;EventLoop</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="ES6模块化和异步编程高级用法"><a href="#ES6模块化和异步编程高级用法" class="headerlink" title="ES6模块化和异步编程高级用法"></a>ES6模块化和异步编程高级用法</h1><h2 id="ES6模块化"><a href="#ES6模块化" class="headerlink" title="ES6模块化"></a>ES6模块化</h2><h3 id="node中如何实现模块化"><a href="#node中如何实现模块化" class="headerlink" title="node中如何实现模块化"></a>node中如何实现模块化</h3><p>node.js 遵循了 CommonJS 的模块化规范。其中：</p>
+<ul>
+<li>导入其它模块使用 require() 方法</li>
+<li>模块对外共享成员使用 module.exports 对象</li>
+</ul>
+<h3 id="前端模块化的分类"><a href="#前端模块化的分类" class="headerlink" title="前端模块化的分类"></a>前端模块化的分类</h3><blockquote>
+<p>在 ES6 模块化规范诞生之前，JavaScript 社区已经尝试并提出了 AMD、CMD、CommonJS 等模块化规范。</p>
+<p>但是，这些由社区提出的模块化标准，还是存在一定的差异性与局限性、并不是浏览器与服务器通用的模块化</p>
+<p>标准，例如：</p>
+<ul>
+<li>AMD 和 CMD 适用于浏览器端的 Javascript 模块化</li>
+<li>CommonJS 适用于服务器端的 Javascript 模块化</li>
+</ul>
+<p>太多的模块化规范给开发者增加了学习的难度与开发的成本。因此，大一统的 ES6 模块化规范诞生了！</p>
+</blockquote>
+<h3 id="ES6模块化规范"><a href="#ES6模块化规范" class="headerlink" title="ES6模块化规范"></a>ES6模块化规范</h3><p>ES6 模块化规范是浏览器端与服务器端通用的模块化开发规范。它的出现极大的降低了前端开发者的模块化学</p>
+<p>习成本，开发者不需再额外学习 AMD、CMD 或 CommonJS 等模块化规范。</p>
+<p>ES6 模块化规范中定义：</p>
+<ul>
+<li>每个 js 文件都是一个独立的模块</li>
+<li>导入其它模块成员使用 import 关键字</li>
+<li>向外共享模块成员使用 export 关键字</li>
+</ul>
+<blockquote>
+<p>node.js 中默认仅支持 CommonJS 模块化规范，若想基于 node.js 体验与学习 ES6 的模块化语法，可以按照</p>
+<p>如下两个步骤进行配置：</p>
+<p>① 确保安装了 v14.15.1 或更高版本的 node.js</p>
+<p>② 在 package.json 的根节点中添加 “type”: “module” 节点</p>
+</blockquote>
+<h3 id="ES6模块化的基本语法"><a href="#ES6模块化的基本语法" class="headerlink" title="ES6模块化的基本语法"></a>ES6模块化的基本语法</h3><blockquote>
+<p>ES6 的模块化主要包含如下 3 种用法：</p>
+<p>① 默认导出与默认导入</p>
+<p>② 按需导出与按需导入</p>
+<p>③ 直接导入并执行模块中的代码</p>
+</blockquote>
+<h4 id="1-1默认导出"><a href="#1-1默认导出" class="headerlink" title="1.1默认导出"></a>1.1默认导出</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> 默认导出的成员<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> n1 = <span class="hljs-number">10</span><br><span class="hljs-keyword">let</span> n2 = <span class="hljs-number">20</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">show</span>(<span class="hljs-params"></span>) &#123;&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  n1,<br>  show<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>每个模块中，只允许使用唯一的一次 export default，否则会报错！</p>
+<p>​</p>
+</li>
+</ul>
+<h4 id="1-1默认导入"><a href="#1-1默认导入" class="headerlink" title="1.1默认导入"></a>1.1默认导入</h4><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs clean"><span class="hljs-keyword">import</span> xxx <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;&#x27;</span>       <br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> m1 <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./01.默认导出.js&#x27;</span><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(m1)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>默认导入时的接收名称可以任意名称，只要是合法的成员名称即可</li>
+</ul>
+<h4 id="2-1按需导出"><a href="#2-1按需导出" class="headerlink" title="2.1按需导出"></a>2.1按需导出</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> 按需导出的成员<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> s1 = <span class="hljs-string">&#x27;aaa&#x27;</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> s2 = <span class="hljs-string">&#x27;ccc&#x27;</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">say</span>(<span class="hljs-params"></span>) &#123;&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-2-按需导入"><a href="#2-2-按需导入" class="headerlink" title="2.2 按需导入"></a>2.2 按需导入</h4><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs clean"><span class="hljs-keyword">import</span> &#123; s1 &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;模块标识符&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; s1, s2, say &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./03.按需导出.js&#x27;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-3-注意事项"><a href="#2-3-注意事项" class="headerlink" title="2.3 注意事项"></a>2.3 注意事项</h4><p>① 每个模块中可以使用多次按需导出</p>
+<p>② 按需导入的成员名称必须和按需导出的名称保持一致</p>
+<p>③ 按需导入时，可以使用 as 关键字进行重命名</p>
+<p>④ 按需导入可以和默认导入一起使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> info, &#123; s1, s2 <span class="hljs-keyword">as</span> str2, say &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./03.按需导出.js&#x27;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="直接导入并执行模块中的代码"><a href="#直接导入并执行模块中的代码" class="headerlink" title="直接导入并执行模块中的代码"></a>直接导入并执行模块中的代码</h4><p>如果只想单纯地执行某个模块中的代码，并不需要得到模块中向外共享的成员。此时，可以直接导入并执行模</p>
+<p>块代码</p>
+<p><img src="/image/es6-1.PNG" srcset="/img/loading.gif" lazyload></p>
+<h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><h3 id="回调地狱"><a href="#回调地狱" class="headerlink" title="回调地狱"></a>回调地狱</h3><blockquote>
+<p>异步任务<br>与之相对应的概念是“同步任务”，同步任务在主线程上排队执行，只有前一个任务执行完毕，才能执行下一个任务。异步任务不进入主线程，而是进入异步队列，前一个任务是否执行完毕不影响下一个任务的执行。同样，还拿定时器作为异步任务举例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ja">setTimeout(function()&#123;<br>    console.log(&#x27;执行了回调函数&#x27;);<br>&#125;,3000)<br>console.log(&#x27;111&#x27;);<br><br></code></pre></td></tr></table></figure>
+
+<p>先输出111</p>
+</blockquote>
+<p>存在异步任务的代码，不能保证能按照顺序执行，那如果我们非要代码顺序执行呢</p>
+<p>比如我要说一句话，语序必须是下面这样的：武林要以和为贵，要讲武德，不要搞窝里斗。<br>我必须要这样操作，才能保证顺序正确：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;  <span class="hljs-comment">//第一层</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;武林要以和为贵&#x27;</span>);<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;  <span class="hljs-comment">//第二程</span><br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;要讲武德&#x27;</span>);<br>        <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;   <span class="hljs-comment">//第三层</span><br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;不要搞窝里斗&#x27;</span>);<br>        &#125;, <span class="hljs-number">1000</span>)<br>    &#125;, <span class="hljs-number">2000</span>)<br>&#125;, <span class="hljs-number">3000</span>)<br><br></code></pre></td></tr></table></figure>
+
+<p>可以看到，代码中的回调函数套回调函数，居然套了3层，这种回调函数中嵌套回调函数的情况就叫做回调地狱</p>
+<p>回调地狱的缺点：</p>
+<ul>
+<li>代码耦合性太强，牵一发而动全身，难以维护</li>
+<li>大量冗余的代码相互嵌套，代码的可读性变差</li>
+</ul>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>① <strong>Promise 是一个构造函数</strong></p>
+<ul>
+<li>我们可以创建 Promise 的实例 const p &#x3D; new Promise()</li>
+<li>new 出来的 Promise 实例对象，代表一个异步操作</li>
+</ul>
+<p>② <strong>Promise.prototype 上包含一个 .then() 方法</strong></p>
+<ul>
+<li>每一次 new Promise() 构造函数得到的实例对象，</li>
+<li>都可以通过原型链的方式访问到 .then() 方法，例如 p.then()</li>
+</ul>
+<p>③ <strong>.then() 方法用来预先指定成功和失败的回调函数</strong></p>
+<ul>
+<li>p.then(成功的回调函数，失败的回调函数)</li>
+<li>p.then(result &#x3D;&gt; { }, error &#x3D;&gt; { })</li>
+<li>调用 .then() 方法时，成功的回调函数是必选的、失败的回调函数是可选的</li>
+</ul>
+<h3 id="基于-then-fs-读取文件内容"><a href="#基于-then-fs-读取文件内容" class="headerlink" title="基于 then-fs 读取文件内容"></a>基于 then-fs 读取文件内容</h3><p>由于 node.js 官方提供的 fs 模块仅支持以回调函数的方式读取文件，不支持 Promise 的调用方式。因此，需</p>
+<p>要先运行如下的命令，安装 then-fs 这个第三方包，从而支持我们基于 Promise 的方式读取文件的内容：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm install then-fs<br></code></pre></td></tr></table></figure>
+
+<p>调用 then-fs 提供的 readFile() 方法，可以异步地读取文件的内容，它的返回值是 Promise 的实例对象。因</p>
+<p>此可以调用 .then() 方法为每个 Promise 异步操作指定成功和失败之后的回调函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> thenFs <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;then-fs&#x27;</span><br><br>thenFs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/1.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">r1</span>) =&gt;</span> &#123;<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(r1)&#125;)<br>thenFs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/2.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">r2</span>) =&gt;</span> &#123;<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(r2)&#125;)<br>thenFs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/3.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">r3</span>) =&gt;</span> &#123;<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(r3)&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>但是上述的代码不能保证按顺序执行</p>
+<h3 id="then-方法的特性"><a href="#then-方法的特性" class="headerlink" title=".then()方法的特性"></a>.then()方法的特性</h3><p>如果上一个 .then() 方法中返回了一个新的 Promise 实例对象，则可以通过下一个 .then() 继续进行处理。通</p>
+<p>过 .then() 方法的链式调用，就解决了回调地狱的问题</p>
+<h3 id="基于Promise按顺序读取文件的内容"><a href="#基于Promise按顺序读取文件的内容" class="headerlink" title="基于Promise按顺序读取文件的内容"></a>基于Promise按顺序读取文件的内容</h3><p>Promise 支持链式调用，从而来解决回调地狱的问题。示例代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> thenFs <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;then-fs&#x27;</span><br><br>thenFs<br>  .<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/11.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>)  <span class="hljs-comment">//1.返回值是Promise的实例对象</span><br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">r1</span>) =&gt;</span> &#123;                    <span class="hljs-comment">//2.通过.then为第一个Promise实例指定成功之后的回调函数</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(r1)<br>    <span class="hljs-keyword">return</span> thenFs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/2.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>) <span class="hljs-comment">//3.在第一个then中返回一个新的Promise对象</span><br>  &#125;)<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">r2</span>) =&gt;</span> &#123;                 <span class="hljs-comment">//4.继续调用.then为上一个.then返回的Promise对象指定回调函数</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(r2)<br>    <span class="hljs-keyword">return</span> thenFs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/3.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>)<br>  &#125;)<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">r3</span>) =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(r3)<br>  &#125;)<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="通过-catch捕获错误"><a href="#通过-catch捕获错误" class="headerlink" title="通过.catch捕获错误"></a>通过.catch捕获错误</h3><p>在 Promise 的链式操作中如果发生了错误，可以使用 Promise.prototype.catch 方法进行捕获和处理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> thenFs <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;then-fs&#x27;</span><br><br>thenFs<br>  .<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/11.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>)  <span class="hljs-comment">//</span><br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">r1</span>) =&gt;</span> &#123;                    <span class="hljs-comment">//2.通过.then为第一个Promise实例指定成功之后的回调函数</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(r1)<br>    <span class="hljs-keyword">return</span> thenFs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/2.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>) <span class="hljs-comment">//3.在第一个then中返回一个新的Promise对象</span><br>  &#125;)<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">r2</span>) =&gt;</span> &#123;                 <span class="hljs-comment">//4.继续调用.then为上一个.then返回的Promise对象指定回调函数</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(r2)<br>    <span class="hljs-keyword">return</span> thenFs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/3.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>)<br>  &#125;)<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">r3</span>) =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(r3)<br>  &#125;)<br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">err</span>)=&gt;</span>&#123;<br>  	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(err)<br>  &#125;)<br></code></pre></td></tr></table></figure>
+
+<p>假设文件不存在导致读取失败，后面3个then不执行</p>
+<p>如果不希望前面的错误导致后续的 .then 无法正常执行，则可以将 .catch 的调用提前</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> thenFs <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;then-fs&#x27;</span><br><br>thenFs<br>  .<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/11.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>)<br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;                       <span class="hljs-comment">//错误已经被处理，不影响后续.then执行</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(err.<span class="hljs-property">message</span>)<br>  &#125;)<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">r1</span>) =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(r1)<br>    <span class="hljs-keyword">return</span> thenFs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/2.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>)<br>  &#125;)<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">r2</span>) =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(r2)<br>    <span class="hljs-keyword">return</span> thenFs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/3.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>)<br>  &#125;)<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">r3</span>) =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(r3)<br>  &#125;)<br><br></code></pre></td></tr></table></figure>
+
+
+
+<hr>
+<p>学到这里产生了一个疑问，then是异步操作吗，如果在执行前有别的同步操作会怎样</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs arcade">const promise = <span class="hljs-keyword">new</span> Promise(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-number">1</span>);<br>  resolve(<span class="hljs-number">5</span>);<br>  <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-number">2</span>);<br>&#125;).then(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(val);<br>&#125;);<br><br>promise.then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-number">3</span>);<br>&#125;);<br><br><span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-number">4</span>);<br><br>setTimeout(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-number">6</span>);<br>&#125;);<br>执行结果<span class="hljs-number">124536</span><br></code></pre></td></tr></table></figure>
+
+
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">Promise</span> <span class="hljs-keyword">new</span>的时候会立即执行里面的代码 <span class="hljs-keyword">then</span>是微任务 会在本次任务执行完的时候执行 <span class="hljs-built_in">setTimeout</span>是宏任务 会在下次任务执行的时候执行<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>resolve(&quot;Async operation completed&quot;)</code> 是 Promise 中的方法，用于将 Promise 对象的状态从 “pending”（进行中）转变为 “fulfilled”（已完成），同时传递一个结果值（在这里是字符串 “Async operation completed”）。</p>
+<p>在上述示例中，<code>resolve(&quot;Async operation completed&quot;)</code> 是在 Promise 的执行器函数内部执行的，具体来说是在 <code>new Promise((resolve, reject) =&gt; &#123;...&#125;)</code> 中的回调函数内部执行的。这个回调函数会在 Promise 对象被创建时立即执行。</p>
+<p>当 Promise 的执行器函数内部调用 <code>resolve</code> 方法时，Promise 对象的状态就会变为 “fulfilled”，同时传递的结果值会成为该 Promise 对象的终值（fulfillment value）。</p>
+<p>在示例中，<code>resolve(&quot;Async operation completed&quot;)</code> 是在 Promise 对象创建后的某个时间点（例如，在调用 <code>new Promise(...)</code> 之后立即调用）执行的。这是因为 <strong>Promise 的执行器函数是同步执行</strong>的（但是这个函数里面如果执行了异步的操作，那么那个操作仍然是异步的，这里只是说这个函数是同步的，但是不能保证里面的操作，可以看下面的那个案例），它会立即执行回调函数，并在回调函数中调用 <code>resolve</code> 或 <code>reject</code> 方法来改变 Promise 的状态。</p>
+</blockquote>
+<h3 id="执行器函数"><a href="#执行器函数" class="headerlink" title="执行器函数"></a>执行器函数</h3><p>在Promise中，执行器函数（executor function）是作为参数传递给Promise构造函数的一个函数。执行器函数在创建Promise对象时立即执行，它负责定义异步操作，并通过调用resolve或reject来改变Promise的状态。</p>
+<p>执行器函数接受两个参数：resolve和reject。这些参数都是函数，由Promise构造函数提供，并且由JavaScript引擎在Promise对象创建时自动传递给执行器函数。</p>
+<p>通常情况下，执行器函数包含异步操作（如网络请求、文件读取等），并在异步操作完成时调用resolve方法来表示操作成功，或调用reject方法来表示操作失败。通过调用这些方法，执行器函数可以决定Promise对象的最终状态和终值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> promise = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>  <span class="hljs-comment">// 异步操作</span><br>  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> randomNum = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>();<br>    <span class="hljs-keyword">if</span> (randomNum &lt; <span class="hljs-number">0.5</span>) &#123;<br>      <span class="hljs-title function_">resolve</span>(<span class="hljs-string">&quot;Operation succeeded&quot;</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-title function_">reject</span>(<span class="hljs-string">&quot;Operation failed&quot;</span>);<br>    &#125;<br>  &#125;, <span class="hljs-number">2000</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>在上述示例中，Promise的执行器函数包含了一个异步操作（使用setTimeout模拟），在2秒后随机生成一个数，并通过比较来决定调用resolve或reject。如果生成的数小于0.5，则调用resolve表示操作成功，否则调用reject表示操作失败。</p>
+<p>通过这种方式，执行器函数可以定义Promise的行为和异步操作的逻辑，以及在异步操作完成后如何改变Promise的状态和传递最终的结果。</p>
+<h3 id="Promise-all-方法"><a href="#Promise-all-方法" class="headerlink" title="Promise.all()方法"></a>Promise.all()方法</h3><p>Promise.all() 方法会发起并行的 Promise 异步操作，等所有的异步操作全部结束后才会执行下一步的 .then </p>
+<p>操作（等待机制）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> thenFs <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;then-fs&#x27;</span><br><br><span class="hljs-keyword">const</span> promiseArr = [<br>  thenFs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/3.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>),<br>  thenFs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/2.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>),<br>  thenFs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/1.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>),<br>]<br><br><span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>(promiseArr).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result)<br>&#125;)<br><span class="hljs-comment">//result是包含所以解析值的数组</span><br><span class="hljs-comment">//返回一个新的Promise对象，该对象在promiseArr中的所有Promise对象都被解析时才被解析，并提供一个包含所有解析值的数组作为回调函数的参数</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="Promise-race-方法"><a href="#Promise-race-方法" class="headerlink" title="Promise.race()方法"></a>Promise.race()方法</h3><p>Promise.race() 方法会发起并行的 Promise 异步操作，只要任何一个异步操作完成，就立即执行下一步的</p>
+<p>.then 操作（赛跑机制）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> thenFs <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;then-fs&#x27;</span><br><br><span class="hljs-keyword">const</span> promiseArr = [<br>  thenFs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/3.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>),<br>  thenFs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/2.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>),<br>  thenFs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/1.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>),<br>]<br><br><span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">race</span>(promiseArr).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>调用<code>Promise.race(promiseArr)</code>，返回一个新的Promise对象。这个新的Promise对象将会在<code>promiseArr</code>中最快完成的Promise对象被解析时被解析</p>
+<h3 id="基于Promise封装读文件方法"><a href="#基于Promise封装读文件方法" class="headerlink" title="基于Promise封装读文件方法"></a>基于Promise封装读文件方法</h3><p>① 方法的名称要定义为 getFile</p>
+<p>② 方法接收一个形参 fpath，表示要读取的文件的路径</p>
+<p>③ 方法的返回值为 Promise 实例对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;fs&#x27;</span><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">getFile</span>(<span class="hljs-params">fpath</span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) &#123;<br>    fs.<span class="hljs-title function_">readFile</span>(fpath, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, dataStr</span>) =&gt;</span> &#123;<br>      <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> <span class="hljs-title function_">reject</span>(err)<br>      <span class="hljs-title function_">resolve</span>(dataStr)<br>    &#125;)<br>  &#125;)<br>&#125;<br><br><span class="hljs-title function_">getFile</span>(<span class="hljs-string">&#x27;./files/11.txt&#x27;</span>)<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">r1</span>) =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(r1)<br>  &#125;)<br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(err.<span class="hljs-property">message</span>))<br></code></pre></td></tr></table></figure>
+
+<p>一般直接使用.catch()做错误处理而不用then中第二个参数</p>
+<h2 id="async-x2F-await"><a href="#async-x2F-await" class="headerlink" title="async&#x2F;await"></a>async&#x2F;await</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>(语法糖)</p>
+<p>async&#x2F;await 是 ES8（ECMAScript 2017）引入的新语法，用来简化Promise 异步操作。在 async&#x2F;await 出现之前，开发者只能通过链式 .then() 的方式处理 Promise 异步操作。</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>① 如果在 function 中使用了 await，则 function 必须被 async 修饰</p>
+<p>② 在 async 方法中，第一个 await 之前的代码会同步执行，await 之后的代码会异步执行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> thenFs <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;then-fs&#x27;</span><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;A&#x27;</span>)<br><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getAllFile</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;B&#x27;</span>)<br>  <span class="hljs-keyword">const</span> r1 = <span class="hljs-keyword">await</span> thenFs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/1.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>)<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(r1)<br>  <span class="hljs-keyword">const</span> r2 = <span class="hljs-keyword">await</span> thenFs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/2.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>)<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(r2)<br>  <span class="hljs-keyword">const</span> r3 = <span class="hljs-keyword">await</span> thenFs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./files/3.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>)<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(r3)<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;D&#x27;</span>)<br>&#125;<br><br><span class="hljs-title function_">getAllFile</span>()<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;C&#x27;</span>)<br><br></code></pre></td></tr></table></figure>
+
+<p>（await相当于.then()方法，thenFs.readFile(‘.&#x2F;files&#x2F;1.txt’, ‘utf8’)这个promise把终值给了await）</p>
+<h2 id="EventLoop"><a href="#EventLoop" class="headerlink" title="EventLoop"></a>EventLoop</h2><p>可以参考<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903512845860872#heading-0">这一次，彻底弄懂 JavaScript 执行机制 - 掘金 (juejin.cn)</a></p>
+<p>JS是单线程执行的编程语言</p>
+<p>为了防止某个耗时任务导致程序假死的问题，JavaScript 把待执行的任务分为了两类：</p>
+<p>① 同步任务（synchronous）</p>
+<ul>
+<li>又叫做非耗时任务，指的是在主线程上排队执行的那些任务</li>
+<li>只有前一个任务执行完毕，才能执行后一个任务</li>
+</ul>
+<p>② 异步任务（asynchronous）</p>
+<ul>
+<li>又叫做耗时任务，异步任务由 JavaScript 委托给宿主环境进行执行</li>
+<li>当异步任务执行完成后，会通知 JavaScript 主线程执行异步任务的回调函数</li>
+</ul>
+<p><img src="/image/es6-2.PNG" srcset="/img/loading.gif" lazyload></p>
+<p>(图来自黑马程序员)</p>
+<p>任务队列根据宏任务和微任务有对应的宏任务队列和微任务队列</p>
+<blockquote>
+<p>JavaScript 主线程从“任务队列”中读取异步任务的回调函数，放到执行栈中依次执行。这个过程是循环不断的，所以整个的这种运行机制又称为 EventLoop（事件循环）。</p>
+</blockquote>
+<h2 id="宏任务和微任务"><a href="#宏任务和微任务" class="headerlink" title="宏任务和微任务"></a>宏任务和微任务</h2><p>JavaScript 把异步任务又做了进一步的划分，异步任务又分为两类，分别是：</p>
+<p>① 宏任务（macrotask）</p>
+<ul>
+<li><p>整体代码script</p>
+</li>
+<li><p>异步 Ajax 请求、</p>
+</li>
+<li><p>setTimeout、setInterval、</p>
+</li>
+<li><p>文件操作</p>
+</li>
+<li><p>I&#x2F;O</p>
+</li>
+<li><p>UI交互事件（比如DOM）</p>
+</li>
+<li><p>其它宏任务</p>
+</li>
+</ul>
+<p>② 微任务（microtask）</p>
+<ul>
+<li><p>Promise.then、.catch 和 .finally</p>
+</li>
+<li><p>process.nextTick（Node独有，注册函数的优先级比Promise回调函数要高）</p>
+<blockquote>
+<p>因为node中的event loop和浏览器中的event loop运行方式不一样。<br>浏览器中的机制就像作者说的那样：一个宏，所有微；再一个宏，再所有微 这样的去执行事件循环（也可以理解为微任务在宏任务之间的间隙去执行）。<br>而node中，是一类一系列这样子去执行的。是一类宏，然后本次循环所有微；再一类宏，所有微 这样子的。<br>然后题中两个setTimeout属于一类，即使他们每个宏中又各自有微，也是先执行完这一类所有setTimeout之后才执行本次剩下的微任务的。所以是这个结果。当然，node中nextTick的执行优先级高于then的。</p>
+</blockquote>
+<p>(高版本的node就和浏览器一样了)</p>
+</li>
+<li><p>其它微任务</p>
+</li>
+</ul>
+<p>引入了这两个概念之后，事件循环就变成这样了：</p>
+<p>1.整个script代码作为第一个宏任务开始执行，同步任务立即执行，遇到宏任务后推到宏任务队列，遇到微任务推到微任务队列，</p>
+<p>2.当第一次事件循环中的执行栈为空时，就去执行微任务队列中的事件，微任务队列为空时开始第二次事件循环，</p>
+<p>3.第二次事件循环会将宏任务队列中最顶端的事件加入到执行栈中执行，执行过程中遇到微任务则推入到微任务队列中，如果遇到宏任务则把宏任务推入到宏任务队列中，当执行栈为空时，再去执行微任务队列中的事件，直到微任务队列为空，重复第3步中的操作开始下一次事件循环，直到所有宏任务，微任务都为空为止</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/web/" class="category-chain-item">web</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/web/JS%E5%BC%82%E6%AD%A5/" class="category-chain-item">JS异步</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/es6/">#es6</a>
+      
+        <a href="/tags/promise/">#promise</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ES6模块化&amp;Promise&amp;EventLoop</div>
+      <div>https://wjcbolg.cn/2023/06/08/ES6模块化和异步编程高级用法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>JasonWang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年6月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-JW
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/05/Node%E4%B8%ADreq.params%EF%BC%8Creq.query%EF%BC%8Creq.body/" title="Node.js-req.params&amp;req.query&amp;req.body">
+                        <span class="hidden-mobile">Node.js-req.params&amp;req.query&amp;req.body</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script>
+      function setClipboardText(event){
+          // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+          let clipboardData = event.clipboardData || window.clipboardData;
+          // 如果未复制或者未剪切，则return出去
+          if (!clipboardData) { return; }
+          event.preventDefault();
+          // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+          //     声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+          let text = window.getSelection().toString();
+
+          if (text) {
+            // 如果文本存在则先取消文本默认事件
+            event.preventDefault();
+            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+            // data: 一个 DOMString表示要添加到 drag object的数据。
+            var copyright = '\n\n'
+                            + '\n著作权归作者所有。'
+                            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+                            + '\n作者: JasonWang'
+                            + '\n邮箱: 1536794549@qq.com'
+                            + '\n原文地址: https://wjcbolg.cn/2023/06/08/ES6%E6%A8%A1%E5%9D%97%E5%8C%96%E5%92%8C%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/'
+
+            clipboardData.setData('text/plain', text + copyright);
+
+          }
+      };
+      var contents = document.getElementsByClassName("markdown-body");
+      // 监听文章内容的copy事件
+      contents[0].addEventListener('copy',function(e){
+          setClipboardText(e);
+      });
+  </script>
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
