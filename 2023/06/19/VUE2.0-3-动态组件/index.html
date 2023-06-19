@@ -1,0 +1,784 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="JasonWang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="VUE2.0-3-动态组件&amp;插槽&amp;自定义指令动态组件动态组件指的是动态切换组件的显示与隐藏 如何实现动态组件渲染vue 提供了一个内置的 &lt;component&gt; 组件，专门用来实现动态组件的渲染  （可以把component理解为一个组件占位符） 使用keep-alive保持状态默认情况下，切换动态组件时无法保持组件的状态。此时可以使用 vue 内置的&lt;keep-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue2.0-插槽">
+<meta property="og:url" content="https://wjcbolg.cn/2023/06/19/VUE2.0-3-%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6/index.html">
+<meta property="og:site_name" content="JasonW">
+<meta property="og:description" content="VUE2.0-3-动态组件&amp;插槽&amp;自定义指令动态组件动态组件指的是动态切换组件的显示与隐藏 如何实现动态组件渲染vue 提供了一个内置的 &lt;component&gt; 组件，专门用来实现动态组件的渲染  （可以把component理解为一个组件占位符） 使用keep-alive保持状态默认情况下，切换动态组件时无法保持组件的状态。此时可以使用 vue 内置的&lt;keep-">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wjcbolg.cn/image/vue2.0-4-1.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/vue2.0-4-2.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/vue2.0-4-3.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/vue2.0-4-4.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/vue2.0-4-5.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/vue2.0-4-6.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/vue2.0-4-7.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/vue2.0-4-8.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/vue2.0-4-9.PNG">
+<meta property="og:image" content="https://wjcbolg.cn/image/vue2.0-4-10.PNG">
+<meta property="article:published_time" content="2023-06-19T03:45:29.309Z">
+<meta property="article:modified_time" content="2023-06-19T03:53:18.449Z">
+<meta property="article:author" content="JasonWang">
+<meta property="article:tag" content="VUE">
+<meta property="article:tag" content="插槽">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wjcbolg.cn/image/vue2.0-4-1.PNG">
+  
+  
+  
+  <title>vue2.0-插槽 - JasonW</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wjcbolg.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jason</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="vue2.0-插槽"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-06-19 11:45" pubdate>
+          2023年6月19日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">vue2.0-插槽</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="VUE2-0-3-动态组件-amp-插槽-amp-自定义指令"><a href="#VUE2-0-3-动态组件-amp-插槽-amp-自定义指令" class="headerlink" title="VUE2.0-3-动态组件&amp;插槽&amp;自定义指令"></a>VUE2.0-3-动态组件&amp;插槽&amp;自定义指令</h1><h2 id="动态组件"><a href="#动态组件" class="headerlink" title="动态组件"></a>动态组件</h2><p>动态组件指的是动态切换组件的显示与隐藏</p>
+<h3 id="如何实现动态组件渲染"><a href="#如何实现动态组件渲染" class="headerlink" title="如何实现动态组件渲染"></a>如何实现动态组件渲染</h3><p>vue 提供了一个内置的 <code>&lt;component&gt;</code> 组件，专门用来实现动态组件的渲染</p>
+<p><img src="/image/vue2.0-4-1.PNG" srcset="/img/loading.gif" lazyload></p>
+<p>（可以把component理解为一个组件占位符）</p>
+<h3 id="使用keep-alive保持状态"><a href="#使用keep-alive保持状态" class="headerlink" title="使用keep-alive保持状态"></a>使用keep-alive保持状态</h3><p>默认情况下，切换动态组件时无法保持组件的状态。此时可以使用 vue 内置的<code>&lt;keep-alive&gt;</code>组件保持动态组</p>
+<p>件的状态。示例代码如下：</p>
+<p><img src="/image/vue2.0-4-2.PNG" srcset="/img/loading.gif" lazyload></p>
+<p>（展示出来的组件都会被缓存，而不是切换的时候销毁组件）</p>
+<h3 id="keep-alive对应的声明周期函数"><a href="#keep-alive对应的声明周期函数" class="headerlink" title="keep-alive对应的声明周期函数"></a>keep-alive对应的声明周期函数</h3><p>当组件被缓存时，会自动触发组件的 deactivated 生命周期函数。</p>
+<p>当组件被激活时，会自动触发组件的 activated 生命周期函数。</p>
+<p>（当组件第一次被创建的时候，既会执行created生命周期，也会执行activated生命周期）</p>
+<p><img src="/image/vue2.0-4-3.PNG" srcset="/img/loading.gif" lazyload></p>
+<h3 id="keep-alive的属性"><a href="#keep-alive的属性" class="headerlink" title="keep-alive的属性"></a>keep-alive的属性</h3><h4 id="include"><a href="#include" class="headerlink" title="include"></a>include</h4><p>include 属性用来指定：只有名称匹配的组件会被缓存。多个组件名之间使用英文的逗号分隔：</p>
+<p><img src="/image/vue2.0-4-4.PNG" srcset="/img/loading.gif" lazyload></p>
+<h3 id="exclude"><a href="#exclude" class="headerlink" title="exclude"></a>exclude</h3><p>通过 exclude 属性指定哪些组件不需要被缓存；但是：不要同时使用 include 和 exclude 这两个属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;keep-alive exclude=<span class="hljs-string">&quot;MyRight&quot;</span>&gt;<br>        <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">component</span> <span class="hljs-attr">:is</span>=<span class="hljs-string">&quot;comName&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">component</span>&gt;</span></span><br> &lt;/keep-alive&gt;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="组件的注册名称和声明的name"><a href="#组件的注册名称和声明的name" class="headerlink" title="组件的注册名称和声明的name"></a>组件的注册名称和声明的name</h3><ol>
+<li>组件的 “注册名称” 的主要应用场景是：以标签的形式，把注册好的组件，渲染和使用到页面结构之中</li>
+<li>组件声明时候的 “name” 名称的主要应用场景：结合 <code>&lt;keep-alive&gt; </code>标签实现组件缓存功能；以及在调试工具中看到组件的 name 名称</li>
+</ol>
+<h2 id="插槽"><a href="#插槽" class="headerlink" title="插槽"></a>插槽</h2><p>插槽（Slot）是 vue 为组件的封装者提供的能力。允许开发者在封装组件时，把不确定的、希望由用户指定的</p>
+<p>部分定义为插槽。</p>
+<p><img src="/image/vue2.0-4-5.PNG" srcset="/img/loading.gif" lazyload></p>
+<p>可以把插槽认为是组件封装期间，为用户预留的内容的占位符.</p>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>在封装组件时，可以通过<code>&lt;slot&gt;</code>元素定义插槽，从而为用户预留内容占位符</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;left-container&quot;</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Left 组件<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">hr</span> /&gt;</span></span><br><span class="language-xml">    <span class="hljs-comment">&lt;!-- 声明一个插槽区域 --&gt;</span></span><br><span class="language-xml">    <span class="hljs-comment">&lt;!-- vue 官方规定：每一个 slot 插槽，都要有一个 name 名称 --&gt;</span></span><br><span class="language-xml">    <span class="hljs-comment">&lt;!-- 如果省略了 slot 的 name 属性，则有一个默认名称叫做 default --&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;default&quot;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h6</span>&gt;</span>这是 default 插槽的后备内容<span class="hljs-tag">&lt;/<span class="hljs-name">h6</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
+
+<p>如果在封装组件时没有预留任何<code>&lt;slot&gt;</code>插槽，则用户提供的任何自定义内容都会被丢弃</p>
+<h4 id="后备内容"><a href="#后备内容" class="headerlink" title="后备内容"></a>后备内容</h4><p>封装组件时，可以为预留的<code> &lt;slot&gt;</code> 插槽提供后备内容（默认内容）。如果组件的使用者没有为插槽提供任何</p>
+<p>内容，则后备内容会生效。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;slot name=<span class="hljs-string">&quot;default&quot;</span>&gt;<br>      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h6</span>&gt;</span>这是 default 插槽的后备内容<span class="hljs-tag">&lt;/<span class="hljs-name">h6</span>&gt;</span></span><br>    &lt;/slot&gt;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="具名插槽"><a href="#具名插槽" class="headerlink" title="具名插槽"></a>具名插槽</h4><p>如果在封装组件时需要预留多个插槽节点，则需要为每个<code>&lt;slot&gt;</code>插槽指定具体的 name 名称。这种带有具体</p>
+<p>名称的插槽叫做“具名插槽”。</p>
+<p><img src="/image/vue2.0-4-6.PNG" srcset="/img/loading.gif" lazyload></p>
+<h4 id="v-slot指令"><a href="#v-slot指令" class="headerlink" title="v-slot指令"></a>v-slot指令</h4><p>在向具名插槽提供内容的时候，我们可以在一个<code>&lt;template&gt;</code>元素上使用 v-slot 指令，并以 v-slot 的参数的</p>
+<p>形式提供其名称。</p>
+<p><img src="/image/vue2.0-4-7.PNG" srcset="/img/loading.gif" lazyload></p>
+<p>跟 v-on 和 v-bind 一样，v-slot 也有缩写，即把参数之前的所有内容 (v-slot:) 替换为字符 #。例如 v-slot:header</p>
+<p>可以被重写为 #header</p>
+<h4 id="作用域插槽"><a href="#作用域插槽" class="headerlink" title="作用域插槽"></a>作用域插槽</h4><p>可以使用 v-slot: 的形式，接收作用域插槽对外提供的数据(插槽里面有定义一些属性的叫作用域插槽)</p>
+<p><img src="/image/vue2.0-4-8.PNG" srcset="/img/loading.gif" lazyload></p>
+<h4 id="作用域插槽的解构赋值"><a href="#作用域插槽的解构赋值" class="headerlink" title="作用域插槽的解构赋值"></a>作用域插槽的解构赋值</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;content-box&quot;</span>&gt;<br>      &lt;!-- 在封装组件时，为预留的 &lt;slot&gt; 提供属性对应的值，这种用法，叫做 “作用域插槽” --&gt;<br>      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;content&quot;</span> <span class="hljs-attr">msg</span>=<span class="hljs-string">&quot;hello vue.js&quot;</span> <span class="hljs-attr">:user</span>=<span class="hljs-string">&quot;userinfo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span></span><br>    &lt;/div&gt;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template #content=<span class="hljs-string">&quot;&#123; msg, user &#125;&quot;</span>&gt;<br>        <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;&#123; msg &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;&#123; user.name &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>      &lt;/template&gt;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h2><p>vue 官方提供了 v-text、v-for、v-model、v-if 等常用的指令。除此之外 vue 还允许开发者自定义指令。</p>
+<ul>
+<li>私有自定义指令</li>
+<li>全局自定义指令</li>
+</ul>
+<h3 id="私有自定义指令"><a href="#私有自定义指令" class="headerlink" title="私有自定义指令"></a>私有自定义指令</h3><h4 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h4><p>在每个 vue 组件中，可以在 directives 节点下声明私有自定义指令。</p>
+<p><img src="/image/vue2.0-4-9.PNG" srcset="/img/loading.gif" lazyload></p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>在使用自定义指令时，需要加上 v- 前缀</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"> &lt;h1 v-color=<span class="hljs-string">&quot;color&quot;</span>&gt;<span class="hljs-title class_">App</span> 根组件&lt;/h1&gt;<br>&lt;!--定义的时候指令名字是color,使用时要加上v-指令前缀--&gt;<br><span class="hljs-comment">//定义中的el指h1</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="为自定义指令动态绑定参数值"><a href="#为自定义指令动态绑定参数值" class="headerlink" title="为自定义指令动态绑定参数值"></a>为自定义指令动态绑定参数值</h4><p>在 template 结构中使用自定义指令时，可以通过等号（&#x3D;）的方式，为当前指令动态绑定参数值</p>
+<p><img src="/image/vue2.0-4-10.PNG" srcset="/img/loading.gif" lazyload></p>
+<h4 id="通过-binding-获取指令的参数值"><a href="#通过-binding-获取指令的参数值" class="headerlink" title="通过 binding 获取指令的参数值"></a>通过 binding 获取指令的参数值</h4><p>在声明自定义指令时，可以通过形参中的第二个参数，来接收指令的参数值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">directives</span>: &#123;<br>    <span class="hljs-comment">// 定义名为 color 的指令，指向一个配置对象</span><br>     <span class="hljs-attr">color</span>: &#123;<br>      <span class="hljs-comment">// 当指令第一次被绑定到元素上的时候，会立即触发 bind 函数</span><br>      <span class="hljs-comment">// 形参中的 el 表示当前指令所绑定到的那个 DOM 对象</span><br>      <span class="hljs-title function_">bind</span>(<span class="hljs-params">el, binding</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;触发了 v-color 的 bind 函数&#x27;</span>)<br>        el.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = binding.<span class="hljs-property">value</span><br>      &#125;,<br>      <span class="hljs-comment">// 在 DOM 更新的时候，会触发 update 函数</span><br>      <span class="hljs-title function_">update</span>(<span class="hljs-params">el, binding</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;触发了 v-color 的 update 函数&#x27;</span>)<br>        el.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = binding.<span class="hljs-property">value</span><br>      &#125;<br>    &#125; <br>   <br>  &#125;<br></code></pre></td></tr></table></figure>
+
+<p>bind 函数只调用 1 次：当指令第一次绑定到元素时调用，当 DOM 更新时 bind 函数不会被触发。 update 函</p>
+<p>数会在每次 DOM 更新时被调用。</p>
+<h4 id="函数简写"><a href="#函数简写" class="headerlink" title="函数简写"></a>函数简写</h4><p>如果 bind 和update 函数中的逻辑完全相同，则对象格式的自定义指令可以简写成函数格式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">directives</span>: &#123;<br>    <br>    <span class="hljs-title function_">color</span>(<span class="hljs-params">el, binding</span>) &#123;<br>      el.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = binding.<span class="hljs-property">value</span><br>    &#125;<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="全局自定义指令"><a href="#全局自定义指令" class="headerlink" title="全局自定义指令"></a>全局自定义指令</h4><p>全局共享的自定义指令需要通过“Vue.directive()”进行声明</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 全局自定义指令</span><br> <span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">directive</span>(<span class="hljs-string">&#x27;color&#x27;</span>, &#123;<br>  <span class="hljs-title function_">bind</span>(<span class="hljs-params">el, binding</span>) &#123;<br>    el.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = binding.<span class="hljs-property">value</span><br>  &#125;,<br>  <span class="hljs-title function_">update</span>(<span class="hljs-params">el, binding</span>) &#123;<br>    el.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = binding.<span class="hljs-property">value</span><br>  &#125;<br>&#125;) <br><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">directive</span>(<span class="hljs-string">&#x27;color&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">el, binding</span>) &#123;<br>  el.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = binding.<span class="hljs-property">value</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/web/" class="category-chain-item">web</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/web/VUE2-0/" class="category-chain-item">VUE2.0</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/VUE/">#VUE</a>
+      
+        <a href="/tags/%E6%8F%92%E6%A7%BD/">#插槽</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>vue2.0-插槽</div>
+      <div>https://wjcbolg.cn/2023/06/19/VUE2.0-3-动态组件/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>JasonWang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年6月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-JW
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/06/19/vue2.0-%E8%B7%AF%E7%94%B1/" title="vue2.0-路由">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">vue2.0-路由</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/12/leetcode6.4-6.11/" title="leetcode 6.4-6.11">
+                        <span class="hidden-mobile">leetcode 6.4-6.11</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script>
+      function setClipboardText(event){
+          // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+          let clipboardData = event.clipboardData || window.clipboardData;
+          // 如果未复制或者未剪切，则return出去
+          if (!clipboardData) { return; }
+          event.preventDefault();
+          // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+          //     声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+          let text = window.getSelection().toString();
+
+          if (text) {
+            // 如果文本存在则先取消文本默认事件
+            event.preventDefault();
+            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+            // data: 一个 DOMString表示要添加到 drag object的数据。
+            var copyright = '\n\n'
+                            + '\n著作权归作者所有。'
+                            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+                            + '\n作者: JasonWang'
+                            + '\n邮箱: 1536794549@qq.com'
+                            + '\n原文地址: https://wjcbolg.cn/2023/06/19/VUE2.0-3-%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6/'
+
+            clipboardData.setData('text/plain', text + copyright);
+
+          }
+      };
+      var contents = document.getElementsByClassName("markdown-body");
+      // 监听文章内容的copy事件
+      contents[0].addEventListener('copy',function(e){
+          setClipboardText(e);
+      });
+  </script>
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
