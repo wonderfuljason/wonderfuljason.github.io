@@ -1,0 +1,722 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="JasonWang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="less一门css预处理语言 less本身兼容css，less中可以正常编写css 变量1234567@width: 10px;@height: @width + 10px;#header &amp;#123;  width: @width;  height: @height;&amp;#125;  编译成css 1234#header &amp;#123;  width: 10px;  height: 20px;&amp;#1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="less">
+<meta property="og:url" content="https://wjcbolg.cn/2023/07/11/less/index.html">
+<meta property="og:site_name" content="JasonW">
+<meta property="og:description" content="less一门css预处理语言 less本身兼容css，less中可以正常编写css 变量1234567@width: 10px;@height: @width + 10px;#header &amp;#123;  width: @width;  height: @height;&amp;#125;  编译成css 1234#header &amp;#123;  width: 10px;  height: 20px;&amp;#1">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-07-11T09:46:59.589Z">
+<meta property="article:modified_time" content="2023-07-11T09:47:48.140Z">
+<meta property="article:author" content="JasonWang">
+<meta property="article:tag" content="less">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>less - JasonW</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wjcbolg.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jason</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="less"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-07-11 17:46" pubdate>
+          2023年7月11日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">less</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="less"><a href="#less" class="headerlink" title="less"></a>less</h1><p>一门css预处理语言</p>
+<p>less本身兼容css，less中可以正常编写css</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@width:</span> <span class="hljs-number">10px</span>;<br><span class="hljs-variable">@height:</span> <span class="hljs-variable">@width</span> + <span class="hljs-number">10px</span>;<br><br><span class="hljs-selector-id">#header</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-variable">@width</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-variable">@height</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>编译成css</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-id">#header</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">20px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="混合"><a href="#混合" class="headerlink" title="混合"></a>混合</h2><p>混合（Mixin）是一种将一组属性从一个规则集包含（或混入）到另一个规则集的方法。假设我们定义了一个类（class）如下：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">.<span class="hljs-keyword">bordered </span>&#123;<br>  <span class="hljs-keyword">border-top: </span>dotted <span class="hljs-number">1</span>px <span class="hljs-keyword">black;</span><br><span class="hljs-keyword"></span>  <span class="hljs-keyword">border-bottom: </span>solid <span class="hljs-number">2</span>px <span class="hljs-keyword">black;</span><br><span class="hljs-keyword"></span>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>如果我们希望在其它规则集中使用这些属性呢？没问题，我们只需像下面这样输入所需属性的类（class）名称即可，如下所示：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-id">#menu</span> <span class="hljs-selector-tag">a</span> &#123;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#111</span>;<br>  <span class="hljs-selector-class">.bordered</span>();<br>&#125;<br><br><span class="hljs-selector-class">.post</span> <span class="hljs-selector-tag">a</span> &#123;<br>  <span class="hljs-attribute">color</span>: red;<br>  <span class="hljs-selector-class">.bordered</span>();<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><code>.bordered</code> 类所包含的属性就将同时出现在 <code>#menu a</code> 和 <code>.post a</code> 中了。（注意，你也可以使用 <code>#ids</code> 作为 mixin 使用。）</p>
+<p>(混入也可以传递参数)</p>
+<h2 id="嵌套"><a href="#嵌套" class="headerlink" title="嵌套"></a>嵌套</h2><p>Less 提供了使用嵌套（nesting）代替层叠或与层叠结合使用的能力。假设我们有以下 CSS 代码：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-selector-id">#header</span> &#123;<br>  <span class="hljs-attribute">color</span>: black;<br>&#125;<br><span class="hljs-selector-id">#header</span> <span class="hljs-selector-class">.navigation</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">12px</span>;<br>&#125;<br><span class="hljs-selector-id">#header</span> <span class="hljs-selector-class">.logo</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>用 Less 语言我们可以这样书写代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-id">#header</span> &#123;<br>  <span class="hljs-attribute">color</span>: black;<br>  <span class="hljs-selector-class">.navigation</span> &#123;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">12px</span>;<br>  &#125;<br>  <span class="hljs-selector-class">.logo</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>用 Less 书写的代码更加简洁，并且模仿了 HTML 的组织结构。</p>
+<p>你还可以使用此方法将伪选择器与混入打包在一起。 这是经典的 clearfix hack，重写为混入（<code>&amp;</code> 代表当前选择器父级）：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.clearfix</span> &#123;<br>  <span class="hljs-attribute">display</span>: block;<br>  zoom: <span class="hljs-number">1</span>;<br><br>  &amp;<span class="hljs-selector-pseudo">:after</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot; &quot;</span>;<br>    <span class="hljs-attribute">display</span>: block;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">clear</span>: both;<br>    <span class="hljs-attribute">visibility</span>: hidden;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>相当于</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.clearfix</span> &#123;<br>  <span class="hljs-attribute">display</span>: block;<br>  zoom: <span class="hljs-number">1</span>;<br><br>&#125;<br> <span class="hljs-selector-class">.clearfix</span><span class="hljs-selector-pseudo">:after</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot; &quot;</span>;<br>    <span class="hljs-attribute">display</span>: block;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">clear</span>: both;<br>    <span class="hljs-attribute">visibility</span>: hidden;<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h2><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-comment">// numbers are converted into the same units</span><br><span class="hljs-variable">@conversion-1:</span> <span class="hljs-number">5cm</span> + <span class="hljs-number">10mm</span>; <span class="hljs-comment">// result is 6cm</span><br><span class="hljs-variable">@conversion-2:</span> <span class="hljs-number">2</span> - <span class="hljs-number">3cm</span> - <span class="hljs-number">5mm</span>; <span class="hljs-comment">// result is -1.5cm</span><br><br><span class="hljs-comment">// conversion is impossible</span><br><span class="hljs-variable">@incompatible-units:</span> <span class="hljs-number">2</span> + <span class="hljs-number">5px</span> - <span class="hljs-number">3cm</span>; <span class="hljs-comment">// result is 4px</span><br><br><span class="hljs-comment">// example with variables</span><br><span class="hljs-variable">@base:</span> <span class="hljs-number">5%</span>;<br><span class="hljs-variable">@filler:</span> <span class="hljs-variable">@base</span> * <span class="hljs-number">2</span>; <span class="hljs-comment">// result is 10%</span><br><span class="hljs-variable">@other:</span> <span class="hljs-variable">@base</span> + <span class="hljs-variable">@filler</span>; <span class="hljs-comment">// result is 15%</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h1><p>从 Less 3.5 开始，你还可以使用混入和规则集作为值映射。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-id">#colors</span>() &#123;<br>  primary: blue;<br>  secondary: green;<br>&#125;<br><br><span class="hljs-selector-class">.button</span> &#123;<br>  <span class="hljs-attribute">color</span>: #colors[primary];<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid #colors[secondary];<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>如预期的那样输出：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.button</span> &#123;<br>  <span class="hljs-attribute">color</span>: blue;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid green;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/web/" class="category-chain-item">web</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/web/css/" class="category-chain-item">css</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/less/">#less</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>less</div>
+      <div>https://wjcbolg.cn/2023/07/11/less/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>JasonWang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年7月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-JW
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/26/leetcode6.12-6.25/" title="leetcode 6.12-6.25">
+                        <span class="hidden-mobile">leetcode 6.12-6.25</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script>
+      function setClipboardText(event){
+          // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+          let clipboardData = event.clipboardData || window.clipboardData;
+          // 如果未复制或者未剪切，则return出去
+          if (!clipboardData) { return; }
+          event.preventDefault();
+          // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+          //     声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+          let text = window.getSelection().toString();
+
+          if (text) {
+            // 如果文本存在则先取消文本默认事件
+            event.preventDefault();
+            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+            // data: 一个 DOMString表示要添加到 drag object的数据。
+            var copyright = '\n\n'
+                            + '\n著作权归作者所有。'
+                            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+                            + '\n作者: JasonWang'
+                            + '\n邮箱: 1536794549@qq.com'
+                            + '\n原文地址: https://wjcbolg.cn/2023/07/11/less/'
+
+            clipboardData.setData('text/plain', text + copyright);
+
+          }
+      };
+      var contents = document.getElementsByClassName("markdown-body");
+      // 监听文章内容的copy事件
+      contents[0].addEventListener('copy',function(e){
+          setClipboardText(e);
+      });
+  </script>
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
